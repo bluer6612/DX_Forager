@@ -6,7 +6,7 @@
 #include <EngineCore/CameraActor.h>
 #include <EngineCore/TimeEventComponent.h>
 #include <EngineCore/Collision.h>
-#include "MyCustomRenderer.h"
+#include "ForagerRenderer.h"
 
 ATitleLogo::ATitleLogo()
 {

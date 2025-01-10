@@ -76,8 +76,8 @@ void UContentsCore::MyGSetting()
 
 	{
 		std::shared_ptr<UEngineMaterial> Mat = UEngineMaterial::Create("MyMaterial");
-		Mat->SetVertexShader("TestShader.fx");
-		Mat->SetPixelShader("TestShader.fx");
+		Mat->SetVertexShader("ForagerShader.fx");
+		Mat->SetPixelShader("ForagerShader.fx");
 	}
 
 	{

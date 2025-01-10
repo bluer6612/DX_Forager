@@ -5,7 +5,7 @@
 #include <EngineCore/DefaultSceneComponent.h>
 #include <EngineCore/CameraActor.h>
 #include <EngineCore/TimeEventComponent.h>
-#include "MyCustomRenderer.h"
+#include "ForagerRenderer.h"
 #include <EngineCore/Collision.h>
 
 AMonster2::AMonster2()

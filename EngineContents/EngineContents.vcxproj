@@ -186,7 +186,7 @@
     <ClInclude Include="GMConst.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="Monster2.h" />
-    <ClInclude Include="MyCustomRenderer.h">
+    <ClInclude Include="ForagerRenderer.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -221,7 +221,7 @@
     </ClCompile>
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="Monster2.cpp" />
-    <ClCompile Include="MyCustomRenderer.cpp">
+    <ClCompile Include="ForagerRenderer.cpp">
       <SubType>
       </SubType>
     </ClCompile>

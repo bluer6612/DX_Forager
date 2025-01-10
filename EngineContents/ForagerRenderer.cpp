@@ -1,7 +1,7 @@
 #include "PreCompile.h"
-#include "MyCustomRenderer.h"
+#include "ForagerRenderer.h"
 
-MyCustomRenderer::MyCustomRenderer()
+ForagerRenderer::ForagerRenderer()
 {
 	CreateRenderUnit();
 	SetMesh("Rect");
@@ -12,7 +12,7 @@ MyCustomRenderer::MyCustomRenderer()
 	GetRenderUnit().ConstantBufferLinkData("FMyColor", MyColor);
 }
 
-MyCustomRenderer::~MyCustomRenderer()
+ForagerRenderer::~ForagerRenderer()
 {
 }
 

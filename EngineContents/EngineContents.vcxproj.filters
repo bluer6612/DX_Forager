@@ -10,7 +10,7 @@
     <ClInclude Include="TitleLogo.h">
       <Filter>Title</Filter>
     </ClInclude>
-    <ClInclude Include="MyCustomRenderer.h">
+    <ClInclude Include="ForagerRenderer.h">
       <Filter>Render</Filter>
     </ClInclude>
     <ClInclude Include="Monster.h">
@@ -25,9 +25,11 @@
     <ClInclude Include="Monster2.h">
       <Filter>Title</Filter>
     </ClInclude>
-    <ClInclude Include="GMConst.h" />
     <ClInclude Include="AMon.h">
       <Filter>Title</Filter>
+    </ClInclude>
+    <ClInclude Include="GMConst.h">
+      <Filter>Global</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -41,7 +43,7 @@
       <Filter>Title</Filter>
     </ClCompile>
     <ClCompile Include="ContentsCore_Resources.cpp" />
-    <ClCompile Include="MyCustomRenderer.cpp">
+    <ClCompile Include="ForagerRenderer.cpp">
       <Filter>Render</Filter>
     </ClCompile>
     <ClCompile Include="Monster.cpp">
@@ -72,6 +74,9 @@
     </Filter>
     <Filter Include="GUI">
       <UniqueIdentifier>{15aa3c0d-7b41-4e15-93c0-0228acabc02d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Global">
+      <UniqueIdentifier>{79713bb3-8e26-4188-a787-8fa62a6d9f1b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

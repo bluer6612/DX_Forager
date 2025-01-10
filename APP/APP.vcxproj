@@ -24,6 +24,7 @@
     <ProjectGuid>{97f39824-ab07-486e-b1b5-204e845520b5}</ProjectGuid>
     <RootNamespace>APP</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>Forager</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
