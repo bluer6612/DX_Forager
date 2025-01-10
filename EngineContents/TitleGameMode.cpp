@@ -1,6 +1,6 @@
 #include "PreCompile.h"
 #include "TitleGameMode.h"
-#include "Forager.h"
+#include "TitleLogo.h"
 #include "Monster.h"
 #include <EngineCore/CameraActor.h>
 #include <EngineCore/SpriteRenderer.h>
@@ -51,7 +51,7 @@ ATitleGameMode::ATitleGameMode()
 
 
 	{
-		Forager = GetWorld()->SpawnActor<AForager>();
+		Logo = GetWorld()->SpawnActor<ATitleLogo>();
 	}
 
 
@@ -73,7 +73,7 @@ void ATitleGameMode::Tick(float _DeltaTime)
 	// 부모 호출
 	AActor::Tick(_DeltaTime);
 
-	if (nullptr == Forager && true == Forager->IsDestroy())
+	if (nullptr == Logo && true == Logo->IsDestroy())
 	{
 		Logo = nullptr;
 	}
