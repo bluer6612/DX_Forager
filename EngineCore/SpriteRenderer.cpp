@@ -26,7 +26,7 @@ USpriteRenderer::~USpriteRenderer()
 {
 }
 
-void USpriteRenderer::SetSprite(std::string _Name, UINT _Index)
+void USpriteRenderer::SetSprite(std::string _Name, std::shared_ptr<USceneComponent> _Parent, UINT _Index)
 {
 	Sprite = UEngineSprite::Find<UEngineSprite>(_Name + std::string(".png")).get();
 
@@ -34,10 +34,13 @@ void USpriteRenderer::SetSprite(std::string _Name, UINT _Index)
 	SpriteData = Sprite->GetSpriteData(_Index);
 
 	CurIndex = _Index;
-	//SetAutoScaleRatio(1.0f);
+
+	SetupAttachment(_Parent);
+	SetAutoScaleRatio(1.0f);
+	BillboardOn();
 }
 
-void USpriteRenderer::SetSprite(UEngineSprite* _Sprite)
+void USpriteRenderer::SetSprite(UEngineSprite* _Sprite, std::shared_ptr<USceneComponent> _Parent)
 {
 	Sprite = _Sprite;
 
@@ -45,6 +48,10 @@ void USpriteRenderer::SetSprite(UEngineSprite* _Sprite)
 	{
 		MSGASSERT("존재하지 않는 스프라이트를 사용하려고 했습니다.");
 	}
+
+	SetupAttachment(_Parent);
+	SetAutoScaleRatio(1.0f);
+	BillboardOn();
 }
 
 

@@ -17,9 +17,8 @@ AForager::AForager()
 	TimeEventComponent = CreateDefaultSubObject<UTimeEventComponent>();
 
 	CharacterRenderer = CreateDefaultSubObject<USpriteRenderer>();
-	CharacterRenderer->SetupAttachment(RootComponent);
-	CharacterRenderer->SetSprite("Player");
-	CharacterRenderer->BillboardOn();
+	CharacterRenderer->SetSprite("Player", RootComponent);
+	CharacterRenderer->SetWorldLocation({ 300.f, 300.f });
 
 	CharacterRenderer->CreateAnimation("Idle", "Player", 0, 1, 0.25f);
 

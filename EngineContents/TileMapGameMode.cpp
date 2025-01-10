@@ -130,10 +130,10 @@ public:
 				switch (SelectMonster)
 				{
 				case ESpawnList::Monster:
-					NewMonster = GetWorld()->SpawnActor<ACharacterManagerster>("Monster");
+					NewMonster = GetWorld()->SpawnActor<AMonster>("Monster");
 					break;
 				case ESpawnList::Monster2:
-					NewMonster = GetWorld()->SpawnActor<ACharacterManagerster2>("Monster2");
+					NewMonster = GetWorld()->SpawnActor<AMonster2>("Monster2");
 					break;
 				default:
 					break;
@@ -296,10 +296,10 @@ public:
 					switch (MonsterType)
 					{
 					case Monster:
-						NewMon = GetWorld()->SpawnActor<ACharacterManagerster>();
+						NewMon = GetWorld()->SpawnActor<AMonster>();
 						break;
 					case Monster2:
-						NewMon = GetWorld()->SpawnActor<ACharacterManagerster2>();
+						NewMon = GetWorld()->SpawnActor<AMonster2>();
 						break;
 					default:
 						break;

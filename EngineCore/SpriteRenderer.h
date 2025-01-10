@@ -80,9 +80,9 @@ public:
 		return Sprite->GetName();
 	}
 
-	ENGINEAPI void SetSprite(std::string _Name, UINT _CurIndex = 0);
+	ENGINEAPI void SetSprite(std::string _Name, std::shared_ptr<USceneComponent> _Parent, UINT _CurIndex = 0);
 
-	ENGINEAPI void SetSprite(UEngineSprite* _Sprite);
+	ENGINEAPI void SetSprite(UEngineSprite* _Sprite, std::shared_ptr<USceneComponent> _Parent);
 
 	ENGINEAPI void SetTexture(std::string_view _Name, bool AutoScale = false, float _Ratio = 1.0f);
 

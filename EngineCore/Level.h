@@ -68,9 +68,9 @@ public:
 	template<typename ActorType>
 	std::shared_ptr<ActorType> SpawnActor(std::string_view _Name ="")
 	{
-		// ACharacterManagerster : public AActor
-		// SpawnActor<ACharacterManagerster>();
-		// std::shared_ptr<ACharacterManagerster>
+		// AMonster : public AActor
+		// SpawnActor<AMonster>();
+		// std::shared_ptr<AMonster>
 
 		static_assert(std::is_base_of_v<AActor, ActorType>, "액터를 상속받지 않은 클래스를 SpawnActor하려고 했습니다.");
 
