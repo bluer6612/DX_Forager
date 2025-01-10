@@ -100,6 +100,11 @@ public:
 
 	FVector TileIndexToWorldPos(FTileIndex _Pos);
 
+	// 데이터를 직렬화(압축)
+	ENGINEAPI void Serialize(UEngineSerializer& _Ser) override;
+	// 데이터를 복구(할때)
+	ENGINEAPI void DeSerialize(UEngineSerializer& _Ser) override;
+
 protected:
 	ENGINEAPI void Render(class UEngineCamera* _Camera, float _DeltaTime) override;
 	void BeginPlay() override;
@@ -113,7 +118,6 @@ private:
 	FVector TileSize;
 	FVector ImageSize;
 	FVector TilePivot;
-
 	ETileMapType TileMapType = ETileMapType::Rect;
 
 	class UEngineSprite* Sprite = nullptr;

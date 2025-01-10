@@ -183,6 +183,11 @@ void UCollision::SetCollisionEnd(std::function<void(UCollision*, UCollision*)> _
 
 void UCollision::CollisionEventCheck(std::shared_ptr<UCollision> _Other)
 {
+	if (false == _Other->IsActive())
+	{
+		return;
+	}
+
 	if (true == FTransform::Collision(CollisionType, Transform, _Other->CollisionType, _Other->Transform))
 	{
 		// 충돌 했다.
@@ -240,9 +245,14 @@ void UCollision::DebugRender(UEngineCamera* _Camera, float _DeltaTime)
 	Unit.SetMesh("Rect");
 	Unit.SetMaterial("CollisionDebugMaterial");
 
+
 	Unit.ConstantBufferLinkData("FTransform", GetTransformRef());
 	FVector Color = {0.0f, 1.0f, 0.0f};
 	Unit.ConstantBufferLinkData("OutColor", Color);
 
 	Unit.Render(_Camera, _DeltaTime);
+
 }
+
+
+
