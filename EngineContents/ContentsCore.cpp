@@ -31,7 +31,7 @@ void UContentsCore::EngineStart(UEngineInitData& _Data)
 	_Data.WindowPos = { 100, 100 };
 	_Data.WindowSize = { 1280, 720 };
 
-	MyGSetting();
+	ResourcesSetting();
 
 	// 주인공 APawn 상속 받으세요.
 	UEngineGUI::AllWindowOff();

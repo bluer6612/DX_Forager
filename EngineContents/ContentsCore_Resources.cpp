@@ -12,7 +12,7 @@
 
 
 
-void UContentsCore::MyGSetting()
+void UContentsCore::ResourcesSetting()
 {
 	{
 		UEngineDirectory Dir;

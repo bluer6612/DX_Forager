@@ -23,7 +23,7 @@ protected:
 	void EngineEnd();
 
 private:
-	void MyGSetting();
+	void ResourcesSetting();
 	void DirectoryAdd(std::string _Append);
 
 };

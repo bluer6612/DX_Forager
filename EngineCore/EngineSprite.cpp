@@ -16,11 +16,16 @@ std::shared_ptr<UEngineSprite> UEngineSprite::CreateSpriteToFolder(std::string_v
 {
 	UEngineDirectory Dir = _Path;
 
-	std::vector<UEngineFile> Files = Dir.GetAllFile(false, { ".bmp"});
+	std::vector<UEngineFile> Files = Dir.GetAllFile(false, { ".png"});
 
 	if (0 == Files.size())
 	{
-		MSGASSERT("파일이 존재하지 않는 폴더를 스프라이트로 만들수는 없습니다.");
+		Files = Dir.GetAllFile(false, { ".bmp" });
+
+		if (0 == Files.size())
+		{
+			MSGASSERT("파일이 존재하지 않는 폴더를 스프라이트로 만들수는 없습니다.");
+		}
 	}
 
 	std::shared_ptr<UEngineSprite> NewRes = std::make_shared<UEngineSprite>();

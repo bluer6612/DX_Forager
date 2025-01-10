@@ -62,6 +62,5 @@ protected:
 private:
 	std::vector<UEngineTexture*> SpriteTexture;
 	std::vector<FSpriteData> SpriteDatas;
-
 };
 
