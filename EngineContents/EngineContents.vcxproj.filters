@@ -36,6 +36,9 @@
     <ClInclude Include="Forager.h">
       <Filter>Character</Filter>
     </ClInclude>
+    <ClInclude Include="PlayGameMode.h">
+      <Filter>GameMode</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp" />
@@ -70,6 +73,9 @@
     </ClCompile>
     <ClCompile Include="Forager.cpp">
       <Filter>Character</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayGameMode.cpp">
+      <Filter>GameMode</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

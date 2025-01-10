@@ -7,6 +7,7 @@
 #include <EngineCore/EngineMaterial.h>
 #include "TitleGameMode.h"
 #include "TileMapGameMode.h"
+#include "PlayGameMode.h"
 #include <EngineCore/EngineGUI.h>
 #include <EngineCore/EngineGUIWindow.h>
 #include "ContentsEditorGUI.h"
@@ -22,7 +23,6 @@ UContentsCore::~UContentsCore()
 {
 }
 
-
 void UContentsCore::EngineStart(UEngineInitData& _Data)
 {
 	// mainwindow는 아무나 건들면 안된다.
@@ -33,26 +33,23 @@ void UContentsCore::EngineStart(UEngineInitData& _Data)
 
 	MyGSetting();
 
-
-
 	// 주인공 APawn 상속 받으세요.
-	UEngineCore::CreateLevel<ATitleGameMode, APawn>("Titlelevel");
-	UEngineCore::CreateLevel<ATileMapGameMode, APawn>("TileMapEditor");
-	UEngineCore::OpenLevel("TileMapEditor");
-
 	UEngineGUI::AllWindowOff();
 
-	UEngineGUI::CreateGUIWindow<UContentsEditorGUI>("ContentsEditorGUI");
-	std::shared_ptr<UContentsEditorGUI> Window = UEngineGUI::FindGUIWindow<UContentsEditorGUI>("ContentsEditorGUI");
-	Window->SetActive(true);
+	UEngineCore::CreateLevel<ATitleGameMode, APawn>("Titlelevel");
+	UEngineCore::CreateLevel<ATileMapGameMode, APawn>("TileMapEditor");
+	UEngineCore::CreateLevel<APlayGameMode, APawn>("Playlevel");
+	UEngineCore::OpenLevel("Playlevel");
+
+	//UEngineGUI::CreateGUIWindow<UContentsEditorGUI>("ContentsEditorGUI");
+	//std::shared_ptr<UContentsEditorGUI> Window = UEngineGUI::FindGUIWindow<UContentsEditorGUI>("ContentsEditorGUI");
+	//Window->SetActive(true);
 }
 
 void UContentsCore::EngineTick(float _DeltaTime)
 {
-
 }
 
 void UContentsCore::EngineEnd()
 {
-
 }
