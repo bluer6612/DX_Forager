@@ -41,7 +41,7 @@ void UContentsCore::EngineStart(UEngineInitData& _Data)
 	UEngineCore::CreateLevel<ATitleGameMode, APawn>("Titlelevel");
 	UEngineCore::CreateLevel<ATileMapGameMode, APawn>("TileMapEditor");
 	UEngineCore::CreateLevel<APlayGameMode, APawn>("PlayLevel");
-	UEngineCore::OpenLevel("Titlelevel");
+	UEngineCore::OpenLevel("PlayLevel");
 
 	//UEngineGUI::CreateGUIWindow<UContentsEditorGUI>("ContentsEditorGUI");
 	//std::shared_ptr<UContentsEditorGUI> Window = UEngineGUI::FindGUIWindow<UContentsEditorGUI>("ContentsEditorGUI");
