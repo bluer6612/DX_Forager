@@ -16,19 +16,15 @@ AForager::AForager()
 	// 인벤토리
 	TimeEventComponent = CreateDefaultSubObject<UTimeEventComponent>();
 
-	Renderer = CreateDefaultSubObject<USpriteRenderer>();
-	Renderer->SetupAttachment(RootComponent);
-	Renderer->SetTexture("tevi_n_01.png");
-	Renderer->BillboardOn();
-	// Renderer->SetSprite("Test.png", 2);
-	// Renderer->SetAutoScale(true);
-	// Renderer->SetAutoScaleRatio(5.0f);
-	Renderer->SetScale3D({200.0f, 200.0f});
+	CharacterRenderer = CreateDefaultSubObject<USpriteRenderer>();
+	CharacterRenderer->SetupAttachment(RootComponent);
+	CharacterRenderer->SetSprite("Forager", 0);
+	CharacterRenderer->BillboardOn();
 
 	Collision = CreateDefaultSubObject<UCollision>();
 	Collision->SetupAttachment(RootComponent);
-	Collision->SetCollisionProfileName("Player");
-	Collision->SetScale3D({ 100.0f, 300.0f });
+	Collision->SetCollisionProfileName("Forager");
+	Collision->SetScale3D({});
 
 	Collision->SetCollisionEnter([](UCollision* _This, UCollision* _Other)
 		{

@@ -16,12 +16,11 @@ void UContentsCore::MyGSetting()
 {
 	{
 		UEngineDirectory Dir;
-		if (false == Dir.MoveParentToDirectory("ContentsResources"))
+		if (false == Dir.MoveParentToDirectory("Image"))
 		{
 			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
 			return;
 		}
-		Dir.Append("Image");
 		std::vector<UEngineFile> ImageFiles = Dir.GetAllFile(true, { ".PNG", ".BMP", ".JPG" });
 		for (size_t i = 0; i < ImageFiles.size(); i++)
 		{
@@ -30,31 +29,31 @@ void UContentsCore::MyGSetting()
 		}
 	}
 
-	UEngineSprite::CreateSpriteToMeta("Player.png", ".sdata");
+	/*UEngineSprite::CreateSpriteToMeta("Player.png", ".sdata");
 
-	UEngineSprite::CreateSpriteToMeta("TileMap.png", ".sdata");
+	UEngineSprite::CreateSpriteToMeta("TileMap.png", ".sdata");*/
 
 
 	{
 		UEngineDirectory Dir;
-		if (false == Dir.MoveParentToDirectory("ContentsResources"))
+		if (false == Dir.MoveParentToDirectory("Image"))
 		{
 			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
 			return;
 		}
-		Dir.Append("Image/Tevi");
+		Dir.Append("Character/Forager");
 
 		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
 	}
 
 	{
 		UEngineDirectory Dir;
-		if (false == Dir.MoveParentToDirectory("ContentsResources"))
+		if (false == Dir.MoveParentToDirectory("Image"))
 		{
 			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
 			return;
 		}
-		Dir.Append("Image/TileSet");
+		Dir.Append("Tiles");
 
 		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
 	}
@@ -72,13 +71,13 @@ void UContentsCore::MyGSetting()
 	}
 
 	{
-		std::shared_ptr<UEngineMaterial> Mat = UEngineMaterial::Create("MyMaterial");
+		std::shared_ptr<UEngineMaterial> Mat = UEngineMaterial::Create("ForagerMaterial");
 		Mat->SetVertexShader("ForagerShader.fx");
 		Mat->SetPixelShader("ForagerShader.fx");
 	}
 
 	{
-		std::shared_ptr<UEngineMaterial> Mat = UEngineMaterial::Create("MyCollisionDebugMaterial");
+		std::shared_ptr<UEngineMaterial> Mat = UEngineMaterial::Create("ForagerCollisionDebugMaterial");
 		Mat->SetVertexShader("EngineDebugCollisionShader.fx");
 		Mat->SetPixelShader("EngineDebugCollisionShader.fx");
 		// 언제나 화면에 나오는 누구도 이녀석의 앞을 가릴수 없어.

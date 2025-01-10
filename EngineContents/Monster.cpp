@@ -17,10 +17,10 @@ AMonster::AMonster()
 	// 인벤토리
 	TimeEventComponent = CreateDefaultSubObject<UTimeEventComponent>();
 
-	Renderer = CreateDefaultSubObject<USpriteRenderer>();
-	Renderer->SetupAttachment(RootComponent);
-	Renderer->SetTexture("Test.png");
-	Renderer->SetScale3D({ 50.0f, 50.0f });
+	CharacterRenderer = CreateDefaultSubObject<USpriteRenderer>();
+	CharacterRenderer->SetupAttachment(RootComponent);
+	CharacterRenderer->SetTexture("skullidle.bmp");
+	CharacterRenderer->SetScale3D({ 50.0f, 50.0f });
 
 	Collision = CreateDefaultSubObject<UCollision>();
 	Collision->SetupAttachment(RootComponent);

@@ -25,10 +25,10 @@ public:
 protected:
 	std::shared_ptr<class USpriteRenderer> GetRenderer()
 	{
-		return Renderer;
+		return CharacterRenderer;
 	}
 
-	std::shared_ptr<class USpriteRenderer> Renderer;
+	std::shared_ptr<class USpriteRenderer> CharacterRenderer;
 	std::shared_ptr<class UTimeEventComponent> TimeEventComponent;
 	std::shared_ptr<class UCollision> Collision;
 

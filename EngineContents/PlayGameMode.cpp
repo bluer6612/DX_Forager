@@ -13,8 +13,8 @@
 APlayGameMode::APlayGameMode()
 {
 	GetWorld()->CreateCollisionProfile("Monster");
-	GetWorld()->CreateCollisionProfile("Player");
-	GetWorld()->LinkCollisionProfile("Player", "Monster");
+	GetWorld()->CreateCollisionProfile("Forager");
+	GetWorld()->LinkCollisionProfile("Forager", "Monster");
 
 	std::shared_ptr<ACameraActor> Camera = GetWorld()->GetMainCamera();
 	Camera->SetActorLocation({0.0f, 0.0f, -1000.0f, 1.0f});
@@ -24,7 +24,6 @@ APlayGameMode::APlayGameMode()
 		Forager = GetWorld()->SpawnActor<AForager>();
 	}
 
-
 	{
 		std::shared_ptr<AMonster> NewMonster = GetWorld()->SpawnActor<AMonster>();
 		NewMonster->SetActorLocation({ 300.0f, 0.0f, 0.0f });
@@ -33,7 +32,6 @@ APlayGameMode::APlayGameMode()
 
 APlayGameMode::~APlayGameMode()
 {
-
 }
 
 void APlayGameMode::Tick(float _DeltaTime)

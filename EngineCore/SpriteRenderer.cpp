@@ -34,6 +34,7 @@ void USpriteRenderer::SetSprite(std::string_view _Name, UINT _Index)
 	SpriteData = Sprite->GetSpriteData(_Index);
 
 	CurIndex = _Index;
+	SetAutoScaleRatio(1.0f);
 }
 
 void USpriteRenderer::SetTexture(std::string_view _Name, bool AutoScale /*= false*/, float _Ratio /*= 1.0f*/)
@@ -369,16 +370,4 @@ void USpriteRenderer::SetAnimationEvent(std::string_view _AnimationName, int _Fr
 
 	ChangeAnimation->Events[_Frame] += _Function;
 
-}
-
-
-
-void USpriteRenderer::SetSprite(UEngineSprite* _Sprite)
-{
-	Sprite = _Sprite;
-
-	if (nullptr == Sprite)
-	{
-		MSGASSERT("존재하지 않는 스프라이트를 사용하려고 했습니다.");
-	}
 }

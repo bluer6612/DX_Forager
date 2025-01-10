@@ -18,10 +18,10 @@ AMonster2::AMonster2()
 	// 인벤토리
 	TimeEventComponent = CreateDefaultSubObject<UTimeEventComponent>();
 
-	Renderer = CreateDefaultSubObject<USpriteRenderer>();
-	Renderer->SetupAttachment(RootComponent);
-	Renderer->SetSprite("Tevi", 0);
-	Renderer->SetScale3D({ 50.0f, 50.0f });
+	CharacterRenderer = CreateDefaultSubObject<USpriteRenderer>();
+	CharacterRenderer->SetupAttachment(RootComponent);
+	CharacterRenderer->SetSprite("Tevi", 0);
+	CharacterRenderer->SetScale3D({ 50.0f, 50.0f });
 
 	Collision = CreateDefaultSubObject<UCollision>();
 	Collision->SetupAttachment(RootComponent);

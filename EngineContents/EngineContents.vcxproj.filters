@@ -2,7 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClInclude Include="PreCompile.h" />
-    <ClInclude Include="ContentsCore.h" />
     <ClInclude Include="TitleGameMode.h">
       <Filter>GameMode</Filter>
     </ClInclude>
@@ -36,14 +35,15 @@
     <ClInclude Include="Monster2.h">
       <Filter>Character</Filter>
     </ClInclude>
+    <ClInclude Include="ContentsCore.h">
+      <Filter>Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp" />
-    <ClCompile Include="ContentsCore.cpp" />
     <ClCompile Include="TitleGameMode.cpp">
       <Filter>GameMode</Filter>
     </ClCompile>
-    <ClCompile Include="ContentsCore_Resources.cpp" />
     <ClCompile Include="ForagerRenderer.cpp">
       <Filter>Render</Filter>
     </ClCompile>
@@ -71,6 +71,12 @@
     <ClCompile Include="Monster2.cpp">
       <Filter>Character</Filter>
     </ClCompile>
+    <ClCompile Include="ContentsCore.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="ContentsCore_Resources.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameMode">
@@ -90,6 +96,9 @@
     </Filter>
     <Filter Include="Character">
       <UniqueIdentifier>{7f386870-3c1e-423d-bf12-22af4d4a3c28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{989d958f-3cf2-4a23-aee9-73ea93d4f0a4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

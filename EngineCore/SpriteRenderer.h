@@ -119,9 +119,6 @@ public:
 		IsBillboard = false;
 	}
 
-
-	void SetSprite(UEngineSprite* _Sprite);
-
 	ResultColor ColorData;
 	FUVValue UVValue;
 	FSpriteData SpriteData;

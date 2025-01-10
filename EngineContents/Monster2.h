@@ -17,11 +17,6 @@ public:
 	AMonster2& operator=(const AMonster2& _Other) = delete;
 	AMonster2& operator=(AMonster2&& _Other) noexcept = delete;
 
-	std::shared_ptr<class USpriteRenderer> GetRenderer()
-	{
-		return Renderer;
-	}
-
 	// 데이터를 직렬화(압축)
 	void Serialize(UEngineSerializer& _Ser) override;
 	// 데이터를 복구(할때)
@@ -33,10 +28,5 @@ protected:
 	void Tick(float _DeltaTime) override;
 
 private:
-	std::shared_ptr<class UTimeEventComponent> TimeEventComponent;
-
-	std::shared_ptr<class USpriteRenderer> Renderer;
-
-	std::shared_ptr<class UCollision> Collision;
 };
 

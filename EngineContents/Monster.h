@@ -17,11 +17,6 @@ public:
 	AMonster& operator=(const AMonster& _Other) = delete;
 	AMonster& operator=(AMonster&& _Other) noexcept = delete;
 
-	std::shared_ptr<class USpriteRenderer> GetRenderer()
-	{
-		return Renderer;
-	}
-
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
@@ -30,10 +25,5 @@ protected:
 	void DeSerialize(UEngineSerializer& _Ser) override;
 
 private:
-	std::shared_ptr<class UTimeEventComponent> TimeEventComponent;
-
-	std::shared_ptr<class USpriteRenderer> Renderer;
-
-	std::shared_ptr<class UCollision> Collision;
 };
 
