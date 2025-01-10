@@ -6,9 +6,6 @@
     <ClInclude Include="TitleGameMode.h">
       <Filter>GameMode</Filter>
     </ClInclude>
-    <ClInclude Include="TitleLogo.h">
-      <Filter>Title</Filter>
-    </ClInclude>
     <ClInclude Include="ForagerRenderer.h">
       <Filter>Render</Filter>
     </ClInclude>
@@ -33,11 +30,14 @@
     <ClInclude Include="Player.h">
       <Filter>Character</Filter>
     </ClInclude>
+    <ClInclude Include="PlayGameMode.h">
+      <Filter>GameMode</Filter>
+    </ClInclude>
     <ClInclude Include="Forager.h">
       <Filter>Character</Filter>
     </ClInclude>
-    <ClInclude Include="PlayGameMode.h">
-      <Filter>GameMode</Filter>
+    <ClInclude Include="TitleLogo.h">
+      <Filter>Title</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -45,9 +45,6 @@
     <ClCompile Include="ContentsCore.cpp" />
     <ClCompile Include="TitleGameMode.cpp">
       <Filter>GameMode</Filter>
-    </ClCompile>
-    <ClCompile Include="TitleLogo.cpp">
-      <Filter>Title</Filter>
     </ClCompile>
     <ClCompile Include="ContentsCore_Resources.cpp" />
     <ClCompile Include="ForagerRenderer.cpp">
@@ -71,11 +68,14 @@
     <ClCompile Include="Player.cpp">
       <Filter>Character</Filter>
     </ClCompile>
+    <ClCompile Include="PlayGameMode.cpp">
+      <Filter>GameMode</Filter>
+    </ClCompile>
     <ClCompile Include="Forager.cpp">
       <Filter>Character</Filter>
     </ClCompile>
-    <ClCompile Include="PlayGameMode.cpp">
-      <Filter>GameMode</Filter>
+    <ClCompile Include="TitleLogo.cpp">
+      <Filter>Title</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -14,9 +14,6 @@
 
 void UContentsCore::MyGSetting()
 {
-
-
-
 	{
 		UEngineDirectory Dir;
 		if (false == Dir.MoveParentToDirectory("ContentsResources"))

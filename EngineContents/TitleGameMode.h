@@ -24,7 +24,7 @@ protected:
 private:
 	// 이렇게 들고 있으면 나는 죽였다고 생각하는데. 살아있을수 있다.
 	// ATitleLogo* Logo; => 뎅글링 포인터 부활.
-	std::shared_ptr<class ATitleLogo> Logo;
+	std::shared_ptr<class ATitleLogo> Forager;
 };
 
 //

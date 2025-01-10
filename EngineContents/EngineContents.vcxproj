@@ -183,10 +183,6 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Forager.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="GMConst.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="Monster2.h" />
@@ -205,10 +201,11 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="TitleLogo.h">
+    <ClInclude Include="Forager.h">
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="TitleLogo.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AMon.cpp">
@@ -221,10 +218,6 @@
     </ClCompile>
     <ClCompile Include="ContentsCore_Resources.cpp" />
     <ClCompile Include="ContentsEditorGUI.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Forager.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -254,10 +247,11 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="TitleLogo.cpp">
+    <ClCompile Include="Forager.cpp">
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="TitleLogo.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
