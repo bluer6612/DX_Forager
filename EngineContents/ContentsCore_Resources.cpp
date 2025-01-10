@@ -66,10 +66,8 @@ void UContentsCore::ResourcesSetting()
 
 void UContentsCore::DirectoryAdd(std::string _Append)
 {
-	{
-		UEngineDirectory Dir;
-		Dir.MoveParentToDirectory("Resources//Image//");
-		Dir.Append(_Append);
-		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
-	}
+	UEngineDirectory Dir;
+	Dir.MoveParentToDirectory("Resources//Image//");
+	Dir.Append(_Append);
+	UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
 }

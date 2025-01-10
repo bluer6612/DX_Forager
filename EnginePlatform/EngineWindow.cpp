@@ -256,6 +256,7 @@ FVector UEngineWindow::GetMousePos()
     return FVector(MousePoint.x, MousePoint.y);
 }
 
+
 void UEngineWindow::SetWindowAlpha() const
 {
     long l = GetWindowLongA(WindowHandle, GWL_EXSTYLE);

@@ -32,10 +32,11 @@ void UContentsCore::EngineStart(UEngineInitData& _Data)
 	_Data.WindowSize = { 1280, 720 };
 
 	ResourcesSetting();
-	UEngineCore::GetMainWindow().SetWindowAlpha();
 
 	// 주인공 APawn 상속 받으세요.
 	UEngineGUI::AllWindowOff();
+
+	UEngineCore::GetMainWindow().SetWindowAlpha();
 
 	//UEngineCore::CreateLevel<ATitleGameMode, APawn>("Titlelevel");
 	UEngineCore::CreateLevel<ATileMapGameMode, APawn>("TileMapEditor");
