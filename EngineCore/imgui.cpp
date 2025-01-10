@@ -1055,7 +1055,7 @@ CODE
  Q: How can I help?
  A: - Businesses: please reach out to "omar AT dearimgui DOT com" if you work in a place using Dear ImGui!
       We can discuss ways for your company to fund development via invoiced technical support, maintenance or sponsoring contacts.
-      This is among the most useful thing you can do for Dear ImGui. With increased funding, we sustain and grow work on this project.
+      This is ACharacterManagerg the most useful thing you can do for Dear ImGui. With increased funding, we sustain and grow work on this project.
       >>> See https://github.com/ocornut/imgui/wiki/Funding
     - Businesses: you can also purchase licenses for the Dear ImGui Automation/Test Engine.
     - If you are experienced with Dear ImGui and C++, look at the GitHub issues, look at the Wiki, and see how you want to help and can help!
@@ -13368,7 +13368,7 @@ void ImGui::NavMoveRequestTryWrapping(ImGuiWindow* window, ImGuiNavMoveFlags wra
 }
 
 // FIXME: This could be replaced by updating a frame number in each window when (window == NavWindow) and (NavLayer == 0).
-// This way we could find the last focused window among our children. It would be much less confusing this way?
+// This way we could find the last focused window ACharacterManagerg our children. It would be much less confusing this way?
 static void ImGui::NavSaveLastChildNavWindowIntoParent(ImGuiWindow* nav_window)
 {
     ImGuiWindow* parent = nav_window;

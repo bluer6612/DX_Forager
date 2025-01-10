@@ -8,7 +8,7 @@
 #include "ForagerRenderer.h"
 #include <EngineCore/Collision.h>
 
-AMonster::AMonster()
+ACharacterManagerster::ACharacterManagerster()
 {
 	CharacterTypeValue = ECharacterType::Monster;
 	std::shared_ptr<UDefaultSceneComponent> Default = CreateDefaultSubObject<UDefaultSceneComponent>();
@@ -29,16 +29,16 @@ AMonster::AMonster()
 
 }
 
-AMonster::~AMonster()
+ACharacterManagerster::~ACharacterManagerster()
 {
 }
 
-void AMonster::BeginPlay()
+void ACharacterManagerster::BeginPlay()
 {
 	AActor::BeginPlay();
 }
 
-void AMonster::Tick(float _DeltaTime)
+void ACharacterManagerster::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
 
@@ -48,7 +48,7 @@ void AMonster::Tick(float _DeltaTime)
 
 }	
 
-void AMonster::Serialize(UEngineSerializer& _Ser)
+void ACharacterManagerster::Serialize(UEngineSerializer& _Ser)
 {
 	_Ser << GetActorLocation();
 	//_Ser << std::string("Test.png");
@@ -56,7 +56,7 @@ void AMonster::Serialize(UEngineSerializer& _Ser)
 }
 
 
-void AMonster::DeSerialize(UEngineSerializer& _Ser)
+void ACharacterManagerster::DeSerialize(UEngineSerializer& _Ser)
 {
 	FVector SavePos;
 	_Ser >> SavePos;

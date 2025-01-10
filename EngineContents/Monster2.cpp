@@ -8,7 +8,7 @@
 #include "ForagerRenderer.h"
 #include <EngineCore/Collision.h>
 
-AMonster2::AMonster2()
+ACharacterManagerster2::ACharacterManagerster2()
 {
 	CharacterTypeValue = ECharacterType::Monster2;
 
@@ -30,16 +30,16 @@ AMonster2::AMonster2()
 
 }
 
-AMonster2::~AMonster2()
+ACharacterManagerster2::~ACharacterManagerster2()
 {
 }
 
-void AMonster2::BeginPlay()
+void ACharacterManagerster2::BeginPlay()
 {
 	AActor::BeginPlay();
 }
 
-void AMonster2::Tick(float _DeltaTime)
+void ACharacterManagerster2::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
 
@@ -50,12 +50,12 @@ void AMonster2::Tick(float _DeltaTime)
 }
 
 // 데이터를 직렬화(압축)
-void AMonster2::Serialize(UEngineSerializer& _Ser)
+void ACharacterManagerster2::Serialize(UEngineSerializer& _Ser)
 {
 	_Ser << GetActorLocation();
 }
 // 데이터를 복구(할때)
-void AMonster2::DeSerialize(UEngineSerializer& _Ser)
+void ACharacterManagerster2::DeSerialize(UEngineSerializer& _Ser)
 {
 	FVector Location;
 	_Ser >> Location;

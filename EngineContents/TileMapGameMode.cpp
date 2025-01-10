@@ -34,7 +34,7 @@ public:
 	UTileMapRenderer* TileMapRenderer = nullptr;
 	EEditMode Mode = EEditMode::TileMap;
 
-	// std::list<std::shared_ptr<AMon>> AllMonsterList;
+	// std::list<std::shared_ptr<ACharacterManager>> AllMonsterList;
 	int TileCountX = 10;
 	int TileCountY = 10;
 	int SelectTileIndex = 0;
@@ -125,15 +125,15 @@ public:
 				FVector Pos = Camera->ScreenMousePosToWorldPos();
 				Pos.Z = 0.0f;
 
-				std::shared_ptr<AMon> NewMonster;
+				std::shared_ptr<ACharacterManager> NewMonster;
 
 				switch (SelectMonster)
 				{
 				case ESpawnList::Monster:
-					NewMonster = GetWorld()->SpawnActor<AMonster>("Monster");
+					NewMonster = GetWorld()->SpawnActor<ACharacterManagerster>("Monster");
 					break;
 				case ESpawnList::Monster2:
-					NewMonster = GetWorld()->SpawnActor<AMonster2>("Monster2");
+					NewMonster = GetWorld()->SpawnActor<ACharacterManagerster2>("Monster2");
 					break;
 				default:
 					break;
@@ -146,8 +146,8 @@ public:
 		{
 			if (ImGui::Button("EditObjectDelete"))
 			{
-				std::list<std::shared_ptr<AMon>> AllMonsterList = GetWorld()->GetAllActorListByClass<AMon>();
-				for (std::shared_ptr<AMon> Mon : AllMonsterList)
+				std::list<std::shared_ptr<ACharacterManager>> AllMonsterList = GetWorld()->GetAllActorListByClass<ACharacterManager>();
+				for (std::shared_ptr<ACharacterManager> Mon : AllMonsterList)
 				{
 					Mon->Destroy();
 				}
@@ -156,7 +156,7 @@ public:
 		}
 
 		{
-			std::vector<std::shared_ptr<AMon>> AllMonsterList = GetWorld()->GetAllActorArrayByClass<AMon>();
+			std::vector<std::shared_ptr<ACharacterManager>> AllMonsterList = GetWorld()->GetAllActorArrayByClass<ACharacterManager>();
 
 			std::vector<std::string> ArrString;
 			for (std::shared_ptr<class AActor> Actor : AllMonsterList)
@@ -224,16 +224,16 @@ public:
 
 			if (GetSaveFileNameA(&ofn) == TRUE)
 			{
-				std::list<std::shared_ptr<AMon>> AllMonsterList = GetWorld()->GetAllActorListByClass<AMon>();
+				std::list<std::shared_ptr<ACharacterManager>> AllMonsterList = GetWorld()->GetAllActorListByClass<ACharacterManager>();
 
 				UEngineSerializer Ser;
 
 				Ser << static_cast<int>(AllMonsterList.size());
 
-				for (std::shared_ptr<AMon> Actor : AllMonsterList)
+				for (std::shared_ptr<ACharacterManager> Actor : AllMonsterList)
 				{
 
-					Ser << static_cast<int>(Actor->MonsterTypeValue);
+					Ser << static_cast<int>(Actor->CharacterTypeValue);
 					// 여기 저장된다는 이야기
 					Actor->Serialize(Ser);
 				}
@@ -286,20 +286,20 @@ public:
 
 				for (size_t i = 0; i < MonsterCount; i++)
 				{
-					int MonsterTypeValue = 0;
-					Ser >> MonsterTypeValue;
+					int CharacterTypeValue = 0;
+					Ser >> CharacterTypeValue;
 
-					EMonsterType MonsterType = static_cast<EMonsterType>(MonsterTypeValue);
+					ECharacterType MonsterType = static_cast<ECharacterType>(CharacterTypeValue);
 
-					std::shared_ptr<AMon> NewMon = nullptr;
+					std::shared_ptr<ACharacterManager> NewMon = nullptr;
 
 					switch (MonsterType)
 					{
 					case Monster:
-						NewMon = GetWorld()->SpawnActor<AMonster>();
+						NewMon = GetWorld()->SpawnActor<ACharacterManagerster>();
 						break;
 					case Monster2:
-						NewMon = GetWorld()->SpawnActor<AMonster2>();
+						NewMon = GetWorld()->SpawnActor<ACharacterManagerster2>();
 						break;
 					default:
 						break;

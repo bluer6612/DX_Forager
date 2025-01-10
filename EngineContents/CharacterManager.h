@@ -22,6 +22,8 @@ public:
 	ACharacterManager& operator=(const ACharacterManager& _Other) = delete;
 	ACharacterManager& operator=(ACharacterManager&& _Other) noexcept = delete;
 
+	ECharacterType CharacterTypeValue;
+
 protected:
 	std::shared_ptr<class USpriteRenderer> GetRenderer()
 	{
@@ -31,8 +33,6 @@ protected:
 	std::shared_ptr<class USpriteRenderer> CharacterRenderer;
 	std::shared_ptr<class UTimeEventComponent> TimeEventComponent;
 	std::shared_ptr<class UCollision> Collision;
-
-	ECharacterType CharacterTypeValue;
 private:
 };
 

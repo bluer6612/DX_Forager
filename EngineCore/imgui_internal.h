@@ -3462,7 +3462,7 @@ namespace ImGui
     // Shortcut Testing & Routing
     // - Set Shortcut() and SetNextItemShortcut() in imgui.h
     // - When a policy (except for ImGuiInputFlags_RouteAlways *) is set, Shortcut() will register itself with SetShortcutRouting(),
-    //   allowing the system to decide where to route the input among other route-aware calls.
+    //   allowing the system to decide where to route the input ACharacterManagerg other route-aware calls.
     //   (* using ImGuiInputFlags_RouteAlways is roughly equivalent to calling IsKeyChordPressed(key) and bypassing route registration and check)
     // - When using one of the routing option:
     //   - The default route is ImGuiInputFlags_RouteFocused (accept inputs if window is in focus stack. Deep-most focused window takes inputs. ActiveId takes inputs over deep-most focused window.)

@@ -32,18 +32,20 @@ void UContentsCore::EngineStart(UEngineInitData& _Data)
 	_Data.WindowSize = { 1280, 720 };
 
 	ResourcesSetting();
+	UEngineCore::GetMainWindow().SetWindowAlpha();
 
 	// 주인공 APawn 상속 받으세요.
 	UEngineGUI::AllWindowOff();
 
 	//UEngineCore::CreateLevel<ATitleGameMode, APawn>("Titlelevel");
 	UEngineCore::CreateLevel<ATileMapGameMode, APawn>("TileMapEditor");
-	UEngineCore::CreateLevel<APlayGameMode, APawn>("Playlevel");
-	UEngineCore::OpenLevel("Playlevel");
+	UEngineCore::CreateLevel<APlayGameMode, APawn>("PlayLevel");
+	UEngineCore::OpenLevel("PlayLevel");
 
 	//UEngineGUI::CreateGUIWindow<UContentsEditorGUI>("ContentsEditorGUI");
 	//std::shared_ptr<UContentsEditorGUI> Window = UEngineGUI::FindGUIWindow<UContentsEditorGUI>("ContentsEditorGUI");
 	//Window->SetActive(true);
+
 }
 
 void UContentsCore::EngineTick(float _DeltaTime)

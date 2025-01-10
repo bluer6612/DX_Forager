@@ -4,18 +4,18 @@
 #include <EnginePlatform/EngineWinImage.h>
 
 // Ό³Έν :
-class AMonster : public ACharacterManager
+class ACharacterManagerster : public ACharacterManager
 {
 public:
 	// constrcuter destructer
-	AMonster();
-	~AMonster();
+	ACharacterManagerster();
+	~ACharacterManagerster();
 
 	// delete Function
-	AMonster(const AMonster& _Other) = delete;
-	AMonster(AMonster&& _Other) noexcept = delete;
-	AMonster& operator=(const AMonster& _Other) = delete;
-	AMonster& operator=(AMonster&& _Other) noexcept = delete;
+	ACharacterManagerster(const ACharacterManagerster& _Other) = delete;
+	ACharacterManagerster(ACharacterManagerster&& _Other) noexcept = delete;
+	ACharacterManagerster& operator=(const ACharacterManagerster& _Other) = delete;
+	ACharacterManagerster& operator=(ACharacterManagerster&& _Other) noexcept = delete;
 
 protected:
 	void BeginPlay() override;

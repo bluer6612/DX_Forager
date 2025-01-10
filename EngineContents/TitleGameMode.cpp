@@ -17,7 +17,7 @@ public:
 	{
 		if (true == ImGui::Button("WindowButton"))
 		{
-			std::shared_ptr<AMonster> NewMonster = GetWorld()->SpawnActor<AMonster>();
+			std::shared_ptr<ACharacterManagerster> NewMonster = GetWorld()->SpawnActor<ACharacterManagerster>();
 			NewMonster->SetActorLocation({ 300.0f, 200.0f, 0.0f });
 		}
 
@@ -56,7 +56,7 @@ ATitleGameMode::ATitleGameMode()
 
 
 	{
-		std::shared_ptr<AMonster> NewMonster = GetWorld()->SpawnActor<AMonster>();
+		std::shared_ptr<ACharacterManagerster> NewMonster = GetWorld()->SpawnActor<ACharacterManagerster>();
 		NewMonster->SetActorLocation({ 300.0f, 0.0f, 0.0f });
 	}
 
