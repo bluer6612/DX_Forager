@@ -10,7 +10,7 @@
 
 AMonster::AMonster()
 {
-	MonsterTypeValue = EMonsterType::Monster;
+	CharacterTypeValue = ECharacterType::Monster;
 	std::shared_ptr<UDefaultSceneComponent> Default = CreateDefaultSubObject<UDefaultSceneComponent>();
 	RootComponent = Default;
 

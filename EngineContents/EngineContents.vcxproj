@@ -171,7 +171,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="AMon.h">
+    <ClInclude Include="CharacterManager.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -201,7 +201,7 @@
     <ClInclude Include="TitleLogo.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AMon.cpp">
+    <ClCompile Include="CharacterManager.cpp">
       <SubType>
       </SubType>
     </ClCompile>

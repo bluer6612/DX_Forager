@@ -1,10 +1,10 @@
 #pragma once
-#include "AMon.h"
+#include "CharacterManager.h"
 #include <EngineCore/SpriteRenderer.h>
 #include <EnginePlatform/EngineWinImage.h>
 
 // Ό³Έν :
-class AMonster2 : public AMon
+class AMonster2 : public ACharacterManager
 {
 public:
 	// constrcuter destructer

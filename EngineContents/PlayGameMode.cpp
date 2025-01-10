@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include "PlayGameMode.h"
 #include "Monster.h"
+#include "Forager.h"
 #include <EngineCore/CameraActor.h>
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/EngineGUIWindow.h>
@@ -18,6 +19,11 @@ APlayGameMode::APlayGameMode()
 	std::shared_ptr<ACameraActor> Camera = GetWorld()->GetMainCamera();
 	Camera->SetActorLocation({0.0f, 0.0f, -1000.0f, 1.0f});
 	Camera->GetCameraComponent()->SetZSort(0, true);
+
+	{
+		Forager = GetWorld()->SpawnActor<AForager>();
+	}
+
 
 	{
 		std::shared_ptr<AMonster> NewMonster = GetWorld()->SpawnActor<AMonster>();

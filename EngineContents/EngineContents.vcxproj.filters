@@ -9,20 +9,11 @@
     <ClInclude Include="ForagerRenderer.h">
       <Filter>Render</Filter>
     </ClInclude>
-    <ClInclude Include="Monster.h">
-      <Filter>Title</Filter>
-    </ClInclude>
     <ClInclude Include="TileMapGameMode.h">
       <Filter>GameMode</Filter>
     </ClInclude>
     <ClInclude Include="ContentsEditorGUI.h">
       <Filter>GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="Monster2.h">
-      <Filter>Title</Filter>
-    </ClInclude>
-    <ClInclude Include="AMon.h">
-      <Filter>Title</Filter>
     </ClInclude>
     <ClInclude Include="GMConst.h">
       <Filter>Global</Filter>
@@ -36,6 +27,15 @@
     <ClInclude Include="Forager.h">
       <Filter>Character</Filter>
     </ClInclude>
+    <ClInclude Include="CharacterManager.h">
+      <Filter>Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster.h">
+      <Filter>Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster2.h">
+      <Filter>Character</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp" />
@@ -47,20 +47,11 @@
     <ClCompile Include="ForagerRenderer.cpp">
       <Filter>Render</Filter>
     </ClCompile>
-    <ClCompile Include="Monster.cpp">
-      <Filter>Title</Filter>
-    </ClCompile>
     <ClCompile Include="TileMapGameMode.cpp">
       <Filter>GameMode</Filter>
     </ClCompile>
     <ClCompile Include="ContentsEditorGUI.cpp">
       <Filter>GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="Monster2.cpp">
-      <Filter>Title</Filter>
-    </ClCompile>
-    <ClCompile Include="AMon.cpp">
-      <Filter>Title</Filter>
     </ClCompile>
     <ClCompile Include="PlayGameMode.cpp">
       <Filter>GameMode</Filter>
@@ -69,6 +60,15 @@
       <Filter>Title</Filter>
     </ClCompile>
     <ClCompile Include="Forager.cpp">
+      <Filter>Character</Filter>
+    </ClCompile>
+    <ClCompile Include="CharacterManager.cpp">
+      <Filter>Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster.cpp">
+      <Filter>Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster2.cpp">
       <Filter>Character</Filter>
     </ClCompile>
   </ItemGroup>
