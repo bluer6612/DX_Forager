@@ -55,8 +55,10 @@ std::shared_ptr<UEngineSprite> UEngineSprite::CreateSpriteToFolder(std::string_v
 	return NewRes;
 }
 
-std::shared_ptr<UEngineSprite> UEngineSprite::CreateSpriteToMeta(std::string_view _Name, std::string_view _DataFileExt)
+std::shared_ptr<UEngineSprite> UEngineSprite::CreateSpriteToMeta(std::string _Name, std::string_view _DataFileExt)
 {
+	_Name = _Name + std::string(".png");
+
 	std::shared_ptr<UEngineTexture> Tex = UEngineTexture::Find<UEngineTexture>(_Name);
 
 	if (nullptr == Tex)

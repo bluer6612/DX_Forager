@@ -26,9 +26,9 @@ USpriteRenderer::~USpriteRenderer()
 {
 }
 
-void USpriteRenderer::SetSprite(std::string_view _Name, UINT _Index)
+void USpriteRenderer::SetSprite(std::string _Name, UINT _Index)
 {
-	Sprite = UEngineSprite::Find<UEngineSprite>(_Name).get();
+	Sprite = UEngineSprite::Find<UEngineSprite>(_Name + std::string(".png")).get();
 
 	GetRenderUnit().SetTexture("ImageTexture", Sprite->GetTexture(_Index)->GetName());
 	SpriteData = Sprite->GetSpriteData(_Index);
@@ -231,7 +231,7 @@ void USpriteRenderer::ComponentTick(float _DeltaTime)
 	}
 }
 
-void USpriteRenderer::CreateAnimation(std::string_view _AnimationName, std::string_view _SpriteName, int _Start, int _End, float Time /*= 0.1f*/, bool _Loop /*= true*/)
+void USpriteRenderer::CreateAnimation(std::string_view _AnimationName, std::string _SpriteName, int _Start, int _End, float Time /*= 0.1f*/, bool _Loop /*= true*/)
 {
 	int Inter = 0;
 
@@ -264,7 +264,7 @@ void USpriteRenderer::CreateAnimation(std::string_view _AnimationName, std::stri
 }
 
 
-void USpriteRenderer::CreateAnimation(std::string_view _AnimationName, std::string_view _SpriteName, std::vector<int> _Indexs, float _Frame, bool _Loop /*= true*/)
+void USpriteRenderer::CreateAnimation(std::string_view _AnimationName, std::string _SpriteName, std::vector<int> _Indexs, float _Frame, bool _Loop /*= true*/)
 {
 	std::vector<float> Times;
 
@@ -276,7 +276,7 @@ void USpriteRenderer::CreateAnimation(std::string_view _AnimationName, std::stri
 	CreateAnimation(_AnimationName, _SpriteName, _Indexs, Times, _Loop);
 }
 
-void USpriteRenderer::CreateAnimation(std::string_view _AnimationName, std::string_view _SpriteName, std::vector<int> _Indexs, std::vector<float> _Frame, bool _Loop /*= true*/)
+void USpriteRenderer::CreateAnimation(std::string_view _AnimationName, std::string _SpriteName, std::vector<int> _Indexs, std::vector<float> _Frame, bool _Loop /*= true*/)
 {
 	std::string UpperName = UEngineString::ToUpper(_AnimationName);
 
@@ -291,7 +291,7 @@ void USpriteRenderer::CreateAnimation(std::string_view _AnimationName, std::stri
 		return;
 	}
 
-	std::shared_ptr<UEngineSprite> FindSprite = UEngineSprite::Find<UEngineSprite>(_SpriteName);
+	std::shared_ptr<UEngineSprite> FindSprite = UEngineSprite::Find<UEngineSprite>(_SpriteName + std::string(".png"));
 
 	if (nullptr == FindSprite)
 	{
