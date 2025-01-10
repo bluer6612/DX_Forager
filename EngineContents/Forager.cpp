@@ -21,6 +21,8 @@ AForager::AForager()
 	CharacterRenderer->SetSprite("Forager", 0);
 	CharacterRenderer->BillboardOn();
 
+	CharacterRenderer->CreateAnimation("Idle", "Forager", 4, 6, 0.25f);
+
 	Collision = CreateDefaultSubObject<UCollision>();
 	Collision->SetupAttachment(RootComponent);
 	Collision->SetCollisionProfileName("Forager");
@@ -52,6 +54,8 @@ AForager::~AForager()
 void AForager::BeginPlay()
 {
 	AActor::BeginPlay();
+
+	CharacterRenderer->ChangeAnimation("Idle");
 }
 
 void AForager::Tick(float _DeltaTime)
