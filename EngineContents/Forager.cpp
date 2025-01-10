@@ -33,8 +33,6 @@ AForager::AForager()
 	Collision->SetCollisionEnter([](UCollision* _This, UCollision* _Other)
 		{
 			_Other->GetActor()->Destroy();
-			// _Other->Destroy();
-			UEngineDebug::OutPutString("Enter");
 		});
 
 	//Collision->SetCollisionStay([](UCollision* _This, UCollision* _Other)
@@ -58,20 +56,13 @@ AForager::~AForager()
 void AForager::BeginPlay()
 {
 	AActor::BeginPlay();
-
-
 }
 
 void AForager::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
 
-	std::shared_ptr<class ACameraActor> Camera = GetWorld()->GetCamera(0);
-
-	UEngineCore::GetMainWindow().GetMousePos();
-
-	// UEngineDebug::OutPutString(Camera->ScreenMousePosToWorldPos().ToString());
-
+	FVector MousePos = UEngineCore::GetMainWindow().GetMousePos();
 
 	if (UEngineInput::IsPress('A'))
 	{
