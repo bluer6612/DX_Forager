@@ -18,7 +18,7 @@ ATitleLogo::ATitleLogo()
 
 	Renderer = CreateDefaultSubObject<USpriteRenderer>();
 	Renderer->SetupAttachment(RootComponent);
-	Renderer->SetTexture("tevi_n_01.png");
+	Renderer->SetSprite("Player", RootComponent);
 	Renderer->BillboardOn();
 	// Renderer->SetSprite("Test.png", 2);
 	// Renderer->SetAutoScale(true);
