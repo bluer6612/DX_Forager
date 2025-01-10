@@ -18,8 +18,6 @@ AForager::AForager()
 
 	CharacterRenderer = CreateDefaultSubObject<USpriteRenderer>();
 	CharacterRenderer->SetSprite("Player", RootComponent);
-	CharacterRenderer->SetupAttachment(RootComponent);
-	CharacterRenderer->SetScale3D({ 50.0f, 50.0f });
 
 	CharacterRenderer->CreateAnimation("Idle", "Player", 0, 1, 0.25f);
 
