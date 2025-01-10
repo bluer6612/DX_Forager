@@ -57,9 +57,6 @@ public:
 	{
 		return SpriteTexture.size();
 	}
-
-	
-
 protected:
 
 private:

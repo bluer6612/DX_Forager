@@ -16,46 +16,18 @@ void UContentsCore::MyGSetting()
 {
 	{
 		UEngineDirectory Dir;
-		if (false == Dir.MoveParentToDirectory("Image"))
+		if (false == Dir.MoveParentToDirectory("Resources"))
 		{
 			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
 			return;
 		}
+		Dir.Append("Image");
 		std::vector<UEngineFile> ImageFiles = Dir.GetAllFile(true, { ".PNG", ".BMP", ".JPG" });
 		for (size_t i = 0; i < ImageFiles.size(); i++)
 		{
 			std::string FilePath = ImageFiles[i].GetPathToString();
 			UEngineTexture::Load(FilePath);
 		}
-	}
-
-	/*UEngineSprite::CreateSpriteToMeta("Player.png", ".sdata");
-
-	UEngineSprite::CreateSpriteToMeta("TileMap.png", ".sdata");*/
-
-
-	{
-		UEngineDirectory Dir;
-		if (false == Dir.MoveParentToDirectory("Image"))
-		{
-			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
-			return;
-		}
-		Dir.Append("Character/Forager");
-
-		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
-	}
-
-	{
-		UEngineDirectory Dir;
-		if (false == Dir.MoveParentToDirectory("Image"))
-		{
-			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
-			return;
-		}
-		Dir.Append("Tiles");
-
-		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
 	}
 
 	{
@@ -85,5 +57,19 @@ void UContentsCore::MyGSetting()
 		Mat->SetRasterizerState("CollisionDebugRas");
 	}
 
+	/*UEngineSprite::CreateSpriteToMeta("Player.png", ".sdata");
+	UEngineSprite::CreateSpriteToMeta("TileMap.png", ".sdata");*/
 
+	DirectoryAdd("Character/Forager");
+	DirectoryAdd("Tiles");
+}
+
+void UContentsCore::DirectoryAdd(std::string _Append)
+{
+	{
+		UEngineDirectory Dir;
+		Dir.MoveParentToDirectory("Resources//Image//");
+		Dir.Append(_Append);
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+	}
 }

@@ -24,6 +24,7 @@ protected:
 
 private:
 	void MyGSetting();
+	void DirectoryAdd(std::string _Append);
 
 };
 
