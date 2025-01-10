@@ -18,15 +18,15 @@ AForager::AForager()
 
 	CharacterRenderer = CreateDefaultSubObject<USpriteRenderer>();
 	CharacterRenderer->SetupAttachment(RootComponent);
-	CharacterRenderer->SetSprite("Forager", 0);
-	CharacterRenderer->BillboardOn();
+	CharacterRenderer->SetSprite("Player");
+	//CharacterRenderer->BillboardOn();
 
-	CharacterRenderer->CreateAnimation("Idle", "Forager", 4, 6, 0.25f);
+	//CharacterRenderer->CreateAnimation("Idle", "Player", 0, 1, 0.25f);
 
 	Collision = CreateDefaultSubObject<UCollision>();
 	Collision->SetupAttachment(RootComponent);
-	Collision->SetCollisionProfileName("Forager");
-	Collision->SetScale3D({});
+	Collision->SetCollisionProfileName("Player");
+	Collision->SetScale3D({50.f, 50.f});
 
 	Collision->SetCollisionEnter([](UCollision* _This, UCollision* _Other)
 		{

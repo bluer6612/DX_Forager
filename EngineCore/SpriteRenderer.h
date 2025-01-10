@@ -82,6 +82,8 @@ public:
 
 	ENGINEAPI void SetSprite(std::string_view _Name, UINT _CurIndex = 0);
 
+	ENGINEAPI void SetSprite(UEngineSprite* _Sprite);
+
 	ENGINEAPI void SetTexture(std::string_view _Name, bool AutoScale = false, float _Ratio = 1.0f);
 
 	bool IsCurAnimationEnd()

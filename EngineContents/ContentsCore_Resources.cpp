@@ -57,8 +57,8 @@ void UContentsCore::ResourcesSetting()
 		Mat->SetRasterizerState("CollisionDebugRas");
 	}
 
-	/*UEngineSprite::CreateSpriteToMeta("Player.png", ".sdata");
-	UEngineSprite::CreateSpriteToMeta("TileMap.png", ".sdata");*/
+	UEngineSprite::CreateSpriteToMeta("Player.png", ".meta");
+	//UEngineSprite::CreateSpriteToMeta("TileMap.png", ".sdata");
 
 	DirectoryAdd("Character/Forager");
 	DirectoryAdd("Tiles");
