@@ -36,7 +36,7 @@ void USpriteRenderer::SetSprite(std::string _Name, std::shared_ptr<USceneCompone
 	CurIndex = _Index;
 
 	SetupAttachment(_Parent);
-	SetAutoScaleRatio(1.0f);
+	SetAutoScaleRatio(3.0f);
 	BillboardOn();
 }
 

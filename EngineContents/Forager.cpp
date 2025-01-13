@@ -18,8 +18,11 @@ AForager::AForager()
 
 	CharacterRenderer = CreateDefaultSubObject<USpriteRenderer>();
 	CharacterRenderer->SetSprite("Forager", RootComponent);
-	CharacterRenderer->CreateAnimation("Idle" + std::string("Right"), "Forager", 0, 1, 0.25f);
-	CharacterRenderer->CreateAnimation("Idle" + std::string("Left"), "Forager", 3, 4, 0.25f);
+	CharacterRenderer->SetAutoScaleRatio(3.5f);
+	CharacterRenderer->CreateAnimation("Idle" + std::string("Right"), "Forager", 0, 1, 0.15f);
+	CharacterRenderer->CreateAnimation("Idle" + std::string("Left"), "Forager", 11, 12, 0.15f);
+	CharacterRenderer->CreateAnimation("Run" + std::string("Right"), "Forager", 3, 6, 0.15f);
+	CharacterRenderer->CreateAnimation("Run" + std::string("Left"), "Forager", 7, 10, 0.15f);
 
 	Collision = CreateDefaultSubObject<UCollision>();
 	Collision->SetupAttachment(RootComponent);
@@ -53,7 +56,7 @@ void AForager::BeginPlay()
 {
 	AActor::BeginPlay();
 
-	CharacterRenderer->ChangeAnimation("Idle" + Dir);
+	CharacterRenderer->ChangeAnimation("Run" + Dir);
 }
 
 void AForager::Tick(float _DeltaTime)
@@ -64,11 +67,11 @@ void AForager::Tick(float _DeltaTime)
 
 	if (UEngineInput::IsPress('A'))
 	{
-		AddRelativeLocation(FVector{ -100.0f * _DeltaTime, 0.0f, 0.0f });
+		AddRelativeLocation(FVector{ -400.0f * _DeltaTime, 0.0f, 0.0f });
 	}
 	if (UEngineInput::IsPress('D'))
 	{
-		AddRelativeLocation(FVector{ 100.0f * _DeltaTime, 0.0f, 0.0f });
+		AddRelativeLocation(FVector{ 400.0f * _DeltaTime, 0.0f, 0.0f });
 	}
 
 	
@@ -87,12 +90,12 @@ void AForager::Tick(float _DeltaTime)
 
 	if (UEngineInput::IsPress('W'))
 	{
-		AddRelativeLocation(FVector{ 0.0f, 100.0f * _DeltaTime, 0.0f });
+		AddRelativeLocation(FVector{ 0.0f, 400.0f * _DeltaTime, 0.0f });
 	}
 
 	if (UEngineInput::IsPress('S'))
 	{
-		AddRelativeLocation(FVector{ 0.0f, -100.0f * _DeltaTime, 0.0f });
+		AddRelativeLocation(FVector{ 0.0f, -400.0f * _DeltaTime, 0.0f });
 	}
 
 	if (UEngineInput::IsPress('Q'))
