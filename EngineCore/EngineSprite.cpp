@@ -142,11 +142,13 @@ std::shared_ptr<UEngineSprite> UEngineSprite::CreateSpriteToMeta(std::string _Na
 		{
 			std::string Number = UEngineString::InterString(Text, "x:", ",", Start);
 			SpriteData.Pivot.X = static_cast<float>(atof(Number.c_str()));
+			SpriteData.Pivot.X = 0.5f;
 		}
 
 		{
 			std::string Number = UEngineString::InterString(Text, "y:", "}", Start);
 			SpriteData.Pivot.Y = static_cast<float>(atof(Number.c_str()));
+			SpriteData.Pivot.Y = 0.5f;
 		}
 
 

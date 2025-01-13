@@ -18,7 +18,7 @@ ATitleLogo::ATitleLogo()
 
 	Renderer = CreateDefaultSubObject<USpriteRenderer>();
 	Renderer->SetupAttachment(RootComponent);
-	Renderer->SetTexture("Player.png");
+	Renderer->SetTexture("Forager.png");
 	Renderer->BillboardOn();
 	// Renderer->SetSprite("Test.png", 2);
 	// Renderer->SetAutoScale(true);
@@ -27,7 +27,7 @@ ATitleLogo::ATitleLogo()
 
 	Collision = CreateDefaultSubObject<UCollision>();
 	Collision->SetupAttachment(RootComponent);
-	Collision->SetCollisionProfileName("Player");
+	Collision->SetCollisionProfileName("Forager");
 	Collision->SetScale3D({ 100.0f, 300.0f });
 
 	Collision->SetCollisionEnter([](UCollision* _This, UCollision* _Other)

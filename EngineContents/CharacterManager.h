@@ -33,6 +33,8 @@ protected:
 	std::shared_ptr<class USpriteRenderer> CharacterRenderer;
 	std::shared_ptr<class UTimeEventComponent> TimeEventComponent;
 	std::shared_ptr<class UCollision> Collision;
+
+	std::string Dir = "Right";
 private:
 };
 

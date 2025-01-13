@@ -38,7 +38,7 @@ void UContentsCore::EngineStart(UEngineInitData& _Data)
 
 	UEngineCore::GetMainWindow().SetWindowAlpha();
 
-	UEngineCore::CreateLevel<ATitleGameMode, APawn>("Titlelevel");
+	//UEngineCore::CreateLevel<ATitleGameMode, APawn>("Titlelevel");
 	UEngineCore::CreateLevel<ATileMapGameMode, APawn>("TileMapEditor");
 	UEngineCore::CreateLevel<APlayGameMode, APawn>("PlayLevel");
 	UEngineCore::OpenLevel("PlayLevel");

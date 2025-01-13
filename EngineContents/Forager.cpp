@@ -17,9 +17,9 @@ AForager::AForager()
 	TimeEventComponent = CreateDefaultSubObject<UTimeEventComponent>();
 
 	CharacterRenderer = CreateDefaultSubObject<USpriteRenderer>();
-	CharacterRenderer->SetSprite("Player", RootComponent);
-
-	CharacterRenderer->CreateAnimation("Idle", "Player", 0, 1, 0.25f);
+	CharacterRenderer->SetSprite("Forager", RootComponent);
+	CharacterRenderer->CreateAnimation("Idle" + std::string("Right"), "Forager", 0, 1, 0.25f);
+	CharacterRenderer->CreateAnimation("Idle" + std::string("Left"), "Forager", 3, 4, 0.25f);
 
 	Collision = CreateDefaultSubObject<UCollision>();
 	Collision->SetupAttachment(RootComponent);
@@ -53,7 +53,7 @@ void AForager::BeginPlay()
 {
 	AActor::BeginPlay();
 
-	CharacterRenderer->ChangeAnimation("Idle");
+	CharacterRenderer->ChangeAnimation("Idle" + Dir);
 }
 
 void AForager::Tick(float _DeltaTime)
