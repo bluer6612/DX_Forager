@@ -238,6 +238,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="HUD.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="imconfig.h" />
     <ClInclude Include="imgui.h" />
     <ClInclude Include="imgui_impl_dx11.h" />
@@ -261,6 +265,10 @@
     </ClInclude>
     <ClInclude Include="PreCompile.h" />
     <ClInclude Include="Renderer.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="EngineRenderTarget.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -311,6 +319,14 @@
     </ClInclude>
     <ClInclude Include="TileMapRenderer.h" />
     <ClInclude Include="TimeEventComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="TransformObject.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Widget.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -382,6 +398,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="HUD.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="imgui.cpp" />
     <ClCompile Include="imgui_draw.cpp" />
     <ClCompile Include="imgui_impl_dx11.cpp" />
@@ -408,6 +428,10 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">PreCompile.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="Renderer.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="EngineRenderTarget.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -458,6 +482,14 @@
     <ClCompile Include="EngineVertex.cpp" />
     <ClCompile Include="TileMapRenderer.cpp" />
     <ClCompile Include="TimeEventComponent.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="TransformObject.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Widget.cpp">
       <SubType>
       </SubType>
     </ClCompile>

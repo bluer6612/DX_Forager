@@ -149,6 +149,18 @@
     <ClInclude Include="TileMapRenderer.h">
       <Filter>Object\Component\Contents</Filter>
     </ClInclude>
+    <ClInclude Include="EngineRenderTarget.h">
+      <Filter>Resources\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Widget.h">
+      <Filter>Object\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="HUD.h">
+      <Filter>Object\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="TransformObject.h">
+      <Filter>Object\Component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp" />
@@ -287,6 +299,18 @@
     <ClCompile Include="TileMapRenderer.cpp">
       <Filter>Object\Component\Contents</Filter>
     </ClCompile>
+    <ClCompile Include="EngineRenderTarget.cpp">
+      <Filter>Resources\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Widget.cpp">
+      <Filter>Object\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="HUD.cpp">
+      <Filter>Object\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="TransformObject.cpp">
+      <Filter>Object\Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Interface">
@@ -366,6 +390,9 @@
     </Filter>
     <Filter Include="Object\Component\Collision">
       <UniqueIdentifier>{6c1a6b57-be6b-4af8-b18c-bd81cc8693ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\UI">
+      <UniqueIdentifier>{d19a3a4f-0049-461e-b151-f8f5977e493f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
