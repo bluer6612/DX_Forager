@@ -36,7 +36,6 @@ void UContentsCore::EngineStart(UEngineInitData& _Data)
 	ResourcesSetting();
 
 	UEngineGUI::AllWindowOff();
-	UEngineCore::GetMainWindow().SetWindowAlpha();
 
 	// 주인공 APawn 상속 받으세요.
 	//UEngineCore::CreateLevel<ATitleGameMode, APawn, AHUD>("Titlelevel");

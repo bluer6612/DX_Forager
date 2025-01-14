@@ -71,8 +71,6 @@ public:
 	{
 		return IsFocusValue;
 	}
-
-	ENGINEAPI void SetWindowAlpha() const;
 	
 protected:
 
