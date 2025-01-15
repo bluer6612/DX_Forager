@@ -63,17 +63,64 @@ void AForager::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
 
-	FVector MousePos = UEngineCore::GetMainWindow().GetMousePos();
+	std::shared_ptr<class ACameraActor> Camera = GetWorld()->GetCamera(0);
 
+	FVector MousePos = Camera->ScreenMousePosToWorldPos();
+
+	FVector ActorPos = GetActorLocation();
+
+	int ChangeAnimation = 0;
+
+	if (MousePos.X < ActorPos.X) 
+	{
+		Dir = "Left";
+		ChangeAnimation = 1;
+	}
+	else if (MousePos.X > ActorPos.X)
+	{
+		Dir = "Right";
+		ChangeAnimation = 1;
+	}
+
+	if (UEngineInput::IsPress('W'))
+	{
+		AddRelativeLocation(FVector{ 0.0f, 400.0f * _DeltaTime, 0.0f });
+ 		ChangeAnimation = 2;
+		ActorPos;
+	}
+
+	if (UEngineInput::IsPress('S'))
+	{
+		AddRelativeLocation(FVector{ 0.0f, -400.0f * _DeltaTime, 0.0f });
+		ChangeAnimation = 2;
+	}
 	if (UEngineInput::IsPress('A'))
 	{
 		AddRelativeLocation(FVector{ -400.0f * _DeltaTime, 0.0f, 0.0f });
+		ChangeAnimation = 2;
 	}
 	if (UEngineInput::IsPress('D'))
 	{
 		AddRelativeLocation(FVector{ 400.0f * _DeltaTime, 0.0f, 0.0f });
+		ChangeAnimation = 2;
 	}
 
+	if (UEngineInput::IsFree('W') && UEngineInput::IsFree('D') && UEngineInput::IsFree('A') && UEngineInput::IsFree('S'))
+	{
+		ChangeAnimation = 1;
+	}
+
+	if (ChangeAnimation > 0)
+	{
+		if (ChangeAnimation == 1)
+		{
+			CharacterRenderer->ChangeAnimation("Idle" + Dir);
+		}
+		else if (ChangeAnimation == 2)
+		{
+			CharacterRenderer->ChangeAnimation("Run" + Dir);
+		}
+	}
 	
 
 	//if (공격 상태일때만)
@@ -84,34 +131,4 @@ void AForager::Tick(float _DeltaTime)
 	//		Result[0]->GetActor()->Destroy();
 	//	}
 	//}
-
-
-	FVector Test = GetActorForwardVector();
-
-	if (UEngineInput::IsPress('W'))
-	{
-		AddRelativeLocation(FVector{ 0.0f, 400.0f * _DeltaTime, 0.0f });
-	}
-
-	if (UEngineInput::IsPress('S'))
-	{
-		AddRelativeLocation(FVector{ 0.0f, -400.0f * _DeltaTime, 0.0f });
-	}
-
-	if (UEngineInput::IsPress('Q'))
-	{
-		AddActorRotation(FVector{ 0.0f, 0.0f , 360.0f * _DeltaTime });
-	}
-
-	if (UEngineInput::IsPress('F'))
-	{
-	}
-
-	if (UEngineInput::IsPress('E'))
-	{
-	}
-
-	if (UEngineInput::IsPress('R'))
-	{
-	}
 }
