@@ -64,13 +64,10 @@ void AForager::Tick(float _DeltaTime)
 	AActor::Tick(_DeltaTime);
 
 	std::shared_ptr<class ACameraActor> Camera = GetWorld()->GetCamera(0);
-
 	FVector MousePos = Camera->ScreenMousePosToWorldPos();
-
 	FVector ActorPos = GetActorLocation();
 
 	int ChangeAnimation = 0;
-
 	if (MousePos.X < ActorPos.X) 
 	{
 		Dir = "Left";
