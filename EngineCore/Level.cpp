@@ -7,6 +7,8 @@
 #include "EngineCamera.h"
 #include "CameraActor.h"
 #include "EngineGUI.h"
+#include "HUD.h"
+#include "EngineFont.h"
 #include "EngineRenderTarget.h"
 
 // 플레이어 Renderer
@@ -134,17 +136,42 @@ void ULevel::Render(float _DeltaTime)
 		{
 			continue;
 		}
+		
+		if (false == Camera.second->IsActive())
+		{
+			continue;
+		}
 
 		Camera.second->Tick(_DeltaTime);
 		Camera.second->GetCameraComponent()->Render(_DeltaTime);
-		// 이 효과는 이 카메라 그려진 대상만 영향을 줄것이다.
-		// Camera.second->PostEffect();
+
 		// 난 다 그려졌으니 
 		Camera.second->GetCameraComponent()->CameraTarget->MergeTo(LastRenderTarget);
 	}
 
+	if (true == Cameras.contains(static_cast<int>(EEngineCameraType::UICamera)))
+	{
+		std::shared_ptr<ACameraActor> CameraActor = Cameras[static_cast<int>(EEngineCameraType::UICamera)];
+		if (true == CameraActor->IsActive())
+		{
+			std::shared_ptr<UEngineCamera> CameraComponent = Cameras[static_cast<int>(EEngineCameraType::UICamera)]->GetCameraComponent();
+
+			CameraActor->Tick(_DeltaTime);
+			CameraComponent->CameraTarget->Clear();
+			CameraComponent->CameraTarget->Setting();
+
+			HUD->UIRender(CameraComponent.get(), _DeltaTime);
+
+			
 
 
+			CameraComponent->CameraTarget->MergeTo(LastRenderTarget);
+		}
+
+	} else 
+	{
+		MSGASSERT("UI카메라가 존재하지 않습니다. 엔진 오류입니다. UI카메라를 제작해주세요.");
+	}
 	
 	// LastRenderTarget->PostEffect();
 
@@ -260,6 +287,11 @@ void ULevel::Collision(float _DeltaTime)
 			{
 				for (std::shared_ptr<class UCollision>& RightCollision : RightList)
 				{
+					if (LeftCollision == RightCollision)
+					{
+						continue;
+					}
+
 					if (false == LeftCollision->IsActive())
 					{
 						continue;
@@ -282,6 +314,32 @@ void ULevel::Release(float _DeltaTime)
 	{
 		// 충돌체 릴리즈
 		for (std::pair<const std::string, std::list<std::shared_ptr<UCollision>>>& Group : Collisions)
+		{
+			std::list<std::shared_ptr<UCollision>>& List = Group.second;
+
+			std::list<std::shared_ptr<UCollision>>::iterator StartIter = List.begin();
+			std::list<std::shared_ptr<UCollision>>::iterator EndIter = List.end();
+
+			// 언리얼은 중간에 삭제할수 없어.
+			for (; StartIter != EndIter; )
+			{
+				if (false == (*StartIter)->IsDestroy())
+				{
+					++StartIter;
+					continue;
+				}
+
+				// 랜더러는 지울 필요가 없습니다.
+				// (*RenderStartIter) 누가 지울 권한을 가졌느냐.
+				// 컴포넌트의 메모리를 삭제할수 권한은 오로지 액터만 가지고 있다.
+				StartIter = List.erase(StartIter);
+			}
+		}
+	}
+
+	{
+		// 충돌체 릴리즈
+		for (std::pair<const std::string, std::list<std::shared_ptr<UCollision>>>& Group : CheckCollisions)
 		{
 			std::list<std::shared_ptr<UCollision>>& List = Group.second;
 

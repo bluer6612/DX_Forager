@@ -5,12 +5,12 @@
 #include <EngineCore/EngineSprite.h>
 #include <EngineCore/EngineShader.h>
 #include <EngineCore/EngineMaterial.h>
-#include "TitleGameMode.h"
-#include "TileMapGameMode.h"
 #include "PlayGameMode.h"
+#include "TileMapGameMode.h"
 #include <EngineCore/HUD.h>
 #include <EngineCore/EngineGUI.h>
 #include <EngineCore/EngineGUIWindow.h>
+#include "TitleHUD.h"
 #include "ContentsEditorGUI.h"
 
 // #define은 그냥 무조건 복붙

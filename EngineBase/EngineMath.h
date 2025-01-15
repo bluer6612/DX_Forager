@@ -84,6 +84,12 @@ public:
 	static const TVector FORWARD;
 	static const TVector BACK;
 
+	static const TVector WHITE;
+	static const TVector BLACK;
+	static const TVector RED;
+	static const TVector BLUE;
+	static const TVector GREEN;
+
 
 public:
 	union
@@ -405,7 +411,16 @@ public:
 		TVector Result;
 		Result.X = X + _Other.X;
 		Result.Y = Y + _Other.Y;
+		Result.Z = Z + _Other.Z;
 		return Result;
+	}
+
+	TVector& operator+=(const TVector& _Other) const
+	{
+		X += _Other.X;
+		Y += _Other.Y;
+		Z += _Other.Z;
+		return *this;
 	}
 
 	// 선언과 구현이 분리된 녀석들만 붙여줘면 된다.
@@ -416,6 +431,7 @@ public:
 	{
 		X -= _Other.X;
 		Y -= _Other.Y;
+		Z -= _Other.Z;
 		return *this;
 	}
 
@@ -425,6 +441,7 @@ public:
 		TVector Result;
 		Result.X = X - _Other.X;
 		Result.Y = Y - _Other.Y;
+		Result.Z = Z - _Other.Z;
 		return Result;
 	}
 
@@ -525,6 +542,18 @@ public:
 	class FQuat DegAngleToQuaternion();
 
 };
+
+template<>
+const TVector<float> TVector<float>::WHITE = TVector<float>(1.0f, 1.0f, 1.0f, 1.0f);
+template<>
+const TVector<float> TVector<float>::BLACK = TVector<float>(0.0f, 0.0f, 0.0f, 1.0f);
+template<>
+const TVector<float> TVector<float>::RED = TVector<float>(1.0f, 0.0f, 0.0f, 1.0f);
+template<>
+const TVector<float> TVector<float>::BLUE = TVector<float>(0.0f, 0.0f, 1.0f, 1.0f);
+template<>
+const TVector<float> TVector<float>::GREEN = TVector<float>(0.0f, 1.0f, 0.0f, 1.0f);;
+
 
 template<>
 const TVector<float> TVector<float>::NONE = TVector<float>(0.0f, 0.0f, 0.0f, 0.0f);
@@ -938,32 +967,32 @@ public:
 	ENGINEAPI static bool Collision(ECollisionType _LeftType, const FTransform& _Left, ECollisionType _RightType, const FTransform& _Right);
 
 	// 완전히 같은 형의 함수죠?
-	static bool PointToCirCle(const FTransform& _Left, const FTransform& _Right);
-	static bool PointToRect(const FTransform& _Left, const FTransform& _Right);
+	ENGINEAPI static bool PointToCirCle(const FTransform& _Left, const FTransform& _Right);
+	ENGINEAPI static bool PointToRect(const FTransform& _Left, const FTransform& _Right);
 
-	static bool RectToRect(const FTransform& _Left, const FTransform& _Right);
-	static bool RectToCirCle(const FTransform& _Left, const FTransform& _Right);
+	ENGINEAPI static bool RectToRect(const FTransform& _Left, const FTransform& _Right);
+	ENGINEAPI static bool RectToCirCle(const FTransform& _Left, const FTransform& _Right);
 
-	static bool CirCleToCirCle(const FTransform& _Left, const FTransform& _Right);
-	static bool CirCleToRect(const FTransform& _Left, const FTransform& _Right);
+	ENGINEAPI static bool CirCleToCirCle(const FTransform& _Left, const FTransform& _Right);
+	ENGINEAPI static bool CirCleToRect(const FTransform& _Left, const FTransform& _Right);
 
 	// 연산량이 크다.
-	static bool OBB2DToOBB2D(const FTransform& _Left, const FTransform& _Right);
-	static bool OBB2DToRect(const FTransform& _Left, const FTransform& _Right);
-	static bool OBB2DToPoint(const FTransform& _Left, const FTransform& _Right);
-	static bool OBB2DToCirCle(const FTransform& _Left, const FTransform& _Right);
+	ENGINEAPI static bool OBB2DToOBB2D(const FTransform& _Left, const FTransform& _Right);
+	ENGINEAPI static bool OBB2DToRect(const FTransform& _Left, const FTransform& _Right);
+	ENGINEAPI static bool OBB2DToPoint(const FTransform& _Left, const FTransform& _Right);
+	ENGINEAPI static bool OBB2DToCirCle(const FTransform& _Left, const FTransform& _Right);
 
-	static bool OBBToSphere(const FTransform& _Left, const FTransform& _Right);
-	static bool OBBToOBB(const FTransform& _Left, const FTransform& _Right);
-	static bool OBBToAABB(const FTransform& _Left, const FTransform& _Right);
+	ENGINEAPI static bool OBBToSphere(const FTransform& _Left, const FTransform& _Right);
+	ENGINEAPI static bool OBBToOBB(const FTransform& _Left, const FTransform& _Right);
+	ENGINEAPI static bool OBBToAABB(const FTransform& _Left, const FTransform& _Right);
 
-	static bool SphereToSphere(const FTransform& _Left, const FTransform& _Right);
-	static bool SphereToOBB(const FTransform& _Left, const FTransform& _Right);
-	static bool SphereToAABB(const FTransform& _Left, const FTransform& _Right);
+	ENGINEAPI static bool SphereToSphere(const FTransform& _Left, const FTransform& _Right);
+	ENGINEAPI static bool SphereToOBB(const FTransform& _Left, const FTransform& _Right);
+	ENGINEAPI static bool SphereToAABB(const FTransform& _Left, const FTransform& _Right);
 
-	static bool AABBToSphere(const FTransform& _Left, const FTransform& _Right);
-	static bool AABBToOBB(const FTransform& _Left, const FTransform& _Right);
-	static bool AABBToAABB(const FTransform& _Left, const FTransform& _Right);
+	ENGINEAPI static bool AABBToSphere(const FTransform& _Left, const FTransform& _Right);
+	ENGINEAPI static bool AABBToOBB(const FTransform& _Left, const FTransform& _Right);
+	ENGINEAPI static bool AABBToAABB(const FTransform& _Left, const FTransform& _Right);
 
 
 
@@ -1085,10 +1114,13 @@ class TColor
 public:
 	static const TColor WHITE;
 	static const TColor BLACK;
+	static const TColor RED;
+	static const TColor BLUE;
+	static const TColor GREEN;
 
 	union
 	{
-		int Color;
+		unsigned int Color;
 		struct
 		{
 			unsigned char R;
@@ -1120,8 +1152,17 @@ public:
 using UColor = TColor<unsigned char>;
 
 template<>
-const TColor<unsigned char> TColor<unsigned char>::WHITE = TColor<unsigned char>( 255, 255, 255, 0 );
+const TColor<unsigned char> TColor<unsigned char>::WHITE = TColor<unsigned char>( 255, 255, 255, 255 );
 
 template<>
-const TColor<unsigned char> TColor<unsigned char>::BLACK = TColor<unsigned char>(0, 0, 0, 0);
+const TColor<unsigned char> TColor<unsigned char>::BLACK = TColor<unsigned char>(0, 0, 0, 255);
+
+template<>
+const TColor<unsigned char> TColor<unsigned char>::RED = TColor<unsigned char>(255, 0, 0, 255);
+
+template<>
+const TColor<unsigned char> TColor<unsigned char>::BLUE = TColor<unsigned char>(0, 0, 255, 255);
+
+template<>
+const TColor<unsigned char> TColor<unsigned char>::GREEN = TColor<unsigned char>(0, 255, 0, 255);
 

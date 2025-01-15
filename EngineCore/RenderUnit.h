@@ -20,6 +20,8 @@ public:
 	URenderUnit();
 	~URenderUnit();
 
+	UTransformObject* TransformObject = nullptr;
+
 	URenderer* ParentRenderer = nullptr;
 
 	// ¸Å½¬(À°Ã¼) 
@@ -53,6 +55,8 @@ public:
 
 
 	ENGINEAPI void SetTexture(std::string_view _Name, UEngineTexture* _Texture);
+
+	ENGINEAPI void Reset();
 
 	std::map<EShaderType, UEngineShaderResources> Resources;
 

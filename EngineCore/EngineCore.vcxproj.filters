@@ -161,6 +161,9 @@
     <ClInclude Include="TransformObject.h">
       <Filter>Object\Component</Filter>
     </ClInclude>
+    <ClInclude Include="EngineFont.h">
+      <Filter>Resources\Font</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp" />
@@ -311,6 +314,9 @@
     <ClCompile Include="TransformObject.cpp">
       <Filter>Object\Component</Filter>
     </ClCompile>
+    <ClCompile Include="EngineFont.cpp">
+      <Filter>Resources\Font</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Interface">
@@ -393,6 +399,9 @@
     </Filter>
     <Filter Include="Object\UI">
       <UniqueIdentifier>{d19a3a4f-0049-461e-b151-f8f5977e493f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\Font">
+      <UniqueIdentifier>{2476471a-5d60-477f-afb1-e516052c15ba}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
