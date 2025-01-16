@@ -38,6 +38,12 @@
     <ClInclude Include="ContentsCore.h">
       <Filter>Core</Filter>
     </ClInclude>
+    <ClInclude Include="TestGameMode.h">
+      <Filter>GameMode</Filter>
+    </ClInclude>
+    <ClInclude Include="TestActor.h">
+      <Filter>Character</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp" />
@@ -76,6 +82,12 @@
     </ClCompile>
     <ClCompile Include="ContentsCore_Resources.cpp">
       <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="TestGameMode.cpp">
+      <Filter>GameMode</Filter>
+    </ClCompile>
+    <ClCompile Include="TestActor.cpp">
+      <Filter>Character</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

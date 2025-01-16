@@ -132,7 +132,8 @@ void UEngineGraphicDevice::ShaderInit()
 
 void UEngineGraphicDevice::MeshInit()
 {
-	int a = 0;
+
+
 
 	{
 		std::vector<FEngineVertex> Vertexs;

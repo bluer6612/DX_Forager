@@ -1,7 +1,13 @@
 #include "PreCompile.h"
 #include "EngineVertex.h"
 
+// EngineCore에 있는 녀석을 가져와라
 UEngineInputLayOutInfo FEngineVertex::Info;
+
+UEngineInputLayOutInfo& FEngineVertex::GetInfo()
+{
+	return Info;
+}
 
 class EngineVertexInit
 {
