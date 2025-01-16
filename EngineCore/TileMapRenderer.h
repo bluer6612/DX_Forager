@@ -80,7 +80,7 @@ public:
 	// 그런데 Unordered map이되면 중간에 얼마든지 크기를 기울수 있습니다.
 	// ENGINEAPI void CreateTileMap(int _X, int _Y, )
 
-	ENGINEAPI void SetTileSetting(ETileMapType _Type, std::string_view _Name, FVector _TileSize, FVector _ImageSize, FVector _Pivot);
+	ENGINEAPI void SetTileSetting(ETileMapType _Type, std::string _Name, FVector _TileSize, FVector _ImageSize, FVector _Pivot);
 
 
 	ENGINEAPI void SetTile(FVector _Pos, int _Spriteindex);

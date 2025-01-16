@@ -2,6 +2,7 @@
 #include "PlayGameMode.h"
 #include "Monster.h"
 #include "Forager.h"
+#include "TileManager.h"
 #include <EngineCore/CameraActor.h>
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/EngineGUIWindow.h>
@@ -22,6 +23,10 @@ APlayGameMode::APlayGameMode()
 
 	{
 		Forager = GetWorld()->SpawnActor<AForager>();
+	}
+
+	{
+		TileManager = GetWorld()->SpawnActor<ATileManager>();
 	}
 
 	{

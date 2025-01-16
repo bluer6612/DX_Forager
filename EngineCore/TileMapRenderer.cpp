@@ -21,9 +21,9 @@ UTileMapRenderer::~UTileMapRenderer()
 {
 }
 
-void UTileMapRenderer::SetTileSetting(ETileMapType _Type, std::string_view _Name, FVector _TileSize, FVector _ImageSize, FVector _Pivot)
+void UTileMapRenderer::SetTileSetting(ETileMapType _Type, std::string _Name, FVector _TileSize, FVector _ImageSize, FVector _Pivot)
 {
-	Sprite = UEngineSprite::Find<UEngineSprite>(_Name).get();
+	Sprite = UEngineSprite::Find<UEngineSprite>(_Name + std::string(".png"))).get();
 
 	TileMapType = _Type;
 	TileSize = _TileSize;

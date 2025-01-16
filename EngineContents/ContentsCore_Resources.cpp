@@ -118,10 +118,10 @@ void UContentsCore::ResourcesSetting() {
 	}
 
 	UEngineSprite::CreateSpriteToMeta("Forager", ".meta");
-	//UEngineSprite::CreateSpriteToMeta("TileMap.png", ".sdata");
+	UEngineSprite::CreateSpriteToMeta("img_tile_plain", ".meta");
 
 	DirectoryAdd("Character/Forager");
-	DirectoryAdd("Tiles");
+	//DirectoryAdd("Tiles");
 }
 
 void UContentsCore::DirectoryAdd(std::string _Append)
