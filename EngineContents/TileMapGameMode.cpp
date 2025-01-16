@@ -351,7 +351,7 @@ public:
 ATileMapGameMode::ATileMapGameMode()
 {
 	// 레벨마다 해주셔야 합니다.
-// 이걸 UI공유할건지 
+	// 이걸 UI공유할건지 
 	GetWorld()->CreateCollisionProfile("Monster");
 
 	std::shared_ptr<UDefaultSceneComponent> Default = CreateDefaultSubObject<UDefaultSceneComponent>();
