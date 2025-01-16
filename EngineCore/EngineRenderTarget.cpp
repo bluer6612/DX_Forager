@@ -121,6 +121,9 @@ void UEngineRenderTarget::CopyTo(std::shared_ptr<UEngineRenderTarget> _Target)
 
 void UEngineRenderTarget::MergeTo(std::shared_ptr<UEngineRenderTarget> _Target)
 {
+    // 쉐이더 리소스에서 사용하는 리소스를 아웃머저에서도 사용할수 없다.
+    // Texture2D에서 => SRV(쉐이더리소스) RTV(아웃풋 머저에 세팅)
+    // 다른 타겟의 텍스처이다.
     _Target->Setting();
     TargetUnit.SetTexture("MergeTex", ArrTexture[0]);
     TargetUnit.Render(nullptr, 0.0f);

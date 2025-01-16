@@ -164,6 +164,9 @@
     <ClInclude Include="EngineFont.h">
       <Filter>Resources\Font</Filter>
     </ClInclude>
+    <ClInclude Include="ThirdParty\FW1FontWrapper\Inc\FW1FontWrapper.h">
+      <Filter>ThirdParty</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp" />
@@ -403,6 +406,18 @@
     <Filter Include="Resources\Font">
       <UniqueIdentifier>{2476471a-5d60-477f-afb1-e516052c15ba}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ThirdParty\FW1FontWrapper">
+      <UniqueIdentifier>{80d43a1e-55eb-4e3b-9c42-e04789947052}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\FW1FontWrapper\Debug">
+      <UniqueIdentifier>{93e6edbe-70c1-4153-bd1f-84945b992938}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\FW1FontWrapper\Inc">
+      <UniqueIdentifier>{52e3f3f4-bf9b-4473-b0da-47960f355b7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\FW1FontWrapper\Release">
+      <UniqueIdentifier>{eb8e3c84-1037-4825-bed6-4ef13eaa8ab5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ThirdParty\DirectxTex\Inc\DirectXTex.inl">
@@ -415,6 +430,18 @@
     </CopyFileToFolders>
     <CopyFileToFolders Include="ThirdParty\DirectxTex\Release\DirectXTex_Release.lib">
       <Filter>ThirdParty\DirectxTex\Release</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="ThirdParty\FW1FontWrapper\Debug\FW1FontWrapper.dll">
+      <Filter>ThirdParty\FW1FontWrapper\Debug</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="ThirdParty\FW1FontWrapper\Debug\FW1FontWrapper.lib">
+      <Filter>ThirdParty\FW1FontWrapper\Debug</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="ThirdParty\FW1FontWrapper\Release\FW1FontWrapper.dll">
+      <Filter>ThirdParty\FW1FontWrapper\Release</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="ThirdParty\FW1FontWrapper\Release\FW1FontWrapper.lib">
+      <Filter>ThirdParty\FW1FontWrapper\Release</Filter>
     </CopyFileToFolders>
   </ItemGroup>
 </Project>

@@ -1,5 +1,5 @@
 #pragma once
-#include "AMon.h"
+#include <EngineCore/Actor.h>
 #include <EngineCore/SpriteRenderer.h>
 #include <EnginePlatform/EngineWinImage.h>
 
