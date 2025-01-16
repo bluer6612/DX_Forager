@@ -164,7 +164,6 @@ std::shared_ptr<UEngineSprite> UEngineSprite::CreateSpriteToMeta(std::string _Na
 		TestData.push_back(SpriteData);
 	}
 
-
 	NewRes->SpriteDatas = TestData;
 
 	return NewRes;

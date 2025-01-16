@@ -61,12 +61,9 @@ void UContentsCore::ResourcesSetting() {
 		}
 
 		UEngineIndexBuffer::Create("Test", Indexs);
-	}
 
-	{
 		UMesh::Create("Test");
 	}
-
 
 	{
 		UEngineDirectory Dir;
@@ -118,10 +115,10 @@ void UContentsCore::ResourcesSetting() {
 	}
 
 	UEngineSprite::CreateSpriteToMeta("Forager", ".meta");
-	UEngineSprite::CreateSpriteToMeta("img_tile_plain", ".meta");
+	//UEngineSprite::CreateSpriteToMeta("img_tile_plain", ".meta");
 
-	DirectoryAdd("Character/Forager");
-	//DirectoryAdd("Tiles");
+	//DirectoryAdd("Character/Forager");
+	DirectoryAdd("Water");
 }
 
 void UContentsCore::DirectoryAdd(std::string _Append)

@@ -17,11 +17,11 @@ ATileManager::ATileManager()
 
 	GroundTileMap = CreateDefaultSubObject<UTileMapRenderer>();
 	GroundTileMap->SetupAttachment(RootComponent);
-	GroundTileMap->SetTileSetting(ETileMapType::Rect, "img_tile_plain", { 56.f, 56.f }, { 56.f, 56.f }, { 0.0f, 0.0f });
+	GroundTileMap->SetTileSetting(ETileMapType::Rect, "Water", { 56.f, 56.f }, { 56.f, 56.f }, { 0.0f, 0.0f });
 
 	CroppatchTile = CreateDefaultSubObject<UTileMapRenderer>();
 	CroppatchTile->SetupAttachment(RootComponent);
-	CroppatchTile->SetTileSetting(ETileMapType::Rect, "img_tile_plain", { 56.f, 56.f }, { 56.f, 56.f }, { 0.0f, 0.0f });
+	//CroppatchTile->SetTileSetting(ETileMapType::Rect, "Water", { 56.f, 56.f }, { 56.f, 56.f }, { 0.0f, 0.0f });
 }
 
 ATileManager::~ATileManager()
@@ -34,7 +34,7 @@ void ATileManager::BeginPlay()
 
 	//건물 타일
 	{
-		FVector ScreenPos;
+		FVector ScreenPos = {0.0f, 0.0f, 0.0f};
 
 		for (int y = 0; y < 10; y++)
 		{
