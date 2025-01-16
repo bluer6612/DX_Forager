@@ -20,9 +20,6 @@
     <ClInclude Include="PlayGameMode.h">
       <Filter>GameMode</Filter>
     </ClInclude>
-    <ClInclude Include="TitleLogo.h">
-      <Filter>Title</Filter>
-    </ClInclude>
     <ClInclude Include="Forager.h">
       <Filter>Character</Filter>
     </ClInclude>
@@ -62,9 +59,6 @@
     <ClCompile Include="PlayGameMode.cpp">
       <Filter>GameMode</Filter>
     </ClCompile>
-    <ClCompile Include="TitleLogo.cpp">
-      <Filter>Title</Filter>
-    </ClCompile>
     <ClCompile Include="Forager.cpp">
       <Filter>Character</Filter>
     </ClCompile>
@@ -93,9 +87,6 @@
   <ItemGroup>
     <Filter Include="GameMode">
       <UniqueIdentifier>{b30b3464-9fea-42bc-a269-6d65ecf4f6c0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Title">
-      <UniqueIdentifier>{b8c8ade7-800f-4020-890f-43e613f26276}</UniqueIdentifier>
     </Filter>
     <Filter Include="Render">
       <UniqueIdentifier>{00b22cb0-38ad-4f90-9885-863b07f1e2f0}</UniqueIdentifier>
