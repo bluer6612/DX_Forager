@@ -1,6 +1,5 @@
 #include "PreCompile.h"
 #include "TestGameMode.h"
-#include "TitleLogo.h"
 #include "Monster.h"
 #include <EngineCore/CameraActor.h>
 #include <EngineCore/SpriteRenderer.h>

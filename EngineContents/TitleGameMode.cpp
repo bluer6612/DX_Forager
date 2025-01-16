@@ -1,6 +1,5 @@
 #include "PreCompile.h"
 #include "TitleGameMode.h"
-#include "TitleLogo.h"
 #include "Monster.h"
 #include <EngineCore/CameraActor.h>
 #include <EngineCore/SpriteRenderer.h>
@@ -49,12 +48,6 @@ ATitleGameMode::ATitleGameMode()
 	Camera->SetActorLocation({0.0f, 0.0f, -1000.0f, 1.0f});
 	Camera->GetCameraComponent()->SetZSort(0, true);
 
-
-	{
-		Logo = GetWorld()->SpawnActor<ATitleLogo>();
-	}
-
-
 	{
 		std::shared_ptr<AMonster> NewMonster = GetWorld()->SpawnActor<AMonster>();
 		NewMonster->SetActorLocation({ 300.0f, 0.0f, 0.0f });
@@ -72,11 +65,6 @@ void ATitleGameMode::Tick(float _DeltaTime)
 {
 	// 부모 호출
 	AActor::Tick(_DeltaTime);
-
-	if (nullptr == Logo && true == Logo->IsDestroy())
-	{
-		Logo = nullptr;
-	}
 
 }
 

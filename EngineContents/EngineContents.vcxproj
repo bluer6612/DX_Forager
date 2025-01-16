@@ -195,6 +195,7 @@
     <ClInclude Include="PreCompile.h" />
     <ClInclude Include="TestActor.h" />
     <ClInclude Include="TestGameMode.h" />
+    <ClInclude Include="TileManager.h" />
     <ClInclude Include="TileMapGameMode.h" />
     <ClInclude Include="TitleGameMode.h">
       <SubType>
@@ -235,6 +236,7 @@
     </ClCompile>
     <ClCompile Include="TestActor.cpp" />
     <ClCompile Include="TestGameMode.cpp" />
+    <ClCompile Include="TileManager.cpp" />
     <ClCompile Include="TileMapGameMode.cpp" />
     <ClCompile Include="TitleGameMode.cpp">
       <SubType>
