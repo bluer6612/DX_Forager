@@ -8,6 +8,8 @@
 
 ATileManager::ATileManager()
 {
+	UTileMapRenderer* GroundTileMap = nullptr;
+
 	std::shared_ptr<UDefaultSceneComponent> Default = CreateDefaultSubObject<UDefaultSceneComponent>();
 	RootComponent = Default;
 
@@ -15,12 +17,6 @@ ATileManager::ATileManager()
 	PivotSpriteRenderer->SetupAttachment(RootComponent);
 	PivotSpriteRenderer->SetRelativeScale3D({ 50.0f, 50.0f, 1.0f });
 
-	GroundTileMap = CreateDefaultSubObject<UTileMapRenderer>();
-	GroundTileMap->SetupAttachment(RootComponent);
-	GroundTileMap->SetTileSetting(ETileMapType::Rect, "Water", { 56.f, 56.f }, { 56.f, 56.f }, { 0.0f, 0.0f });
-
-	CroppatchTile = CreateDefaultSubObject<UTileMapRenderer>();
-	CroppatchTile->SetupAttachment(RootComponent);
 	//CroppatchTile->SetTileSetting(ETileMapType::Rect, "Water", { 56.f, 56.f }, { 56.f, 56.f }, { 0.0f, 0.0f });
 }
 
@@ -32,15 +28,18 @@ void ATileManager::BeginPlay()
 {
 	AActor::BeginPlay();
 
+	//GroundTileMap->SetTileSetting(ETileMapType::Rect, "Forager.png", { 56.f, 56.f }, { 56.f, 56.f }, { 0.0f, 0.0f });
+
 	//건물 타일
 	{
-		FVector ScreenPos = {0.0f, 0.0f, 0.0f};
+		FVector ScreenPos = {0.0f, 0.0f};
+		//GroundTileMap->SetTile(ScreenPos, 0);
 
 		for (int y = 0; y < 10; y++)
 		{
 			for (int x = 0; x < 10; x++)
 			{
-				GroundTileMap->SetTile(ScreenPos, 0);
+				//GroundTileMap->SetTile(ScreenPos, 0);
 			}
 		}
 	}
