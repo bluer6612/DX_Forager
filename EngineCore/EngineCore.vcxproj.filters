@@ -167,6 +167,9 @@
     <ClInclude Include="ThirdParty\FW1FontWrapper\Inc\FW1FontWrapper.h">
       <Filter>ThirdParty</Filter>
     </ClInclude>
+    <ClInclude Include="ThirdParty\FW1FontWrapper\Inc2\FW1FontWrapper.h">
+      <Filter>ThirdParty\FW1FontWrapper\Inc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp" />
@@ -412,11 +415,11 @@
     <Filter Include="ThirdParty\FW1FontWrapper\Debug">
       <UniqueIdentifier>{93e6edbe-70c1-4153-bd1f-84945b992938}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ThirdParty\FW1FontWrapper\Inc">
-      <UniqueIdentifier>{52e3f3f4-bf9b-4473-b0da-47960f355b7b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ThirdParty\FW1FontWrapper\Release">
       <UniqueIdentifier>{eb8e3c84-1037-4825-bed6-4ef13eaa8ab5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\FW1FontWrapper\Inc">
+      <UniqueIdentifier>{e195fa6f-c477-4d58-8753-2ee1aee90b8b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
