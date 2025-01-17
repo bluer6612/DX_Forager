@@ -32,7 +32,7 @@
     <ClInclude Include="ContentsCore.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="TestGameMode.h">
+    <ClInclude Include="LoadGameMode.h">
       <Filter>GameMode</Filter>
     </ClInclude>
     <ClInclude Include="TestActor.h">
@@ -86,7 +86,7 @@
     <ClCompile Include="ContentsCore_Resources.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="TestGameMode.cpp">
+    <ClCompile Include="LoadGameMode.cpp">
       <Filter>GameMode</Filter>
     </ClCompile>
     <ClCompile Include="TestActor.cpp">

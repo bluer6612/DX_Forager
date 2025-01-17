@@ -4,18 +4,18 @@
 #include <EnginePlatform/EngineThread.h>
 
 // Ό³Έν :
-class ATestGameMode : public AGameMode
+class ALoadGameMode : public AGameMode
 {
 public:
 	// constrcuter destructer
-	ATestGameMode();
-	~ATestGameMode();
+	ALoadGameMode();
+	~ALoadGameMode();
 
 	// delete Function
-	ATestGameMode(const ATestGameMode& _Other) = delete;
-	ATestGameMode(ATestGameMode&& _Other) noexcept = delete;
-	ATestGameMode& operator=(const ATestGameMode& _Other) = delete;
-	ATestGameMode& operator=(ATestGameMode&& _Other) noexcept = delete;
+	ALoadGameMode(const ALoadGameMode& _Other) = delete;
+	ALoadGameMode(ALoadGameMode&& _Other) noexcept = delete;
+	ALoadGameMode& operator=(const ALoadGameMode& _Other) = delete;
+	ALoadGameMode& operator=(ALoadGameMode&& _Other) noexcept = delete;
 
 	void Tick(float _DeltaTime);
 

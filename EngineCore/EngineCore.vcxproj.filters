@@ -164,12 +164,6 @@
     <ClInclude Include="EngineFont.h">
       <Filter>Resources\Font</Filter>
     </ClInclude>
-    <ClInclude Include="ThirdParty\FW1FontWrapper\Inc\FW1FontWrapper.h">
-      <Filter>ThirdParty</Filter>
-    </ClInclude>
-    <ClInclude Include="ThirdParty\FW1FontWrapper\Inc2\FW1FontWrapper.h">
-      <Filter>ThirdParty\FW1FontWrapper\Inc</Filter>
-    </ClInclude>
     <ClInclude Include="GameInstance.h">
       <Filter>Core</Filter>
     </ClInclude>
@@ -178,6 +172,9 @@
     </ClInclude>
     <ClInclude Include="FontWidget.h">
       <Filter>Object\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdParty\FW1FontWrapper\Inc\FW1FontWrapper.h">
+      <Filter>ThirdParty\FW1FontWrapper\Inc</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -96,6 +96,7 @@ void UTileMapRenderer::Render(UEngineCamera* _Camera, float _DeltaTime)
 	RendererTrans.Projection = CameraTrans.Projection;
 	RendererTrans.WVP = RendererTrans.World * RendererTrans.View * RendererTrans.Projection;
 	std::shared_ptr<ACameraActor> Camera = GetWorld()->GetMainCamera();
+	FVector CameraPost = Camera->GetActorLocation();
 
 
 	if (0 == Tiles.size())
@@ -117,18 +118,24 @@ void UTileMapRenderer::Render(UEngineCamera* _Camera, float _DeltaTime)
 		FTileIndex Index;
 		Index.Key = TilePair.first;
 		FVector ConvertPos = TileIndexToWorldPos(Index);
-		FVector CameraPost = Camera->GetActorLocation();
 
-		/*if ((ConvertPos.X - CameraPost.X < -640.f - 56.f - CameraPost.X || ConvertPos.Y - CameraPost.Y < -360.f - 56.f - CameraPost.Y)
-			|| (ConvertPos.X + CameraPost.X > 640.f + 56.f + CameraPost.X || ConvertPos.Y + CameraPost.Y > 360.f + 56.f + CameraPost.Y))*/
-		//if (화면 바깥에 나간 타일은)
-		if ((ConvertPos.X - CameraPost.X > -640.f - 56.f - CameraPost.X && ConvertPos.Y - CameraPost.Y > -360.f - 56.f - CameraPost.Y)
-			|| (ConvertPos.X + CameraPost.X < 640.f + 56.f + CameraPost.X && ConvertPos.Y + CameraPost.Y < 360.f + 56.f + CameraPost.Y))
+		if (ConvertPos.X + CameraPost.X > -640.f - 56.f + CameraPost.X && ConvertPos.Y + CameraPost.Y > -360.f - 56.f + CameraPost.Y)
 		{
-			//UEngineDebug::OutPutString("CameraPos : " + std::to_string(ConvertPos.X - CameraPost.X) +" < " + std::to_string(-640.f - 56.f + CameraPost.X)
-				//+ " / " + std::to_string(ConvertPos.Y + CameraPost.Y) + " < " + std::to_string(-360.f - 56.f + CameraPost.Y));
 			continue;
 		}
+		if (ConvertPos.X + CameraPost.X > -640.f - 56.f - CameraPost.X && ConvertPos.Y + CameraPost.Y < 360.f + 56.f + CameraPost.Y)
+		{
+			continue;
+		}
+		if (ConvertPos.X + CameraPost.X < 640.f + 56.f + CameraPost.X && ConvertPos.Y + CameraPost.Y < 360.f + 56.f + CameraPost.Y)
+		{
+			continue;
+		}
+		if (ConvertPos.X + CameraPost.X < 640.f + 56.f + CameraPost.X && ConvertPos.Y + CameraPost.Y > -360.f - 56.f + CameraPost.Y)
+		{
+			continue;
+		}
+
 		GetRenderUnit().SetTexture("TileMapTex", Sprite->GetTexture(Tile.SpriteIndex));
 		Tile.SpriteData = Sprite->GetSpriteData(Tile.SpriteIndex);
 		Tile.SpriteData.Pivot = { 0.0f, 0.0f };
@@ -143,7 +150,6 @@ void UTileMapRenderer::Render(UEngineCamera* _Camera, float _DeltaTime)
 
 		Unit.Render(_Camera, _DeltaTime);
 	}
-
 }
 
 void UTileMapRenderer::SetTile(FVector _Pos, int _Spriteindex)

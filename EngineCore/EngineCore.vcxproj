@@ -321,7 +321,6 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="ThirdParty\FW1FontWrapper\Inc2\FW1FontWrapper.h" />
     <ClInclude Include="ThirdParty\FW1FontWrapper\Inc\FW1FontWrapper.h" />
     <ClInclude Include="TileMapRenderer.h" />
     <ClInclude Include="TimeEventComponent.h">

@@ -12,7 +12,7 @@
 #include <EngineCore/EngineGUIWindow.h>
 #include "TitleHUD.h"
 #include "ContentsEditorGUI.h"
-#include "TestGameMode.h"
+#include "LoadGameMode.h"
 #include "MyGameInstance.h"
 
 // #define은 그냥 무조건 복붙
@@ -41,9 +41,9 @@ void UContentsCore::EngineStart(UEngineInitData& _Data)
 
 	UEngineGUI::AllWindowOff();
 
-	UEngineCore::CreateLevel<ATestGameMode, APawn, AHUD>("LoadingLevel");
+	UEngineCore::CreateLevel<ALoadGameMode, APawn, AHUD>("LoadLevel");
 
-	UEngineCore::OpenLevel("LoadingLevel");
+	UEngineCore::OpenLevel("LoadLevel");
 
 	/*UEngineGUI::CreateGUIWindow<UContentsEditorGUI>("ContentsEditorGUI");
 	std::shared_ptr<UContentsEditorGUI> Window = UEngineGUI::FindGUIWindow<UContentsEditorGUI>("ContentsEditorGUI");

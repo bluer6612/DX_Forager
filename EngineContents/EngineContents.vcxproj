@@ -196,7 +196,7 @@
     <ClInclude Include="PlayGameMode.h" />
     <ClInclude Include="PreCompile.h" />
     <ClInclude Include="TestActor.h" />
-    <ClInclude Include="TestGameMode.h" />
+    <ClInclude Include="LoadGameMode.h" />
     <ClInclude Include="TileManager.h" />
     <ClInclude Include="TileMapGameMode.h" />
     <ClInclude Include="TitleGameMode.h">
@@ -240,7 +240,7 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">PreCompile.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="TestActor.cpp" />
-    <ClCompile Include="TestGameMode.cpp" />
+    <ClCompile Include="LoadGameMode.cpp" />
     <ClCompile Include="TileManager.cpp" />
     <ClCompile Include="TileMapGameMode.cpp" />
     <ClCompile Include="TitleGameMode.cpp">

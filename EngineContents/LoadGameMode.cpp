@@ -1,5 +1,5 @@
 #include "PreCompile.h"
-#include "TestGameMode.h"
+#include "LoadGameMode.h"
 #include "Monster.h"
 #include <EngineCore/CameraActor.h>
 #include <EngineCore/SpriteRenderer.h>
@@ -15,7 +15,7 @@
 #include "TileMapGameMode.h"
 #include "TitleHUD.h"
 
-ATestGameMode::ATestGameMode()
+ALoadGameMode::ALoadGameMode()
 {
 	// 레벨마다 해주셔야 합니다.
 	// 이걸 UI공유할건지 
@@ -41,12 +41,12 @@ ATestGameMode::ATestGameMode()
 
 }
 
-ATestGameMode::~ATestGameMode()
+ALoadGameMode::~ALoadGameMode()
 {
 
 }
 
-void ATestGameMode::Tick(float _DeltaTime)
+void ALoadGameMode::Tick(float _DeltaTime)
 {
 	// 부모 호출
 	AActor::Tick(_DeltaTime);
@@ -60,10 +60,9 @@ void ATestGameMode::Tick(float _DeltaTime)
 		UEngineCore::CreateLevel<ATileMapGameMode, APawn, AHUD>("TileMapEditor");
 		UEngineCore::OpenLevel("Playlevel");
 	}
-
 }
 
-void ATestGameMode::LevelChangeStart()
+void ALoadGameMode::LevelChangeStart()
 {
 	UEngineGUI::AllWindowOff();
 
@@ -72,10 +71,6 @@ void ATestGameMode::LevelChangeStart()
 		Thread.Start("Loading", [this]()
 			{
 				{
-					// 말도 안되는 겁니다.
-					// 쓰레드가 살아있으려면 이 객체도 살아있어야 한다는 것을 기억핫세요.
-					// UEngineThread Thread;
-
 					UEngineDirectory Dir;
 					if (false == Dir.MoveParentToDirectory("Resources"))
 					{
@@ -106,10 +101,9 @@ void ATestGameMode::LevelChangeStart()
 					Mat->SetRasterizerState("CollisionDebugRas");
 				}
 
-				UEngineSprite::CreateSpriteToMeta("Forager", ".meta");
+				//UEngineSprite::CreateSpriteToMeta("Forager", ".meta");
 				//UEngineSprite::CreateSpriteToMeta("img_tile_plain", ".meta");
 
-				//DirectoryAdd("Character/Forager");
 				DirectoryAdd("Water");
 
 				this->LoadingEnd = true;
@@ -117,7 +111,7 @@ void ATestGameMode::LevelChangeStart()
 	}
 }
 
-void ATestGameMode::DirectoryAdd(std::string _Append)
+void ALoadGameMode::DirectoryAdd(std::string _Append)
 {
 	UEngineDirectory Dir;
 	Dir.MoveParentToDirectory("Resources//Image//");
