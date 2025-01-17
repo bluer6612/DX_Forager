@@ -239,3 +239,8 @@ void UEngineCore::EngineEnd()
 	UEngineDebug::EndConsole();
 
 }
+
+void UEngineCore::SetGameInstance(std::shared_ptr<UGameInstance> _Inst)
+{
+	GEngine->GameInstance = _Inst;
+}

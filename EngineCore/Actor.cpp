@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include "Actor.h"
 #include "SceneComponent.h"
+#include "GameInstance.h"
 
 UGameInstance* AActor::GetGameInstance()
 {

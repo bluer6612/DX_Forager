@@ -53,7 +53,7 @@ public:
 	template<typename Type>
 	static void CreateGameInstance()
 	{
-		GameInstance = std::make_shared<Type>();
+		SetGameInstance(std::make_shared<Type>());
 	}
 
 protected:
@@ -84,6 +84,8 @@ private:
 	std::map<std::string, std::shared_ptr<class ULevel>> LevelMap;
 	std::shared_ptr<class ULevel> CurLevel;
 	std::shared_ptr<class ULevel> NextLevel;
+
+	ENGINEAPI static void SetGameInstance(std::shared_ptr<UGameInstance> _Inst);
 
 	// constrcuter destructer
 	ENGINEAPI UEngineCore();
