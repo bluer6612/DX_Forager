@@ -185,12 +185,14 @@
     </ClInclude>
     <ClInclude Include="Forager.h" />
     <ClInclude Include="GMConst.h" />
+    <ClInclude Include="GMStruct.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="Monster2.h" />
     <ClInclude Include="ForagerRenderer.h">
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="MyGameInstance.h" />
     <ClInclude Include="PlayGameMode.h" />
     <ClInclude Include="PreCompile.h" />
     <ClInclude Include="TestActor.h" />
@@ -217,12 +219,14 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Forager.cpp" />
+    <ClCompile Include="GMStruct.cpp" />
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="Monster2.cpp" />
     <ClCompile Include="ForagerRenderer.cpp">
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="MyGameInstance.cpp" />
     <ClCompile Include="PlayGameMode.cpp" />
     <ClCompile Include="PreCompile.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

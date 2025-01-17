@@ -235,6 +235,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="GameInstance.h" />
     <ClInclude Include="GameMode.h">
       <SubType>
       </SubType>
@@ -398,6 +399,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="GameInstance.cpp" />
     <ClCompile Include="GameMode.cpp">
       <SubType>
       </SubType>

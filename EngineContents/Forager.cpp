@@ -7,6 +7,7 @@
 #include <EngineCore/TimeEventComponent.h>
 #include <EngineCore/Collision.h>
 #include "ForagerRenderer.h"
+#include "MyGameInstance.h"
 
 AForager::AForager()
 {
@@ -128,4 +129,16 @@ void AForager::Tick(float _DeltaTime)
 	//		Result[0]->GetActor()->Destroy();
 	//	}
 	//}
+
+	if (UEngineInput::IsPress('E'))
+	{
+		GetGameInstance<MyGameInstance>()->InvenWidget->SetActive(false);
+	}
+
+	if (UEngineInput::IsPress('R'))
+	{
+		GetGameInstance<MyGameInstance>()->InvenWidget->SetActive(true);
+	}
+
+	GetGameInstance<MyGameInstance>()->Status.Hp -= 1;
 }
