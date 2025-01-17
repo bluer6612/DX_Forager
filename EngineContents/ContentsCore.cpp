@@ -41,11 +41,9 @@ void UContentsCore::EngineStart(UEngineInitData& _Data)
 
 	UEngineGUI::AllWindowOff();
 
-	// 주인공 APawn 상속 받으세요.
-	//UEngineCore::CreateLevel<ATitleGameMode, APawn, AHUD>("Titlelevel");
-	UEngineCore::CreateLevel<ATileMapGameMode, APawn, AHUD>("TileMapEditor");
-	UEngineCore::CreateLevel<APlayGameMode, APawn, AHUD>("PlayLevel");
-	UEngineCore::OpenLevel("PlayLevel");
+	UEngineCore::CreateLevel<ATestGameMode, APawn, AHUD>("LoadingLevel");
+
+	UEngineCore::OpenLevel("LoadingLevel");
 
 	/*UEngineGUI::CreateGUIWindow<UContentsEditorGUI>("ContentsEditorGUI");
 	std::shared_ptr<UContentsEditorGUI> Window = UEngineGUI::FindGUIWindow<UContentsEditorGUI>("ContentsEditorGUI");

@@ -24,7 +24,5 @@ protected:
 
 private:
 	void ResourcesSetting();
-	void DirectoryAdd(std::string _Append);
-
 };
 

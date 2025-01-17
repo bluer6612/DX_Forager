@@ -235,6 +235,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="FontWidget.h" />
     <ClInclude Include="GameInstance.h" />
     <ClInclude Include="GameMode.h">
       <SubType>
@@ -244,6 +245,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="ImageWidget.h" />
     <ClInclude Include="imconfig.h" />
     <ClInclude Include="imgui.h" />
     <ClInclude Include="imgui_impl_dx11.h" />
@@ -399,6 +401,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="FontWidget.cpp" />
     <ClCompile Include="GameInstance.cpp" />
     <ClCompile Include="GameMode.cpp">
       <SubType>
@@ -408,6 +411,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="ImageWidget.cpp" />
     <ClCompile Include="imgui.cpp" />
     <ClCompile Include="imgui_draw.cpp" />
     <ClCompile Include="imgui_impl_dx11.cpp" />

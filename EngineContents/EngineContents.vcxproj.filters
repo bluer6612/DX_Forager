@@ -50,6 +50,9 @@
     <ClInclude Include="GMStruct.h">
       <Filter>Global</Filter>
     </ClInclude>
+    <ClInclude Include="TitleHUD.h">
+      <Filter>HUD</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp" />
@@ -101,6 +104,9 @@
     <ClCompile Include="GMStruct.cpp">
       <Filter>Global</Filter>
     </ClCompile>
+    <ClCompile Include="TitleHUD.cpp">
+      <Filter>HUD</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameMode">
@@ -123,6 +129,9 @@
     </Filter>
     <Filter Include="Manager">
       <UniqueIdentifier>{4bc5d9b2-840f-495e-b727-4f79a9bee519}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HUD">
+      <UniqueIdentifier>{cfec418f-d4be-4b0b-a404-daa591106872}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -137,7 +137,12 @@ void AForager::Tick(float _DeltaTime)
 
 	if (UEngineInput::IsPress('R'))
 	{
-		GetGameInstance<MyGameInstance>()->InvenWidget->SetActive(true);
+		UEngineCore::GetThreadPool().WorkQueue([]()
+			{
+				UEngineDebug::OutPutString("Thread Work");
+			});
+
+		// GetGameInstance<MyGameInstance>()->InvenWidget->SetActive(true);
 	}
 
 	GetGameInstance<MyGameInstance>()->Status.Hp -= 1;
