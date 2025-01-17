@@ -71,7 +71,7 @@ private:
 	std::shared_ptr<IContentsCore> Core;
 	UEngineInitData Data;
 
-	UEngineTimer Timer;
+	UEngineTimer Timer; 
 
 	static void WindowInit(HINSTANCE _Instance);
 	static void LoadContents(std::string_view _DllName);

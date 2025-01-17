@@ -55,7 +55,7 @@ void UContentsCore::ResourcesSetting() {
 	{
 		std::vector<unsigned int> Indexs;
 
-		for (size_t i = 0; i < Count; i++)
+		for (int i = 0; i < Count; i++)
 		{
 			Indexs.push_back(i);
 		}
