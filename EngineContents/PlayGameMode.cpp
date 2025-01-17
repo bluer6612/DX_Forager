@@ -4,12 +4,12 @@
 #include "Forager.h"
 #include "TileManager.h"
 #include <EngineCore/CameraActor.h>
+#include <EngineCore/EngineCamera.h>
 #include <EngineCore/DefaultSceneComponent.h>
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/EngineGUIWindow.h>
 #include <EngineCore/EngineGUI.h>
 #include <EngineCore/imgui.h>
-#include <EngineCore/EngineCamera.h>
 #include "ContentsEditorGUI.h"
 #include <EngineBase/EngineDebug.h>
 
@@ -35,13 +35,13 @@ APlayGameMode::APlayGameMode()
 		TileManager->SetupAttachment(RootComponent);
 		TileManager->SetTileSetting(ETileMapType::Rect, "Water", { 56.f, 56.f }, { 56.f, 56.f }, { 0.0f, 0.0f });
 
-		FVector ScreenPos = { -56.f * 24 * 0.5f, -56.f * 14 * 0.5f };
+		FVector ScreenPos = { -56.f * 40 * 0.5f, -56.f * 40 * 0.5f };
 		FVector TilePos = ScreenPos;
 
 		//y 14, x 24
-		for (int y = 0; y < 14; y++)
+		for (int y = 0; y < 40; y++)
 		{
-			for (int x = 0; x < 24; x++)
+			for (int x = 0; x < 40; x++)
 			{
 				TileManager->SetTile(TilePos, 0);
 
@@ -50,14 +50,6 @@ APlayGameMode::APlayGameMode()
 
 			TilePos.X = ScreenPos.X;
 			TilePos.Y += 56.f;
-		}
-
-		for (int y = 0; y < 14; y++)
-		{
-			for (int x = 0; x < 24; x++)
-			{
-				//TileManager->SetActive(true);
-			}
 		}
 	}
 
@@ -74,8 +66,12 @@ APlayGameMode::~APlayGameMode()
 void APlayGameMode::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
+	std::shared_ptr<ACameraActor> Camera = GetWorld()->GetMainCamera();
+	FVector MousePos = Camera->ScreenMousePosToWorldPos();
 
 	UEngineDebug::OutPutString("FPS : " + std::to_string(1.0f / _DeltaTime));
+	UEngineDebug::OutPutString("PlayerPos : " + std::to_string(Camera->GetActorLocation().X) + "/" + std::to_string(Camera->GetActorLocation().Y));
+	UEngineDebug::OutPutString("MousePos : " + std::to_string(MousePos.X) + "/" + std::to_string(MousePos.Y));
 }
 
 void APlayGameMode::LevelChangeStart()

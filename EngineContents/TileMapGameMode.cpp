@@ -106,7 +106,6 @@ public:
 
 	void ObjectMode()
 	{
-
 		{
 			std::vector<const char*> Arr;
 			Arr.push_back("Monster");

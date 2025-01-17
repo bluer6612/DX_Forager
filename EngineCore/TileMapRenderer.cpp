@@ -2,6 +2,7 @@
 #include "TileMapRenderer.h"
 #include "EngineCamera.h"
 #include "EngineSprite.h"
+#include "EngineCore/CameraActor.h"
 
 UTileMapRenderer::UTileMapRenderer()
 {
@@ -94,6 +95,7 @@ void UTileMapRenderer::Render(UEngineCamera* _Camera, float _DeltaTime)
 	RendererTrans.View = CameraTrans.View;
 	RendererTrans.Projection = CameraTrans.Projection;
 	RendererTrans.WVP = RendererTrans.World * RendererTrans.View * RendererTrans.Projection;
+	std::shared_ptr<ACameraActor> Camera = GetWorld()->GetMainCamera();
 
 
 	if (0 == Tiles.size())
@@ -109,31 +111,33 @@ void UTileMapRenderer::Render(UEngineCamera* _Camera, float _DeltaTime)
 
 	Scale.Scale(ImageSize);
 
-
 	for (std::pair<const __int64, FTileData>& TilePair : Tiles)
 	{
-		//if (화면 바깥에 나간 타일은)
-		//{
-		//	continue;
-		//}
-
 		FTileData& Tile = TilePair.second;
 		FTileIndex Index;
+		Index.Key = TilePair.first;
+		FVector ConvertPos = TileIndexToWorldPos(Index);
+		FVector CameraPost = Camera->GetActorLocation();
 
+		/*if ((ConvertPos.X - CameraPost.X < -640.f - 56.f - CameraPost.X || ConvertPos.Y - CameraPost.Y < -360.f - 56.f - CameraPost.Y)
+			|| (ConvertPos.X + CameraPost.X > 640.f + 56.f + CameraPost.X || ConvertPos.Y + CameraPost.Y > 360.f + 56.f + CameraPost.Y))*/
+		//if (화면 바깥에 나간 타일은)
+		if ((ConvertPos.X - CameraPost.X > -640.f - 56.f - CameraPost.X && ConvertPos.Y - CameraPost.Y > -360.f - 56.f - CameraPost.Y)
+			|| (ConvertPos.X + CameraPost.X < 640.f + 56.f + CameraPost.X && ConvertPos.Y + CameraPost.Y < 360.f + 56.f + CameraPost.Y))
+		{
+			//UEngineDebug::OutPutString("CameraPos : " + std::to_string(ConvertPos.X - CameraPost.X) +" < " + std::to_string(-640.f - 56.f + CameraPost.X)
+				//+ " / " + std::to_string(ConvertPos.Y + CameraPost.Y) + " < " + std::to_string(-360.f - 56.f + CameraPost.Y));
+			continue;
+		}
 		GetRenderUnit().SetTexture("TileMapTex", Sprite->GetTexture(Tile.SpriteIndex));
 		Tile.SpriteData = Sprite->GetSpriteData(Tile.SpriteIndex);
 		Tile.SpriteData.Pivot = { 0.0f, 0.0f };
-
-		Index.Key = TilePair.first;
-
-		FVector ConvertPos = TileIndexToWorldPos(Index);
 
 		Pos.Position({ ConvertPos.X, ConvertPos.Y, 0.0f });
 
 		Trans.WVP = Scale * Pos * RendererTrans.View * RendererTrans.Projection;
 
 		GetRenderUnit().ConstantBufferLinkData("FTransform", Trans);
-
 		GetRenderUnit().ConstantBufferLinkData("ResultColor", Tile.ColorData);
 		GetRenderUnit().ConstantBufferLinkData("FSpriteData", Tile.SpriteData);
 
