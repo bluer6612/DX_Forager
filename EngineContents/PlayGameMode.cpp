@@ -35,7 +35,7 @@ APlayGameMode::APlayGameMode()
 		TileManager->SetupAttachment(RootComponent);
 		TileManager->SetTileSetting(ETileMapType::Rect, "Water", { 56.f, 56.f }, { 56.f, 56.f }, { 0.0f, 0.0f });
 
-		FVector ScreenPos = { -56.f * 10 * 0.5f, -56.f, 10 };
+		FVector ScreenPos = { -56.f * 24 * 0.5f, -56.f * 14 * 0.5f };
 		FVector TilePos = ScreenPos;
 
 		//y 14, x 24
@@ -56,7 +56,7 @@ APlayGameMode::APlayGameMode()
 		{
 			for (int x = 0; x < 24; x++)
 			{
-				TileManager->SetActive(true);
+				//TileManager->SetActive(true);
 			}
 		}
 	}
