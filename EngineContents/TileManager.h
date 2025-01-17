@@ -53,7 +53,7 @@ public:
 	//void PanelButtonTileStay(AActor* _Actor, FTransform _Index);
 	//void PanelButtonTileEnd(AActor* _Actor, FTransform _Index);
 
-	//void CreateText(AScore* _AScore, FVector2D _Location, int _Value, int _Order = false, bool _Active = true, ERenderOrder _ERenderOrder = ERenderOrder::UIUP)
+	//void CreateText(AScore* _AScore, FVector _Location, int _Value, int _Order = false, bool _Active = true, ERenderOrder _ERenderOrder = ERenderOrder::UIUP)
 	//{
 	//	if (_AScore != ResourcesText[4])
 	//	{

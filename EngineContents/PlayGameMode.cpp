@@ -11,6 +11,7 @@
 #include <EngineCore/imgui.h>
 #include <EngineCore/EngineCamera.h>
 #include "ContentsEditorGUI.h"
+#include <EngineBase/EngineDebug.h>
 
 APlayGameMode::APlayGameMode()
 {
@@ -34,7 +35,7 @@ APlayGameMode::APlayGameMode()
 		TileManager->SetupAttachment(RootComponent);
 		TileManager->SetTileSetting(ETileMapType::Rect, "Water", { 56.f, 56.f }, { 56.f, 56.f }, { 0.0f, 0.0f });
 
-		FVector ScreenPos = { -56.f*24*0.5f, -56.f * 14 * 0.5f };
+		FVector ScreenPos = { -56.f * 10 * 0.5f, -56.f, 10 };
 		FVector TilePos = ScreenPos;
 
 		//y 14, x 24
@@ -49,6 +50,14 @@ APlayGameMode::APlayGameMode()
 
 			TilePos.X = ScreenPos.X;
 			TilePos.Y += 56.f;
+		}
+
+		for (int y = 0; y < 14; y++)
+		{
+			for (int x = 0; x < 24; x++)
+			{
+				TileManager->SetActive(true);
+			}
 		}
 	}
 
@@ -65,6 +74,8 @@ APlayGameMode::~APlayGameMode()
 void APlayGameMode::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
+
+	UEngineDebug::OutPutString("FPS : " + std::to_string(1.0f / _DeltaTime));
 }
 
 void APlayGameMode::LevelChangeStart()

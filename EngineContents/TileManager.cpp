@@ -46,9 +46,9 @@ void ATileManager::BeginPlay()
 
 	////≥ÛªÁ ≈∏¿œ
 	//{
-	//	FVector2D Location = { static_cast<float>(0), static_cast<float>(ScreenHY - 32 - 16 + 8) };
-	//	FVector2D Location2 = { static_cast<float>(17), static_cast<float>(ScreenHY - 32 - 16 + 25 ) };
-	//	FVector2D StartPos = Location2;
+	//	FVector Location = { static_cast<float>(0), static_cast<float>(ScreenHY - 32 - 16 + 8) };
+	//	FVector Location2 = { static_cast<float>(17), static_cast<float>(ScreenHY - 32 - 16 + 25 ) };
+	//	FVector StartPos = Location2;
 
 	//	CroppatchTile = GetWorld()->SpawnActor<ATileMap>();
 	//	CroppatchTile->SetActorLocation(Location);

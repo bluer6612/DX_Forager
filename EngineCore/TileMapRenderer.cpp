@@ -12,9 +12,6 @@ UTileMapRenderer::UTileMapRenderer()
 	//GetRenderUnit().ConstantBufferLinkData("ResultColor", ColorData);
 	//GetRenderUnit().ConstantBufferLinkData("FSpriteData", SpriteData);
 	//GetRenderUnit().ConstantBufferLinkData("FUVValue", UVValue);
-
-
-
 }
 
 UTileMapRenderer::~UTileMapRenderer()
@@ -172,7 +169,7 @@ void UTileMapRenderer::SetTile(int _X, int _Y, int _Spriteindex)
 	NewTile.SpriteData.CuttingSize = { 1.0f, 1.0f };
 	NewTile.SpriteData.Pivot = { 0.5f, 0.5f };
 	NewTile.ColorData.PlusColor = { 0.0f, 0.0f, 0.0f, 0.0f };
-	NewTile.ColorData.MulColor = { 1.0f, 1.0f, 1.0f, 1.0f };	
+	NewTile.ColorData.MulColor = { 1.0f, 1.0f, 1.0f, 1.0f };
 }
 
 void UTileMapRenderer::RemoveTile(int _X, int _Y)
@@ -192,7 +189,6 @@ void UTileMapRenderer::ComponentTick(float _DeltaTime)
 {
 	URenderer::ComponentTick(_DeltaTime);
 }
-
 
 void UTileMapRenderer::Serialize(UEngineSerializer& _Ser)
 {
