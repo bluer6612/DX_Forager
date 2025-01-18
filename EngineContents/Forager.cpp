@@ -84,24 +84,24 @@ void AForager::Tick(float _DeltaTime)
 
 	if (UEngineInput::IsPress('W'))
 	{
-		AddRelativeLocation(FVector{ 0.0f, 1000.0f * _DeltaTime, 0.0f });
+		AddRelativeLocation(FVector{ 0.0f, 400.0f * _DeltaTime, 0.0f });
  		ChangeAnimation = 2;
 		ActorPos;
 	}
 
 	if (UEngineInput::IsPress('S'))
 	{
-		AddRelativeLocation(FVector{ 0.0f, -1000.0f * _DeltaTime, 0.0f });
+		AddRelativeLocation(FVector{ 0.0f, -400.0f * _DeltaTime, 0.0f });
 		ChangeAnimation = 2;
 	}
 	if (UEngineInput::IsPress('A'))
 	{
-		AddRelativeLocation(FVector{ -1000.0f * _DeltaTime, 0.0f, 0.0f });
+		AddRelativeLocation(FVector{ -400.0f * _DeltaTime, 0.0f, 0.0f });
 		ChangeAnimation = 2;
 	}
 	if (UEngineInput::IsPress('D'))
 	{
-		AddRelativeLocation(FVector{ 1000.0f * _DeltaTime, 0.0f, 0.0f });
+		AddRelativeLocation(FVector{ 400.0f * _DeltaTime, 0.0f, 0.0f });
 		ChangeAnimation = 2;
 	}
 
