@@ -112,6 +112,9 @@ void UTileMapRenderer::Render(UEngineCamera* _Camera, float _DeltaTime)
 
 	Scale.Scale(ImageSize);
 
+	UEngineDebug::OutPutString("FPS : " + std::to_string(1.0f / _DeltaTime));
+	UEngineDebug::OutPutString("PlayerPos : " + std::to_string(CameraPost.X) + "/" + std::to_string(CameraPost.Y));
+
 	for (std::pair<const __int64, FTileData>& TilePair : Tiles)
 	{
 		FTileData& Tile = TilePair.second;
@@ -119,19 +122,11 @@ void UTileMapRenderer::Render(UEngineCamera* _Camera, float _DeltaTime)
 		Index.Key = TilePair.first;
 		FVector ConvertPos = TileIndexToWorldPos(Index);
 
-		if (ConvertPos.X + CameraPost.X > -640.f - 56.f + CameraPost.X && ConvertPos.Y + CameraPost.Y > -360.f - 56.f + CameraPost.Y)
+		if (ConvertPos.X < -640.f - 56.f + CameraPost.X || ConvertPos.X > 640.f + 56.f + CameraPost.X)
 		{
 			continue;
 		}
-		if (ConvertPos.X + CameraPost.X > -640.f - 56.f - CameraPost.X && ConvertPos.Y + CameraPost.Y < 360.f + 56.f + CameraPost.Y)
-		{
-			continue;
-		}
-		if (ConvertPos.X + CameraPost.X < 640.f + 56.f + CameraPost.X && ConvertPos.Y + CameraPost.Y < 360.f + 56.f + CameraPost.Y)
-		{
-			continue;
-		}
-		if (ConvertPos.X + CameraPost.X < 640.f + 56.f + CameraPost.X && ConvertPos.Y + CameraPost.Y > -360.f - 56.f + CameraPost.Y)
+		if (ConvertPos.Y > 360.f + 56.f + CameraPost.Y || ConvertPos.Y < -360.f - 56.f + CameraPost.Y)
 		{
 			continue;
 		}
