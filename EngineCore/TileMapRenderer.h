@@ -86,12 +86,15 @@ public:
 	// 그런데 Unordered map이되면 중간에 얼마든지 크기를 기울수 있습니다.
 	// ENGINEAPI void CreateTileMap(int _X, int _Y, )
 
-	ENGINEAPI void SetTileSetting(ETileMapType _Type, std::string _Name, FVector _TileSize, FVector _ImageSize, FVector _Pivot);
+	ENGINEAPI void SetTileSetting(ETileMapType _Type, std::string_view _Name, FVector _TileSize, FVector _ImageSize, FVector _Pivot);
+
 
 	ENGINEAPI void SetTile(FVector _Pos, int _Spriteindex);
+	ENGINEAPI void RemoveTile(FVector _Pos);
+
+	// 없으면 만들어요.
 	ENGINEAPI void SetTile(int _X, int _Y, int _Spriteindex);
 
-	ENGINEAPI void RemoveTile(FVector _Pos);
 	ENGINEAPI void RemoveTile(int _X, int _Y);
 
 	ENGINEAPI class UEngineSprite* GetSprite()
@@ -99,9 +102,9 @@ public:
 		return Sprite;
 	}
 
-	FTileIndex WorldPosToTileIndex(FVector _Pos);
+	ENGINEAPI FTileIndex WorldPosToTileIndex(FVector _Pos);
 
-	FVector TileIndexToWorldPos(FTileIndex _Pos);
+	ENGINEAPI FVector TileIndexToWorldPos(FTileIndex _Pos);
 
 	// 데이터를 직렬화(압축)
 	ENGINEAPI void Serialize(UEngineSerializer& _Ser) override;
@@ -111,9 +114,9 @@ public:
 protected:
 	ENGINEAPI void Render(class UEngineCamera* _Camera, float _DeltaTime) override;
 
-	void RenderNormal(class UEngineCamera* _Camera, float _DeltaTime);
+	ENGINEAPI void RenderNormal(class UEngineCamera* _Camera, float _DeltaTime);
 
-	void RenderInstancing(class UEngineCamera* _Camera, float _DeltaTime);
+	ENGINEAPI void RenderInstancing(class UEngineCamera* _Camera, float _DeltaTime);
 
 	void BeginPlay() override;
 	void ComponentTick(float _DeltaTime) override;

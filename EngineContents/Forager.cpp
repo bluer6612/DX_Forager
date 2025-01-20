@@ -63,7 +63,7 @@ void AForager::BeginPlay()
 {
 	AActor::BeginPlay();
 
-	CharacterRenderer->ChangeAnimation("Run" + Dir)
+	CharacterRenderer->ChangeAnimation("Run" + Dir);
 
 }
 
