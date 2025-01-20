@@ -23,7 +23,7 @@ APlayGameMode::APlayGameMode()
 	RootComponent = Default;
 
 	std::shared_ptr<ACameraActor> Camera = GetWorld()->GetMainCamera();
-	Camera->SetActorLocation({0.0f, 0.0f, -1000.0f, 1.0f});
+	Camera->SetActorLocation({ 0.0f, 0.0f, -1000.0f, 1.0f });
 	Camera->GetCameraComponent()->SetZSort(0, true);
 
 	{
@@ -41,6 +41,23 @@ APlayGameMode::APlayGameMode()
 		for (int y = 0; y < TilemapCount; y++)
 		{
 			for (int x = 0; x < TilemapCount; x++)
+			{
+				TileManager->SetTile(TilePos, 0);
+
+				TilePos.X += 56.f;
+			}
+
+			TilePos.X = ScreenPos.X;
+			TilePos.Y += 56.f;
+		}
+	}
+
+	{
+		FVector ScreenPos = { -56.f * 12 * 0.5f, -56.f * 11 * 0.5f };
+		FVector TilePos = ScreenPos;
+		for (int y = 0; y < 12; y++)
+		{
+			for (int x = 0; x < 11; x++)
 			{
 				TileManager->SetTile(TilePos, 0);
 
