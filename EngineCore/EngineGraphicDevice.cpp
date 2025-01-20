@@ -190,8 +190,7 @@ void UEngineGraphicDevice::CreateDeviceAndContext()
         return;
     }
 
-    // 기본적으로 쓰레드를 챙겨주는데.
-    // 이걸 만약 더 공부하고 싶으시면 com객체 방식에 대해서 추후에 
+    // 다이렉트 x가 기본적으로 쓰레드 안정성을 안챙겨준다.
     // 고급 랜더링과 서버에서는 쓰레드는 필수이기 때문에
     // 쓰레드를 사용하겠다는 것을 미리 명시해줄수 있다.
     Result = CoInitializeEx(nullptr, COINIT_MULTITHREADED);

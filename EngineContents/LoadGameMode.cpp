@@ -17,33 +17,10 @@
 
 ALoadGameMode::ALoadGameMode()
 {
-	// 레벨마다 해주셔야 합니다.
-	// 이걸 UI공유할건지 
-	GetWorld()->CreateCollisionProfile("Monster");
-	GetWorld()->CreateCollisionProfile("Player");
-	// 충돌체크 해야한다.
-	GetWorld()->LinkCollisionProfile("Player", "Monster");
-
-	
-
-	// 카메라를 일정거리 뒤로 가서 
-	// 카메라 위치조정을 무조건 해줘야 할것이다.
-	std::shared_ptr<ACameraActor> Camera = GetWorld()->GetMainCamera();
-	Camera->SetActorLocation({0.0f, 0.0f, -1000.0f, 1.0f});
-	Camera->GetCameraComponent()->SetZSort(0, true);
-
-	{
-		std::shared_ptr<ATestActor> NewMonster = GetWorld()->SpawnActor<ATestActor>();
-		NewMonster->SetActorRelativeScale3D({ 100.0f, 200.0f, 100.0f, 1.0f });
-		NewMonster->SetActorLocation({ 0.0f, 0.0f, 0.0f });
-	}
-
-
 }
 
 ALoadGameMode::~ALoadGameMode()
 {
-
 }
 
 void ALoadGameMode::Tick(float _DeltaTime)
@@ -52,7 +29,7 @@ void ALoadGameMode::Tick(float _DeltaTime)
 	AActor::Tick(_DeltaTime);
 
 
-	if (true == ThreadLoadingEnd)
+	if (true == LoadingEnd)
 	{
 		// 이미지를 변환 
 		UEngineCore::CreateLevel<ATitleGameMode, APawn, ATitleHUD>("Titlelevel");
@@ -66,7 +43,7 @@ void ALoadGameMode::LevelChangeStart()
 {
 	UEngineGUI::AllWindowOff();
 
-	if (false == ThreadLoadingEnd)
+	if (false == LoadingEnd)
 	{
 		Thread.Start("Loading", [this]()
 			{
@@ -101,12 +78,11 @@ void ALoadGameMode::LevelChangeStart()
 					Mat->SetRasterizerState("CollisionDebugRas");
 				}
 
-				//UEngineSprite::CreateSpriteToMeta("Forager", ".meta");
-				//UEngineSprite::CreateSpriteToMeta("img_tile_plain", ".meta");
+				UEngineSprite::CreateSpriteToMeta("Forager", ".meta");
 
 				DirectoryAdd("Water");
 
-				this->ThreadLoadingEnd = true;
+				this->LoadingEnd = true;
 			});
 	}
 }

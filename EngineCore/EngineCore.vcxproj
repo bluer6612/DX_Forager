@@ -230,13 +230,11 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="EngineStructuredBuffer.h" />
     <ClInclude Include="EngineVertex.h" />
     <ClInclude Include="EngineVertexShader.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="FontRenderer.h" />
     <ClInclude Include="FontWidget.h" />
     <ClInclude Include="GameInstance.h" />
     <ClInclude Include="GameMode.h">
@@ -398,12 +396,10 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="EngineStructuredBuffer.cpp" />
     <ClCompile Include="EngineVertexShader.cpp">
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="FontRenderer.cpp" />
     <ClCompile Include="FontWidget.cpp" />
     <ClCompile Include="GameInstance.cpp" />
     <ClCompile Include="GameMode.cpp">

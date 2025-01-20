@@ -67,8 +67,12 @@ APlayGameMode::~APlayGameMode()
 void APlayGameMode::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
+
 	std::shared_ptr<ACameraActor> Camera = GetWorld()->GetMainCamera();
-	FVector MousePos = Camera->ScreenMousePosToWorldPos();
+	FVector CameraPost = Camera->ScreenMousePosToWorldPos();
+
+	UEngineDebug::OutPutString("FPS : " + std::to_string(1.0f / _DeltaTime));
+	UEngineDebug::OutPutString("PlayerPos : " + std::to_string(CameraPost.X) + "/" + std::to_string(CameraPost.Y));
 }
 
 void APlayGameMode::LevelChangeStart()

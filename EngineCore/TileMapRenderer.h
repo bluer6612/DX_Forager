@@ -10,12 +10,6 @@ enum ETileMapType
 	Iso,
 };
 
-enum ETileMapRenderType
-{
-	Normal,
-	Instancing,
-};
-
 
 struct FTileIndex
 {
@@ -102,9 +96,9 @@ public:
 		return Sprite;
 	}
 
-	ENGINEAPI FTileIndex WorldPosToTileIndex(FVector _Pos);
+	FTileIndex WorldPosToTileIndex(FVector _Pos);
 
-	ENGINEAPI FVector TileIndexToWorldPos(FTileIndex _Pos);
+	FVector TileIndexToWorldPos(FTileIndex _Pos);
 
 	// 데이터를 직렬화(압축)
 	ENGINEAPI void Serialize(UEngineSerializer& _Ser) override;
@@ -113,23 +107,10 @@ public:
 
 protected:
 	ENGINEAPI void Render(class UEngineCamera* _Camera, float _DeltaTime) override;
-
-	ENGINEAPI void RenderNormal(class UEngineCamera* _Camera, float _DeltaTime);
-
-	ENGINEAPI void RenderInstancing(class UEngineCamera* _Camera, float _DeltaTime);
-
 	void BeginPlay() override;
 	void ComponentTick(float _DeltaTime) override;
 
 private:
-	// 인스턴싱용 데이터 모음용 자료구조
-	std::vector<FTransform> InstTransform;
-
-	//FResultColor ColorData;//FSpriteData SpriteData;
-	std::vector<FResultColor> InstColorData;
-
-	std::vector<FSpriteData> InstSpriteData;
-
 	bool IsAutoScale = true;
 	float AutoScaleRatio = 1.0f;
 
@@ -137,7 +118,6 @@ private:
 	FVector ImageSize;
 	FVector TilePivot;
 	ETileMapType TileMapType = ETileMapType::Rect;
-	ETileMapRenderType TileMapRenderMove = ETileMapRenderType::Normal;
 
 	class UEngineSprite* Sprite = nullptr;
 	// map보다 빠르다.

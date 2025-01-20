@@ -109,14 +109,12 @@ void UEngineWorkThreadPool::ThreadQueueFunction(HANDLE _IOCPHandle, UEngineWorkT
 		// 종료될수 있나요 없나요?
 		GetQueuedCompletionStatus(_IOCPHandle, &Byte, &Ptr, &OverPtr, INFINITE);
 
-		EThreadStatus WorkType = static_cast<EThreadStatus>(Byte);
-
-		if (EThreadStatus::Destroy == WorkType)
+		if (-1 == Byte)
 		{
 			break;
 		}
 
-		if (EThreadStatus::Work == WorkType)
+		if (-2 == Byte)
 		{
 			UWork* Work = reinterpret_cast<UWork*>(Ptr);
 

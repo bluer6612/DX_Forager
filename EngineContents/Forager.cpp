@@ -18,14 +18,12 @@ AForager::AForager()
 	TimeEventComponent = CreateDefaultSubObject<UTimeEventComponent>();
 
 	CharacterRenderer = CreateDefaultSubObject<USpriteRenderer>();
-	CharacterRenderer->SetupAttachment(RootComponent);
-	//CharacterRenderer->SetSprite("Water", RootComponent);
-	//CharacterRenderer->SetTexture("Water");
-	//CharacterRenderer->SetAutoScaleRatio(3.5f);
-	//CharacterRenderer->CreateAnimation("Idle" + std::string("Right"), "Forager", 0, 1, 0.15f);
-	//CharacterRenderer->CreateAnimation("Idle" + std::string("Left"), "Forager", 11, 12, 0.15f);
-	//CharacterRenderer->CreateAnimation("Run" + std::string("Right"), "Forager", 3, 6, 0.15f);
-	//CharacterRenderer->CreateAnimation("Run" + std::string("Left"), "Forager", 7, 10, 0.15f);
+	CharacterRenderer->SetSprite("Forager", RootComponent);
+	CharacterRenderer->SetAutoScaleRatio(3.5f);
+	CharacterRenderer->CreateAnimation("Idle" + std::string("Right"), "Forager", 0, 1, 0.15f);
+	CharacterRenderer->CreateAnimation("Idle" + std::string("Left"), "Forager", 11, 12, 0.15f);
+	CharacterRenderer->CreateAnimation("Run" + std::string("Right"), "Forager", 3, 6, 0.15f);
+	CharacterRenderer->CreateAnimation("Run" + std::string("Left"), "Forager", 7, 10, 0.15f);
 
 	Collision = CreateDefaultSubObject<UCollision>();
 	Collision->SetupAttachment(RootComponent);
@@ -59,7 +57,7 @@ void AForager::BeginPlay()
 {
 	AActor::BeginPlay();
 
-	//CharacterRenderer->ChangeAnimation("Run" + Dir);
+	CharacterRenderer->ChangeAnimation("Run" + Dir);
 }
 
 void AForager::Tick(float _DeltaTime)
@@ -114,11 +112,11 @@ void AForager::Tick(float _DeltaTime)
 	{
 		if (ChangeAnimation == 1)
 		{
-			//CharacterRenderer->ChangeAnimation("Idle" + Dir);
+			CharacterRenderer->ChangeAnimation("Idle" + Dir);
 		}
 		else if (ChangeAnimation == 2)
 		{
-			//CharacterRenderer->ChangeAnimation("Run" + Dir);
+			CharacterRenderer->ChangeAnimation("Run" + Dir);
 		}
 	}
 	

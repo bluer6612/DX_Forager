@@ -176,12 +176,6 @@
     <ClInclude Include="ThirdParty\FW1FontWrapper\Inc\FW1FontWrapper.h">
       <Filter>ThirdParty\FW1FontWrapper\Inc</Filter>
     </ClInclude>
-    <ClInclude Include="FontRenderer.h">
-      <Filter>Object\Component\Contents</Filter>
-    </ClInclude>
-    <ClInclude Include="EngineStructuredBuffer.h">
-      <Filter>Resources\Buffer</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp" />
@@ -343,12 +337,6 @@
     </ClCompile>
     <ClCompile Include="FontWidget.cpp">
       <Filter>Object\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="FontRenderer.cpp">
-      <Filter>Object\Component\Contents</Filter>
-    </ClCompile>
-    <ClCompile Include="EngineStructuredBuffer.cpp">
-      <Filter>Resources\Buffer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

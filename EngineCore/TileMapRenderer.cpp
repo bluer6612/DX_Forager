@@ -112,9 +112,6 @@ void UTileMapRenderer::Render(UEngineCamera* _Camera, float _DeltaTime)
 
 	Scale.Scale(ImageSize);
 
-	UEngineDebug::OutPutString("FPS : " + std::to_string(1.0f / _DeltaTime));
-	UEngineDebug::OutPutString("PlayerPos : " + std::to_string(CameraPost.X) + "/" + std::to_string(CameraPost.Y));
-
 	for (std::pair<const __int64, FTileData>& TilePair : Tiles)
 	{
 		FTileData& Tile = TilePair.second;
