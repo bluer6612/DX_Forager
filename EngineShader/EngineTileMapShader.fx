@@ -104,8 +104,6 @@ cbuffer FSpriteData : register(b1)
 // 한번에 100개를 그린다면. _DataIndex 이녀석이 100개의 그려지는 애들중 5번째 클래스야 등등을 만들수가 있습니다.
 // 0~99 
 
-// VertexShaderOutPut TileMapInst_VS(EngineVertex _Vertex, int _DataIndex)
-
 VertexShaderOutPut TileMap_VS(EngineVertex _Vertex /*, int _DataIndex*/)
 {
 	// CPU에서 계산한 값을 쉐이더에게 넘기는 방법을 알아야 하는데

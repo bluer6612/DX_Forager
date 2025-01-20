@@ -72,7 +72,7 @@ void UEngineVertexShader::ResLoad()
 		ShaderCodeBlob->GetBufferSize(),
 		nullptr,
 		&ShaderRes
-	);
+	); 
 
 	if (S_OK != Result)
 	{
