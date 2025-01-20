@@ -13,6 +13,9 @@
     <FxCompile Include="EngineTargetMergeShader.fx">
       <Filter>Target</Filter>
     </FxCompile>
+    <FxCompile Include="EngineTileMapInstShader.fx">
+      <Filter>2D</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="2D">

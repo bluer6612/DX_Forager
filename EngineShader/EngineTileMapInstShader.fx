@@ -1,8 +1,12 @@
+
+
 struct EngineVertex
 {
 	float4 POSITION : POSITION;
 	float4 UV : TEXCOORD;
 	float4 COLOR : COLOR;
+	uint iInstance : SV_InstanceID;
+	// 인스턴싱 드로우로 실행되면 여기에 자동으로 다이렉트가 100 넣어주는것으로 알고 있다.
 };
 
 // 버텍스 쉐이더는 무조건 리턴값이 있어야 합니다.
@@ -17,8 +21,7 @@ struct VertexShaderOutPut
 };
 
 // 상수버퍼를 사용하겠다.
-// 상수버퍼는 용량제한이 있습니다.
-cbuffer FTransform : register(b0)
+struct FTransform
 {
 	// transformupdate는 
 	// 아래의 값들을 다 적용해서
@@ -53,82 +56,44 @@ cbuffer FTransform : register(b0)
 	float4x4 WVP;
 };
 
-//struct FTransform 
-//{
-//	// transformupdate는 
-//	// 아래의 값들을 다 적용해서
-//	// WVP를 만들어내는 함수이다.
-//	// 변환용 벨류
-//	float4 Scale;
-//	float4 Rotation;
-//	float4 Qut;
-//	float4 Location;
-
-//	// 릴리에티브 로컬
-//	float4 RelativeScale;
-//	float4 RelativeRotation;
-//	float4 RelativeQut;
-//	float4 RelativeLocation;
-
-//	// 월드
-//	float4 WorldScale;
-//	float4 WorldRotation;
-//	float4 WorldQuat;
-//	float4 WorldLocation;
-
-//	float4x4 ScaleMat;
-//	float4x4 RotationMat;
-//	float4x4 LocationMat;
-//	float4x4 RevolveMat;
-//	float4x4 ParentMat;
-//	float4x4 LocalWorld;
-//	float4x4 World;
-//	float4x4 View;
-//	float4x4 Projection;
-//	float4x4 WVP;
-//};
-
-// 새로운 리소스가 하나더 생긴겁니다.
-// StructuredBuffer<FTransform> 이녀석은 텍스처 기반입니다.
-
 // 상수버퍼는 아무것도 세팅해주지 않으면 기본값이 0으로 채워집니다.
-cbuffer FSpriteData : register(b1)
+struct FSpriteData
 {
 	float4 CuttingPos;
 	float4 CuttingSize;
 	float4 Pivot; // 0.5 0.0f
 };
 
+// 스트럭처드 버퍼는 
+StructuredBuffer<FTransform> TileMapInstTransformBuffer : register(t0);
+
+StructuredBuffer<FSpriteData> TileMapInstSpriteBuffer : register(t1);
+
 // 버텍스쉐이더를 다 만들었다.
-
-// 한번에 100개를 그린다면. _DataIndex 이녀석이 100개의 그려지는 애들중 5번째 클래스야 등등을 만들수가 있습니다.
-// 0~99 
-
-// VertexShaderOutPut TileMapInst_VS(EngineVertex _Vertex, int _DataIndex)
-
-VertexShaderOutPut TileMap_VS(EngineVertex _Vertex /*, int _DataIndex*/)
+VertexShaderOutPut TileMapInst_VS(EngineVertex _Vertex)
 {
 	// CPU에서 계산한 값을 쉐이더에게 넘기는 방법을 알아야 하는데
 	// 상수버퍼라고 부릅니다.
 	// 그중에서 가장 기본적인 것은 상수버퍼를 
-	
-	// float4x4 WVP;
-	
 	VertexShaderOutPut OutPut;
 	
+	// FSpriteData Sprite = TileMapInstSpriteBuffer[ Index];
 	
-	_Vertex.POSITION.x += (1.0f - Pivot.x) - 0.5f;
-	_Vertex.POSITION.y += (1.0f - Pivot.y) - 0.5f;
+	int Index = _Vertex.iInstance;
 	
-	OutPut.SVPOSITION = mul(_Vertex.POSITION, WVP);
+	_Vertex.POSITION.x += (1.0f - TileMapInstSpriteBuffer[Index].Pivot.x) - 0.5f;
+	_Vertex.POSITION.y += (1.0f - TileMapInstSpriteBuffer[Index].Pivot.y) - 0.5f;
+	
+	OutPut.SVPOSITION = mul(_Vertex.POSITION, TileMapInstTransformBuffer[Index].WVP);
 	
 	OutPut.UV = _Vertex.UV;
-	OutPut.UV.x = (_Vertex.UV.x * CuttingSize.x) + CuttingPos.x;
-	OutPut.UV.y = (_Vertex.UV.y * CuttingSize.y) + CuttingPos.y;
+	OutPut.UV.x = (_Vertex.UV.x * TileMapInstSpriteBuffer[Index].CuttingSize.x) + TileMapInstSpriteBuffer[Index].CuttingPos.x;
+	OutPut.UV.y = (_Vertex.UV.y * TileMapInstSpriteBuffer[Index].CuttingSize.y) + TileMapInstSpriteBuffer[Index].CuttingPos.y;
 	
 	OutPut.COLOR = _Vertex.COLOR;
 	return OutPut;
 }
+
 
 
 Texture2D TileMapTex : register(t0);
@@ -145,7 +110,7 @@ cbuffer ResultColor : register(b0)
 };
 
 // 이미지를 샘플링해서 이미지를 보이게 만들고
-float4 TileMap_PS(VertexShaderOutPut _Vertex) : SV_Target0
+float4 TileMapInst_PS(VertexShaderOutPut _Vertex) : SV_Target0
 {
 	float4 Color = TileMapTex.Sample(ImageSampler, _Vertex.UV.xy);
 	
@@ -159,4 +124,3 @@ float4 TileMap_PS(VertexShaderOutPut _Vertex) : SV_Target0
 	Color *= MulColor;
 	return Color;
 };
-
