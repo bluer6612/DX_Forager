@@ -28,22 +28,34 @@ void ALoadGameMode::Tick(float _DeltaTime)
 	// 부모 호출
 	AActor::Tick(_DeltaTime);
 
-
-	if (true == LoadingEnd)
+	if (true == ThreadLoadingInit)
 	{
-		// 이미지를 변환 
-		UEngineCore::CreateLevel<ATitleGameMode, APawn, ATitleHUD>("Titlelevel");
-		UEngineCore::CreateLevel<APlayGameMode, APawn, ATitleHUD>("Playlevel");
-		UEngineCore::CreateLevel<ATileMapGameMode, APawn, AHUD>("TileMapEditor");
-		UEngineCore::OpenLevel("Playlevel");
+		if (0 == LoadingCount)
+		{
+			ThreadLoadingEnd = true;
+		}
+
+
+		if (true == ThreadLoadingEnd)
+		{
+			// 이미지를 변환 
+			UEngineSprite::CreateSpriteToMeta("Forager", ".meta");
+			DirectoryAdd("Water");
+
+			UEngineCore::CreateLevel<ATitleGameMode, APawn, ATitleHUD>("Titlelevel");
+			UEngineCore::CreateLevel<APlayGameMode, APawn, ATitleHUD>("Playlevel");
+			UEngineCore::CreateLevel<ATileMapGameMode, APawn, AHUD>("TileMapEditor");
+			UEngineCore::OpenLevel("Playlevel");
+		}
 	}
+
 }
 
 void ALoadGameMode::LevelChangeStart()
 {
 	UEngineGUI::AllWindowOff();
 
-	if (false == LoadingEnd)
+	if (false == ThreadLoadingEnd)
 	{
 		Thread.Start("Loading", [this]()
 			{
@@ -56,10 +68,19 @@ void ALoadGameMode::LevelChangeStart()
 					}
 					Dir.Append("Image");
 					std::vector<UEngineFile> ImageFiles = Dir.GetAllFile(true, { ".PNG", ".BMP", ".JPG" });
+
+					LoadingCount = ImageFiles.size();
+					
 					for (size_t i = 0; i < ImageFiles.size(); i++)
 					{
 						std::string FilePath = ImageFiles[i].GetPathToString();
-						UEngineTexture::Load(FilePath);
+
+						// IOCP 1000개의 일이라는 메모리가 있죠?
+						UEngineCore::GetThreadPool().WorkQueue([this, FilePath]()
+							{
+								UEngineTexture::ThreadSafeLoad(FilePath);
+								--(this->LoadingCount);
+							});
 					}
 				}
 
@@ -78,11 +99,7 @@ void ALoadGameMode::LevelChangeStart()
 					Mat->SetRasterizerState("CollisionDebugRas");
 				}
 
-				UEngineSprite::CreateSpriteToMeta("Forager", ".meta");
-
-				DirectoryAdd("Water");
-
-				this->LoadingEnd = true;
+				ThreadLoadingInit = true;
 			});
 	}
 }

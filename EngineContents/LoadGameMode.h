@@ -26,7 +26,11 @@ protected:
 private:
 	void DirectoryAdd(std::string _Append);
 
-	std::atomic<bool> LoadingEnd = false;
+	std::atomic<int> LoadingCount = 0;
+
+	std::atomic<bool> ThreadLoadingEnd = false;
+
+	std::atomic<bool> ThreadLoadingInit = false;
 
 	UEngineThread Thread;
 };
