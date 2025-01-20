@@ -38,9 +38,6 @@
     <ClInclude Include="Renderer.h">
       <Filter>Object\Component\Render</Filter>
     </ClInclude>
-    <ClInclude Include="SpriteRenderer.h">
-      <Filter>Object\Component\Contents</Filter>
-    </ClInclude>
     <ClInclude Include="EngineResources.h">
       <Filter>Resources</Filter>
     </ClInclude>
@@ -146,9 +143,6 @@
     <ClInclude Include="Collision.h">
       <Filter>Object\Component\Collision</Filter>
     </ClInclude>
-    <ClInclude Include="TileMapRenderer.h">
-      <Filter>Object\Component\Contents</Filter>
-    </ClInclude>
     <ClInclude Include="EngineRenderTarget.h">
       <Filter>Resources\Texture</Filter>
     </ClInclude>
@@ -176,11 +170,17 @@
     <ClInclude Include="ThirdParty\FW1FontWrapper\Inc\FW1FontWrapper.h">
       <Filter>ThirdParty\FW1FontWrapper\Inc</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\GM2\DX\GM2DX\EngineCore\FontRenderer.h">
-      <Filter>Object\Component\Contents</Filter>
-    </ClInclude>
     <ClInclude Include="EngineStructuredBuffer.h">
       <Filter>Resources\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="TileMapRenderer.h">
+      <Filter>Object\Component\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\GM2\DX\GM2DX\EngineCore\FontRenderer.h">
+      <Filter>Object\Component\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteRenderer.h">
+      <Filter>Object\Component\Render</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -214,9 +214,6 @@
     </ClCompile>
     <ClCompile Include="Renderer.cpp">
       <Filter>Object\Component\Render</Filter>
-    </ClCompile>
-    <ClCompile Include="SpriteRenderer.cpp">
-      <Filter>Object\Component\Contents</Filter>
     </ClCompile>
     <ClCompile Include="EngineResources.cpp">
       <Filter>Resources</Filter>
@@ -317,9 +314,6 @@
     <ClCompile Include="Collision.cpp">
       <Filter>Object\Component\Collision</Filter>
     </ClCompile>
-    <ClCompile Include="TileMapRenderer.cpp">
-      <Filter>Object\Component\Contents</Filter>
-    </ClCompile>
     <ClCompile Include="EngineRenderTarget.cpp">
       <Filter>Resources\Texture</Filter>
     </ClCompile>
@@ -344,11 +338,17 @@
     <ClCompile Include="FontWidget.cpp">
       <Filter>Object\UI</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\GM2\DX\GM2DX\EngineCore\FontRenderer.cpp">
-      <Filter>Object\Component\Contents</Filter>
-    </ClCompile>
     <ClCompile Include="EngineStructuredBuffer.cpp">
       <Filter>Resources\Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\GM2\DX\GM2DX\EngineCore\FontRenderer.cpp">
+      <Filter>Object\Component\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteRenderer.cpp">
+      <Filter>Object\Component\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="TileMapRenderer.cpp">
+      <Filter>Object\Component\Render</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

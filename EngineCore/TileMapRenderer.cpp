@@ -14,9 +14,6 @@ UTileMapRenderer::UTileMapRenderer()
 	//GetRenderUnit().ConstantBufferLinkData("ResultColor", ColorData);
 	//GetRenderUnit().ConstantBufferLinkData("FSpriteData", SpriteData);
 	//GetRenderUnit().ConstantBufferLinkData("FUVValue", UVValue);
-
-
-
 }
 
 UTileMapRenderer::~UTileMapRenderer()
@@ -41,6 +38,14 @@ void UTileMapRenderer::BeginPlay()
 {
 	URenderer::BeginPlay();
 
+}
+FTileIndex UTileMapRenderer::WorldPosToTileIndex(float _PosX, float _PosY)
+{
+	FVector _Pos;
+	_Pos.X += _PosX;
+	_Pos.Y += _PosY;
+
+	return WorldPosToTileIndex(_Pos);
 }
 
 FTileIndex UTileMapRenderer::WorldPosToTileIndex(FVector _Pos)
@@ -195,43 +200,72 @@ void UTileMapRenderer::DeSerialize(UEngineSerializer& _Ser)
 
 void UTileMapRenderer::RenderNormal(class UEngineCamera* _Camera, float _DeltaTime)
 {
+	if (0 == Tiles.size())
+	{
+		return;
+	}
 
-	// URenderer::Render(_Camera, _DeltaTime);
 	FTransform& CameraTrans = _Camera->GetTransformRef();
 	FTransform& RendererTrans = GetTransformRef();
 	//	// 랜더러는 월드 뷰 프로젝트를 다 세팅받았고
 	RendererTrans.View = CameraTrans.View;
 	RendererTrans.Projection = CameraTrans.Projection;
 	RendererTrans.WVP = RendererTrans.World * RendererTrans.View * RendererTrans.Projection;
+
 	std::shared_ptr<ACameraActor> Camera = GetWorld()->GetMainCamera();
-	FVector CameraPost = Camera->GetActorLocation();
+	FVector CameraPos = Camera->GetActorLocation();
+	CameraPos.X += -640.f - 56.f;
+	CameraPos.Y += 360.f + 56.f;
 
-
-	if (0 == Tiles.size())
-	{
-		return;
-	}
+	FVector ConvertPos = CameraPos;
 
 	URenderUnit& Unit = GetRenderUnit();
-
 	FTransform Trans;
 	FMatrix Scale;
 	FMatrix Pos;
 
 	Scale.Scale(ImageSize);
 
-	for (std::pair<const __int64, FTileData>& TilePair : Tiles)
+	for (int y = 0; y < 15; ++y)
+	{
+		for (int x = 0; x < 24; ++x)
+		{
+			FTileIndex TileIndex = { ConvertPos.X, ConvertPos.Y};
+			FTileData& Tile = Tiles[TileIndex.Key];
+
+			GetRenderUnit().SetTexture("TileMapTex", Sprite->GetTexture(Tile.SpriteIndex));
+			Tile.SpriteData = Sprite->GetSpriteData(Tile.SpriteIndex);
+			Tile.SpriteData.Pivot = { 0.0f, 0.0f };
+
+			Pos.Position({ ConvertPos.X, ConvertPos.Y, 0.0f });
+
+			Trans.WVP = Scale * Pos * RendererTrans.View * RendererTrans.Projection;
+
+			GetRenderUnit().ConstantBufferLinkData("FTransform", Trans);
+			GetRenderUnit().ConstantBufferLinkData("ResultColor", Tile.ColorData);
+			GetRenderUnit().ConstantBufferLinkData("FSpriteData", Tile.SpriteData);
+
+			Unit.Render(_Camera, _DeltaTime);
+
+			ConvertPos.X += 56.f;
+		}
+
+		ConvertPos.X = CameraPos.X;
+		ConvertPos.Y -= 56.f;
+	}
+
+	/*for (std::pair<const __int64, FTileData>& TilePair : Tiles)
 	{
 		FTileData& Tile = TilePair.second;
 		FTileIndex Index;
 		Index.Key = TilePair.first;
 		FVector ConvertPos = TileIndexToWorldPos(Index);
 
-		if (ConvertPos.X < -640.f - 56.f + CameraPost.X || ConvertPos.X > 640.f + 56.f + CameraPost.X)
+		if (ConvertPos.X < -640.f - 56.f + CameraPos.X || ConvertPos.X > 640.f + 56.f + CameraPos.X)
 		{
 			continue;
 		}
-		if (ConvertPos.Y > 360.f + 56.f + CameraPost.Y || ConvertPos.Y < -360.f - 56.f + CameraPost.Y)
+		if (ConvertPos.Y > 360.f + 56.f + CameraPos.Y || ConvertPos.Y < -360.f - 56.f + CameraPos.Y)
 		{
 			continue;
 		}
@@ -249,7 +283,7 @@ void UTileMapRenderer::RenderNormal(class UEngineCamera* _Camera, float _DeltaTi
 		GetRenderUnit().ConstantBufferLinkData("FSpriteData", Tile.SpriteData);
 
 		Unit.Render(_Camera, _DeltaTime);
-	}
+	}*/
 }
 
 void UTileMapRenderer::RenderInstancing(class UEngineCamera* _Camera, float _DeltaTime)

@@ -27,6 +27,7 @@ struct FTileIndex
 			int Y;
 		};
 		__int64 Key;
+		int TileIndex;
 	};
 };
 
@@ -102,6 +103,8 @@ public:
 		return Sprite;
 	}
 
+	FTileIndex WorldPosToTileIndex(float _PosX, float _PosY);
+
 	FTileIndex WorldPosToTileIndex(FVector _Pos);
 
 	FVector TileIndexToWorldPos(FTileIndex _Pos);
@@ -137,7 +140,7 @@ private:
 	FVector ImageSize;
 	FVector TilePivot;
 	ETileMapType TileMapType = ETileMapType::Rect;
-	ETileMapRenderType TileMapRenderMove = ETileMapRenderType::Instancing;
+	ETileMapRenderType TileMapRenderMove = ETileMapRenderType::Normal;
 
 	class UEngineSprite* Sprite = nullptr;
 	// map보다 빠르다.
