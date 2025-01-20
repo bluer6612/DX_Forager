@@ -171,6 +171,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\GM2\DX\GM2DX\EngineCore\FontRenderer.h" />
     <ClInclude Include="Actor.h">
       <SubType>
       </SubType>
@@ -337,6 +338,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\GM2\DX\GM2DX\EngineCore\FontRenderer.cpp" />
     <ClCompile Include="Actor.cpp">
       <SubType>
       </SubType>

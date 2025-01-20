@@ -6,6 +6,7 @@
 #include <EngineCore/CameraActor.h>
 #include <EngineCore/TimeEventComponent.h>
 #include <EngineCore/Collision.h>
+#include <EngineCore/FontRenderer.h>
 #include "ForagerRenderer.h"
 #include "MyGameInstance.h"
 
@@ -44,6 +45,11 @@ AForager::AForager()
 	//	{
 	//		UEngineDebug::OutPutString("End");
 	//	});
+
+	std::shared_ptr<UFontRenderer> Font = CreateDefaultSubObject<UFontRenderer>();
+	Font->SetFont("궁서");
+	Font->SetText("폰트 랜더러에영");
+	Font->SetupAttachment(RootComponent);
 
 	GetWorld()->GetMainCamera()->AttachToActor(this);
 

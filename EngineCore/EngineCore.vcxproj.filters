@@ -176,6 +176,9 @@
     <ClInclude Include="ThirdParty\FW1FontWrapper\Inc\FW1FontWrapper.h">
       <Filter>ThirdParty\FW1FontWrapper\Inc</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\GM2\DX\GM2DX\EngineCore\FontRenderer.h">
+      <Filter>Object\Component\Contents</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp" />
@@ -337,6 +340,9 @@
     </ClCompile>
     <ClCompile Include="FontWidget.cpp">
       <Filter>Object\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\GM2\DX\GM2DX\EngineCore\FontRenderer.cpp">
+      <Filter>Object\Component\Contents</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
