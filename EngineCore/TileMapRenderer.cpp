@@ -2,6 +2,7 @@
 #include "TileMapRenderer.h"
 #include "EngineCamera.h"
 #include "EngineSprite.h"
+#include "CameraActor.h"
 
 
 UTileMapRenderer::UTileMapRenderer()
@@ -194,6 +195,7 @@ void UTileMapRenderer::DeSerialize(UEngineSerializer& _Ser)
 
 void UTileMapRenderer::RenderNormal(class UEngineCamera* _Camera, float _DeltaTime)
 {
+
 	// URenderer::Render(_Camera, _DeltaTime);
 	FTransform& CameraTrans = _Camera->GetTransformRef();
 	FTransform& RendererTrans = GetTransformRef();
@@ -201,6 +203,8 @@ void UTileMapRenderer::RenderNormal(class UEngineCamera* _Camera, float _DeltaTi
 	RendererTrans.View = CameraTrans.View;
 	RendererTrans.Projection = CameraTrans.Projection;
 	RendererTrans.WVP = RendererTrans.World * RendererTrans.View * RendererTrans.Projection;
+	std::shared_ptr<ACameraActor> Camera = GetWorld()->GetMainCamera();
+	FVector CameraPost = Camera->GetActorLocation();
 
 
 	if (0 == Tiles.size())
@@ -216,46 +220,34 @@ void UTileMapRenderer::RenderNormal(class UEngineCamera* _Camera, float _DeltaTi
 
 	Scale.Scale(ImageSize);
 
-
 	for (std::pair<const __int64, FTileData>& TilePair : Tiles)
 	{
-		//if (화면 바깥에 나간 타일은)
-		//{
-		//	continue;
-		//}
-
 		FTileData& Tile = TilePair.second;
 		FTileIndex Index;
+		Index.Key = TilePair.first;
+		FVector ConvertPos = TileIndexToWorldPos(Index);
+
+		if (ConvertPos.X < -640.f - 56.f + CameraPost.X || ConvertPos.X > 640.f + 56.f + CameraPost.X)
+		{
+			continue;
+		}
+		if (ConvertPos.Y > 360.f + 56.f + CameraPost.Y || ConvertPos.Y < -360.f - 56.f + CameraPost.Y)
+		{
+			continue;
+		}
 
 		GetRenderUnit().SetTexture("TileMapTex", Sprite->GetTexture(Tile.SpriteIndex));
 		Tile.SpriteData = Sprite->GetSpriteData(Tile.SpriteIndex);
 		Tile.SpriteData.Pivot = { 0.0f, 0.0f };
 
-		Index.Key = TilePair.first;
-
-		FVector ConvertPos = TileIndexToWorldPos(Index);
-
 		Pos.Position({ ConvertPos.X, ConvertPos.Y, 0.0f });
 
 		Trans.WVP = Scale * Pos * RendererTrans.View * RendererTrans.Projection;
-		// 직교 투영이라는 것을 전제로 하고
-		// -1 ~ 1사이의 값이 된다.
-
-		// 직교투영일대의 스크린 out
-		float OrthX = abs(Trans.WVP.ArrVector[3].Y);
-		float OrthY = abs(Trans.WVP.ArrVector[3].X);
-
-		if (1.0f <= OrthX || 1.0f <= OrthY)
-		{
-			continue;
-		}
 
 		GetRenderUnit().ConstantBufferLinkData("FTransform", Trans);
-
 		GetRenderUnit().ConstantBufferLinkData("ResultColor", Tile.ColorData);
 		GetRenderUnit().ConstantBufferLinkData("FSpriteData", Tile.SpriteData);
 
-		// 한번한번 랜더유니트가 드로우 콜을 돌리는 구조가 된다.
 		Unit.Render(_Camera, _DeltaTime);
 	}
 }

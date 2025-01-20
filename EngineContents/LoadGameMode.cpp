@@ -67,9 +67,9 @@ void ALoadGameMode::LevelChangeStart()
 					Dir.Append("Image");
 					std::vector<UEngineFile> ImageFiles = Dir.GetAllFile(true, { ".PNG", ".BMP", ".JPG" });
 
-					LoadingCount = ImageFiles.size();
-
-					for (size_t i = 0; i < ImageFiles.size(); i++)
+					LoadingCount = static_cast<int>(ImageFiles.size());
+					 
+					for (int i = 0; i < ImageFiles.size(); i++)
 					{
 						std::string FilePath = ImageFiles[i].GetPathToString();
 

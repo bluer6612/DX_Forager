@@ -137,7 +137,7 @@ private:
 	FVector ImageSize;
 	FVector TilePivot;
 	ETileMapType TileMapType = ETileMapType::Rect;
-	ETileMapRenderType TileMapRenderMove = ETileMapRenderType::Normal;
+	ETileMapRenderType TileMapRenderMove = ETileMapRenderType::Instancing;
 
 	class UEngineSprite* Sprite = nullptr;
 	// map보다 빠르다.
