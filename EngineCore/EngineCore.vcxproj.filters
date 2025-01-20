@@ -179,6 +179,9 @@
     <ClInclude Include="..\..\GM2\DX\GM2DX\EngineCore\FontRenderer.h">
       <Filter>Object\Component\Contents</Filter>
     </ClInclude>
+    <ClInclude Include="EngineStructuredBuffer.h">
+      <Filter>Resources\Buffer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp" />
@@ -343,6 +346,9 @@
     </ClCompile>
     <ClCompile Include="..\..\GM2\DX\GM2DX\EngineCore\FontRenderer.cpp">
       <Filter>Object\Component\Contents</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineStructuredBuffer.cpp">
+      <Filter>Resources\Buffer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

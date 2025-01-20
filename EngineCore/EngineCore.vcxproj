@@ -231,6 +231,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="EngineStructuredBuffer.h" />
     <ClInclude Include="EngineVertex.h" />
     <ClInclude Include="EngineVertexShader.h">
       <SubType>
@@ -398,6 +399,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="EngineStructuredBuffer.cpp" />
     <ClCompile Include="EngineVertexShader.cpp">
       <SubType>
       </SubType>
