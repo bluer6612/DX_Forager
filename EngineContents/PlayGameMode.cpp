@@ -33,7 +33,7 @@ APlayGameMode::APlayGameMode()
 	{
 		TileManager = CreateDefaultSubObject<UTileMapRenderer>();
 		TileManager->SetupAttachment(RootComponent);
-		TileManager->SetTileSetting(ETileMapType::Rect, "Water", { 56.f, 56.f }, { 56.f, 56.f }, { 0.0f, 0.0f });
+		TileManager->SetTileSetting(ETileMapType::Rect, "Tiles", { 56.f, 56.f }, { 56.f, 56.f }, { 0.0f, 0.0f });
 
 		FVector ScreenPos = { -56.f * TilemapCount * 0.5f, -56.f * TilemapCount * 0.5f };
 		FVector TilePos = ScreenPos;
@@ -42,7 +42,7 @@ APlayGameMode::APlayGameMode()
 		{
 			for (int x = 0; x < TilemapCount; x++)
 			{
-				TileManager->SetTile(TilePos, 0);
+				TileManager->SetTile(TilePos, 4);
 
 				TilePos.X += 56.f;
 			}
@@ -55,11 +55,20 @@ APlayGameMode::APlayGameMode()
 	{
 		FVector ScreenPos = { -56.f * 12 * 0.5f, -56.f * 11 * 0.5f };
 		FVector TilePos = ScreenPos;
-		for (int y = 0; y < 12; y++)
+		float Dice = 0;
+		for (int y = 0; y < 10; y++)
 		{
-			for (int x = 0; x < 11; x++)
+			for (int x = 0; x < 10; x++)
 			{
-				TileManager->SetTile(TilePos, 0);
+				Dice = EngineRandom->Randomfloat(0.f, 1.f);
+				if (Dice < 0.9)
+				{
+					TileManager->SetTile(TilePos, 0);
+				}
+				else
+				{
+					TileManager->SetTile(TilePos, EngineRandom->RandomInt(1, 3));
+				}
 
 				TilePos.X += 56.f;
 			}

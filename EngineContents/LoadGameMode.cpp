@@ -39,7 +39,7 @@ void ALoadGameMode::Tick(float _DeltaTime)
 		{
 			// 이미지를 변환 
 			UEngineSprite::CreateSpriteToMeta("Forager", ".meta");
-			DirectoryAdd("Water");
+			DirectoryAdd("Tiles");
 
 			UEngineCore::CreateLevel<ATitleGameMode, APawn, ATitleHUD>("Titlelevel");
 			UEngineCore::CreateLevel<APlayGameMode, APawn, ATitleHUD>("Playlevel");
