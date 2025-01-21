@@ -1,6 +1,5 @@
 #pragma once
 #include <EngineCore/GameMode.h>
-#include <EngineBase/EngineRandom.h>
 
 // Ό³Έν :
 class APlayGameMode : public AGameMode
@@ -25,5 +24,4 @@ protected:
 private:
 	std::shared_ptr<class AForager> Forager;
 	std::shared_ptr<class UTileMapRenderer> TileManager;
-	UEngineRandom* EngineRandom;
 };

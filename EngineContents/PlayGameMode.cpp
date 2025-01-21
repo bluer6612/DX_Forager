@@ -12,6 +12,7 @@
 #include <EngineCore/imgui.h>
 #include "ContentsEditorGUI.h"
 #include <EngineBase/EngineDebug.h>
+#include <EngineBase/EngineRandom.h>
 
 APlayGameMode::APlayGameMode()
 {
@@ -28,7 +29,6 @@ APlayGameMode::APlayGameMode()
 
 	{
 		Forager = GetWorld()->SpawnActor<AForager>();
-	}
 
 	{
 		TileManager = CreateDefaultSubObject<UTileMapRenderer>();
@@ -53,6 +53,7 @@ APlayGameMode::APlayGameMode()
 	}
 
 	{
+		UEngineRandom EngineRandom;
 		FVector ScreenPos = { -56.f * 12 * 0.5f, -56.f * 11 * 0.5f };
 		FVector TilePos = ScreenPos;
 		float Dice = 0;
@@ -60,14 +61,14 @@ APlayGameMode::APlayGameMode()
 		{
 			for (int x = 0; x < 10; x++)
 			{
-				Dice = EngineRandom->Randomfloat(0.f, 1.f);
+				Dice = EngineRandom.Randomfloat(0.f, 1.f);
 				if (Dice < 0.9)
 				{
 					TileManager->SetTile(TilePos, 0);
 				}
 				else
 				{
-					TileManager->SetTile(TilePos, EngineRandom->RandomInt(1, 3));
+					TileManager->SetTile(TilePos, EngineRandom.RandomInt(1, 3));
 				}
 
 				TilePos.X += 56.f;
@@ -94,6 +95,7 @@ void APlayGameMode::Tick(float _DeltaTime)
 
 	std::shared_ptr<ACameraActor> Camera = GetWorld()->GetMainCamera();
 	FVector CameraPost = Camera->ScreenMousePosToWorldPos();
+	Camera->SetActorLocation({ CameraPost.X, CameraPost.Y, -1000.0f, 1.0f });
 
 	UEngineDebug::OutPutString("FPS : " + std::to_string(1.0f / _DeltaTime));
 	UEngineDebug::OutPutString("PlayerPos : " + std::to_string(CameraPost.X) + "/" + std::to_string(CameraPost.Y));
