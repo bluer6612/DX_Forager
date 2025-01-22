@@ -54,8 +54,12 @@ APlayGameMode::APlayGameMode()
 	}
 
 	{
+		TileEdgeManager = CreateDefaultSubObject<UTileMapRenderer>();
+		TileEdgeManager->SetupAttachment(RootComponent);
+		TileEdgeManager->SetTileSetting(ETileMapType::Rect, "TilesEdge", { 56.f, 56.f }, { 56.f, 56.f }, { 0.0f, 0.0f });
+
 		UEngineRandom EngineRandom;
-		FVector ScreenPos = { -56.f * 12 * 0.5f, -56.f * 11 * 0.5f };
+		FVector ScreenPos = { -56.f * 12 * 0.5f, -56.f * 11 * 0.5f, 200.f };
 		FVector TilePos = ScreenPos;
 		float Dice = 0;
 		for (int y = 0; y < 10; y++)
@@ -63,13 +67,35 @@ APlayGameMode::APlayGameMode()
 			for (int x = 0; x < 10; x++)
 			{
 				Dice = EngineRandom.Randomfloat(0.f, 1.f);
-				if (Dice < 0.9)
+
+				if (y == 0)
+				{
+					TileManager->SetTile(TilePos, 5);
+				}
+				else if (Dice < 0.9)
 				{
 					TileManager->SetTile(TilePos, 0);
 				}
 				else
 				{
 					TileManager->SetTile(TilePos, EngineRandom.RandomInt(1, 3));
+				}
+
+				if (x == 0)
+				{
+					TileEdgeManager->SetTile({ TilePos.X + 56.f, TilePos.Y, 100.f }, 0);
+				}
+				if (x == 9)
+				{
+					TileEdgeManager->SetTile({ TilePos.X - 56.f, TilePos.Y, 100.f }, 1);
+				}
+				if (y == 0)
+				{
+					TileEdgeManager->SetTile({ TilePos.X, TilePos.Y - 56.f, 100.f }, 3);
+				}
+				if (y == 9)
+				{
+					TileEdgeManager->SetTile({ TilePos.X, TilePos.Y + 56.f, 100.f }, 2);
 				}
 
 				TilePos.X += 56.f;

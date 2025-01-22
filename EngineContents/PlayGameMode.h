@@ -24,4 +24,5 @@ protected:
 private:
 	std::shared_ptr<class AForager> Forager;
 	std::shared_ptr<class UTileMapRenderer> TileManager;
+	std::shared_ptr<class UTileMapRenderer> TileEdgeManager;
 };
