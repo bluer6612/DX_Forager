@@ -29,6 +29,7 @@ APlayGameMode::APlayGameMode()
 
 	{
 		Forager = GetWorld()->SpawnActor<AForager>();
+	}
 
 	{
 		TileManager = CreateDefaultSubObject<UTileMapRenderer>();
@@ -78,11 +79,6 @@ APlayGameMode::APlayGameMode()
 			TilePos.Y += 56.f;
 		}
 	}
-
-	{
-		std::shared_ptr<AMonster> NewMonster = GetWorld()->SpawnActor<AMonster>();
-		NewMonster->SetActorLocation({ 300.0f, 0.0f, 0.0f });
-	}
 }
 
 APlayGameMode::~APlayGameMode()
@@ -92,13 +88,6 @@ APlayGameMode::~APlayGameMode()
 void APlayGameMode::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
-
-	std::shared_ptr<ACameraActor> Camera = GetWorld()->GetMainCamera();
-	FVector CameraPost = Camera->ScreenMousePosToWorldPos();
-	Camera->SetActorLocation({ CameraPost.X, CameraPost.Y, -1000.0f, 1.0f });
-
-	UEngineDebug::OutPutString("FPS : " + std::to_string(1.0f / _DeltaTime));
-	UEngineDebug::OutPutString("PlayerPos : " + std::to_string(CameraPost.X) + "/" + std::to_string(CameraPost.Y));
 }
 
 void APlayGameMode::LevelChangeStart()
