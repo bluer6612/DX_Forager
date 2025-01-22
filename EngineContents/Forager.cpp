@@ -51,7 +51,7 @@ AForager::AForager()
 	Font->SetText("폰트 랜더러에영");
 	Font->SetupAttachment(RootComponent);
 
-	GetWorld()->GetMainCamera()->AttachToActor(this);
+	//GetWorld()->GetMainCamera()->AttachToActor(this);
 }
 
 AForager::~AForager()
