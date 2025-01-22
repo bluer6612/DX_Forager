@@ -51,7 +51,7 @@ AForager::AForager()
 	Font->SetText("폰트 랜더러에영");
 	Font->SetupAttachment(RootComponent);
 
-	GetWorld()->GetMainCamera()->AttachToActor(this);
+	//GetWorld()->GetMainCamera()->AttachToActor(this);
 }
 
 AForager::~AForager()
@@ -72,10 +72,6 @@ void AForager::Tick(float _DeltaTime)
 	std::shared_ptr<class ACameraActor> Camera = GetWorld()->GetMainCamera();
 	FVector MousePos = Camera->ScreenMousePosToWorldPos();
 	FVector PlayerPos = GetActorLocation();
-
-	UEngineDebug::OutPutString("FPS : " + std::to_string(1.0f / _DeltaTime));
-	UEngineDebug::OutPutString("PlayerPos : " + std::to_string(PlayerPos.X) + "/" + std::to_string(PlayerPos.Y));
-	UEngineDebug::OutPutString("MousePos : " + std::to_string(MousePos.X) + "/" + std::to_string(MousePos.Y));
 
 	int ChangeAnimation = 0;
 	if (MousePos.X < PlayerPos.X) 
@@ -129,6 +125,9 @@ void AForager::Tick(float _DeltaTime)
 	}
 
 	//Camera->SetActorLocation({ PlayerPos.X, PlayerPos.Y, -1000.0f, 1.0f });
+
+	UEngineDebug::OutPutString("FPS : " + std::to_string(1.0f / _DeltaTime));
+	UEngineDebug::OutPutString("PlayerPos : " + std::to_string(PlayerPos.X) + "/" + std::to_string(PlayerPos.Y));
 	
 
 	//if (공격 상태일때만)
