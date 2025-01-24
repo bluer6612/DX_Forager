@@ -54,12 +54,8 @@ APlayGameMode::APlayGameMode()
 	}
 
 	{
-		TileEdgeManager = CreateDefaultSubObject<UTileMapRenderer>();
-		TileEdgeManager->SetupAttachment(RootComponent);
-		TileEdgeManager->SetTileSetting(ETileMapType::Rect, "TilesEdge", { 56.f, 56.f }, { 56.f, 56.f }, { 0.0f, 0.0f });
-
 		UEngineRandom EngineRandom;
-		FVector ScreenPos = { -56.f * 12 * 0.5f, -56.f * 11 * 0.5f, 200.f };
+		FVector ScreenPos = { -56.f * 12 * 0.5f, -56.f * 11 * 0.5f};
 		FVector TilePos = ScreenPos;
 		float Dice = 0;
 		for (int y = 0; y < 10; y++)
@@ -68,11 +64,7 @@ APlayGameMode::APlayGameMode()
 			{
 				Dice = EngineRandom.Randomfloat(0.f, 1.f);
 
-				if (y == 0)
-				{
-					TileManager->SetTile(TilePos, 5);
-				}
-				else if (Dice < 0.9)
+				if (Dice < 0.9)
 				{
 					TileManager->SetTile(TilePos, 0);
 				}
@@ -81,22 +73,44 @@ APlayGameMode::APlayGameMode()
 					TileManager->SetTile(TilePos, EngineRandom.RandomInt(1, 3));
 				}
 
-				if (x == 0)
+				if (x == 0 && y == 9)
 				{
-					TileEdgeManager->SetTile({ TilePos.X + 56.f, TilePos.Y, 100.f }, 0);
+					TileManager->SetTile(TilePos, 14);
 				}
-				if (x == 9)
+				else if (x == 9 && y == 9)
 				{
-					TileEdgeManager->SetTile({ TilePos.X - 56.f, TilePos.Y, 100.f }, 1);
+					TileManager->SetTile(TilePos, 15);
 				}
-				if (y == 0)
+				else if (x == 0 && y != 0)
 				{
-					TileEdgeManager->SetTile({ TilePos.X, TilePos.Y - 56.f, 100.f }, 3);
+					TileManager->SetTile(TilePos, 8);
 				}
-				if (y == 9)
+				else if (x == 9 && y != 0)
 				{
-					TileEdgeManager->SetTile({ TilePos.X, TilePos.Y + 56.f, 100.f }, 2);
+					TileManager->SetTile(TilePos, 9);
 				}
+				else if (y == 9)
+				{
+					TileManager->SetTile(TilePos, 13);
+				}
+
+				if (y == 1 && x == 9)
+				{
+					TileManager->SetTile(TilePos, 12);
+				}
+				else if (y == 1 && x >= 1)
+				{
+					TileManager->SetTile(TilePos, 10);
+				}
+				else if (y == 1 && x == 0)
+				{
+					TileManager->SetTile(TilePos, 11);
+				}
+				else if (y == 0)
+				{
+					TileManager->SetTile(TilePos, 5);
+				}
+
 
 				TilePos.X += 56.f;
 			}

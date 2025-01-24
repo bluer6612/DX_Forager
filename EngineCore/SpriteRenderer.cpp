@@ -30,6 +30,11 @@ void USpriteRenderer::SetSprite(std::string _Name, std::shared_ptr<USceneCompone
 {
 	Sprite = UEngineSprite::Find<UEngineSprite>(_Name + std::string(".png")).get();
 
+	if (nullptr == Sprite)
+	{
+		Sprite = UEngineSprite::Find<UEngineSprite>(_Name).get();
+	}
+
 	GetRenderUnit().SetTexture("ImageTexture", Sprite->GetTexture(_Index)->GetName());
 	SpriteData = Sprite->GetSpriteData(_Index);
 

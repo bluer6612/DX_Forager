@@ -1,5 +1,6 @@
 #pragma once
 #include <EngineCore/GameMode.h>
+#include <EngineCore/SpriteRenderer.h>
 
 // Ό³Έν :
 class APlayGameMode : public AGameMode
@@ -24,5 +25,4 @@ protected:
 private:
 	std::shared_ptr<class AForager> Forager;
 	std::shared_ptr<class UTileMapRenderer> TileManager;
-	std::shared_ptr<class UTileMapRenderer> TileEdgeManager;
 };
