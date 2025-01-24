@@ -1,7 +1,7 @@
 #include "PreCompile.h"
 #include "Forager.h"
-#include <EngineCore/SpriteRenderer.h>
 #include <EnginePlatform/EngineInput.h>
+#include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/DefaultSceneComponent.h>
 #include <EngineCore/CameraActor.h>
 #include <EngineCore/TimeEventComponent.h>
@@ -9,6 +9,7 @@
 #include <EngineCore/FontRenderer.h>
 #include "ForagerRenderer.h"
 #include "MyGameInstance.h"
+#include "PlayGameMode.h"
 
 AForager::AForager()
 {
@@ -51,7 +52,7 @@ AForager::AForager()
 	Font->SetText("폰트 랜더러에영");
 	Font->SetupAttachment(RootComponent);
 
-	//GetWorld()->GetMainCamera()->AttachToActor(this);
+	//GetWorld()->GetMainCamera()->AttachToActor(this);X
 }
 
 AForager::~AForager()
@@ -72,6 +73,7 @@ void AForager::Tick(float _DeltaTime)
 	std::shared_ptr<class ACameraActor> Camera = GetWorld()->GetMainCamera();
 	FVector MousePos = Camera->ScreenMousePosToWorldPos();
 	FVector PlayerPos = GetActorLocation();
+	FVector MovePos = { 0.f, 0.f, 0.f };
 
 	UEngineDebug::OutPutString("FPS : " + std::to_string(1.0f / _DeltaTime));
 	UEngineDebug::OutPutString("PlayerPos : " + std::to_string(PlayerPos.X) + "/" + std::to_string(PlayerPos.Y));
@@ -91,23 +93,22 @@ void AForager::Tick(float _DeltaTime)
 
 	if (UEngineInput::IsPress('W'))
 	{
-		AddRelativeLocation(FVector{ 0.0f, 400.0f * _DeltaTime, 0.0f });
+		MovePos += {0.f, MoveSpeed * _DeltaTime, 0.f};
  		ChangeAnimation = 2;
 	}
-
 	if (UEngineInput::IsPress('S'))
 	{
-		AddRelativeLocation(FVector{ 0.0f, -400.0f * _DeltaTime, 0.0f });
+		MovePos += { 0.f, -MoveSpeed * _DeltaTime, 0.f };
 		ChangeAnimation = 2;
 	}
 	if (UEngineInput::IsPress('A'))
 	{
-		AddRelativeLocation(FVector{ -400.0f * _DeltaTime, 0.0f, 0.0f });
+		MovePos += { -MoveSpeed * _DeltaTime, 0.f, 0.f };
 		ChangeAnimation = 2;
 	}
 	if (UEngineInput::IsPress('D'))
 	{
-		AddRelativeLocation(FVector{ 400.0f * _DeltaTime, 0.0f, 0.0f });
+		MovePos += { MoveSpeed * _DeltaTime, 0.f, 0.f };
 		ChangeAnimation = 2;
 	}
 
@@ -125,6 +126,14 @@ void AForager::Tick(float _DeltaTime)
 		else if (ChangeAnimation == 2)
 		{
 			CharacterRenderer->ChangeAnimation("Run" + Dir);
+
+			PlayGameMode = GetWorld()->SpawnActor<APlayGameMode>();
+			FTileIndex TileIndex = PlayGameMode->GetTileMapRenderer()->WorldPosToTileIndex({ GetActorLocation().X + MovePos.X, GetActorLocation().Y + MovePos.Y });
+			FTileData& Tile = PlayGameMode->GetTileMapRenderer()->Tiles[TileIndex.Key];
+			if (false == Tile.IsBlock)
+			{
+				AddRelativeLocation(MovePos);
+			}
 		}
 	}
 

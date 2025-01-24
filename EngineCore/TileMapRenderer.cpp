@@ -145,7 +145,12 @@ void UTileMapRenderer::SetTile(int _X, int _Y, int _Spriteindex)
 	NewTile.SpriteData.CuttingSize = { 1.0f, 1.0f };
 	NewTile.SpriteData.Pivot = { 0.5f, 0.5f };
 	NewTile.ColorData.PlusColor = { 0.0f, 0.0f, 0.0f, 0.0f };
-	NewTile.ColorData.MulColor = { 1.0f, 1.0f, 1.0f, 1.0f };	
+	NewTile.ColorData.MulColor = { 1.0f, 1.0f, 1.0f, 1.0f };
+
+	if (_Spriteindex >= 4 && _Spriteindex <= 7)
+	{
+		NewTile.IsBlock = true;
+	}
 }
 
 void UTileMapRenderer::RemoveTile(int _X, int _Y)

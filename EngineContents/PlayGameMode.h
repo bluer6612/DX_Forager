@@ -18,11 +18,16 @@ public:
 
 	void Tick(float _DeltaTime);
 
+	std::shared_ptr<class UTileMapRenderer> GetTileMapRenderer()
+	{
+		return TileManager;
+	}
 
 protected:
 	void LevelChangeStart() override;
 
+	std::shared_ptr<class UTileMapRenderer> TileManager;
+
 private:
 	std::shared_ptr<class AForager> Forager;
-	std::shared_ptr<class UTileMapRenderer> TileManager;
 };

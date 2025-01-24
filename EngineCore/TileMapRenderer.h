@@ -104,16 +104,18 @@ public:
 		return Sprite;
 	}
 
-	FTileIndex WorldPosToTileIndex(float _PosX, float _PosY);
+	ENGINEAPI FTileIndex WorldPosToTileIndex(float _PosX, float _PosY);
 
-	FTileIndex WorldPosToTileIndex(FVector _Pos);
+	ENGINEAPI FTileIndex WorldPosToTileIndex(FVector _Pos);
 
-	FVector TileIndexToWorldPos(FTileIndex _Pos);
+	ENGINEAPI FVector TileIndexToWorldPos(FTileIndex _Pos);
 
 	// 데이터를 직렬화(압축)
 	ENGINEAPI void Serialize(UEngineSerializer& _Ser) override;
 	// 데이터를 복구(할때)
 	ENGINEAPI void DeSerialize(UEngineSerializer& _Ser) override;
+
+	std::unordered_map<__int64, FTileData> Tiles;
 
 protected:
 	ENGINEAPI void Render(class UEngineCamera* _Camera, float _DeltaTime) override;
@@ -150,6 +152,5 @@ private:
 // std::vector<std::vector> 
 // 중간 확장이 될수 있다.
 // 2D 이미지만 가능
-	std::unordered_map<__int64, FTileData> Tiles;
 };
 
