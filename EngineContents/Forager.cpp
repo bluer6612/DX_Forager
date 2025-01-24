@@ -2,6 +2,7 @@
 #include "Forager.h"
 #include <EnginePlatform/EngineInput.h>
 #include <EngineCore/SpriteRenderer.h>
+#include <EngineCore/TileMapRenderer.h>
 #include <EngineCore/DefaultSceneComponent.h>
 #include <EngineCore/CameraActor.h>
 #include <EngineCore/TimeEventComponent.h>
@@ -67,7 +68,6 @@ void AForager::BeginPlay()
 
 	{
 		//PlayGameMode = GetWorld()->SpawnActor<APlayGameMode>();
-		TileMapRenderer = PlayGameMode->GetTileMapRenderer();
 	}
 }
 
