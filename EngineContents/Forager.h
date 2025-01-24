@@ -17,17 +17,13 @@ public:
 	AForager& operator=(const AForager& _Other) = delete;
 	AForager& operator=(AForager&& _Other) noexcept = delete;
 
-	std::shared_ptr<class APlayGameMode> GetPlayGameMode()
-	{
-		return PlayGameMode;
-	}
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 
 	std::shared_ptr<class APlayGameMode> PlayGameMode;
 
-	std::shared_ptr<class UTileMapRenderer> TileMapRenderer;
+	class UTileMapRenderer* TileMapRenderer;
 
 private:
 };
