@@ -151,6 +151,10 @@ void UTileMapRenderer::SetTile(int _X, int _Y, int _Spriteindex)
 	{
 		NewTile.IsBlock = true;
 	}
+	else
+	{
+		NewTile.IsBlock = false;
+	}
 }
 
 void UTileMapRenderer::RemoveTile(int _X, int _Y)

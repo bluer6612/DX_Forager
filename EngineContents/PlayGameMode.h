@@ -23,10 +23,16 @@ public:
 		return TileManager;
 	}
 
-protected:
-	void LevelChangeStart() override;
+	std::shared_ptr<class APlayGameMode> GetPlayGameMode()
+	{
+		return PlayGameMode;
+	}
+
+	std::shared_ptr<class APlayGameMode> PlayGameMode;
 
 	std::shared_ptr<class UTileMapRenderer> TileManager;
+protected:
+	void LevelChangeStart() override;
 
 private:
 	std::shared_ptr<class AForager> Forager;

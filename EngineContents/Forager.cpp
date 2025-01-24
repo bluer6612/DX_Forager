@@ -64,6 +64,11 @@ void AForager::BeginPlay()
 	AActor::BeginPlay();
 
 	CharacterRenderer->ChangeAnimation("Run" + Dir);
+
+	{
+		//PlayGameMode = GetWorld()->SpawnActor<APlayGameMode>();
+		TileMapRenderer = PlayGameMode->GetTileMapRenderer();
+	}
 }
 
 void AForager::Tick(float _DeltaTime)
@@ -127,8 +132,7 @@ void AForager::Tick(float _DeltaTime)
 		{
 			CharacterRenderer->ChangeAnimation("Run" + Dir);
 
-			PlayGameMode = GetWorld()->SpawnActor<APlayGameMode>();
-			FTileIndex TileIndex = PlayGameMode->GetTileMapRenderer()->WorldPosToTileIndex({ GetActorLocation().X + MovePos.X, GetActorLocation().Y + MovePos.Y });
+			FTileIndex TileIndex = PlayGameMode->GetTileMapRenderer()->WorldPosToTileIndex({GetActorLocation().X + MovePos.X, GetActorLocation().Y + MovePos.Y});
 			FTileData& Tile = PlayGameMode->GetTileMapRenderer()->Tiles[TileIndex.Key];
 			if (false == Tile.IsBlock)
 			{
