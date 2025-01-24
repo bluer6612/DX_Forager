@@ -53,6 +53,12 @@
     <ClInclude Include="TitleHUD.h">
       <Filter>HUD</Filter>
     </ClInclude>
+    <ClInclude Include="LightGameMode.h">
+      <Filter>GameMode</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshActor.h">
+      <Filter>Character</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp" />
@@ -106,6 +112,12 @@
     </ClCompile>
     <ClCompile Include="TitleHUD.cpp">
       <Filter>HUD</Filter>
+    </ClCompile>
+    <ClCompile Include="LightGameMode.cpp">
+      <Filter>GameMode</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshActor.cpp">
+      <Filter>Character</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

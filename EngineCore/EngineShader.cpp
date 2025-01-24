@@ -3,6 +3,7 @@
 #include "EngineVertexShader.h"
 #include "EnginePixelShader.h"
 #include "EngineConstantBuffer.h"
+#include "EngineStructuredBuffer.h" 
 
 UEngineShader::UEngineShader()
 {
@@ -156,8 +157,25 @@ void UEngineShader::ShaderResCheck()
 		}
 		case D3D_SIT_STRUCTURED:
 		{
-			int a = 0;
+			// 스트럭처드 버퍼를 사용한다는 것을 알아냈어.
+			// 구체화된 정보를 얻어옵니다.
+			ID3D11ShaderReflectionConstantBuffer* Info = CompileInfo->GetConstantBufferByName(ResDesc.Name);
+			D3D11_SHADER_BUFFER_DESC BufferInfo = { 0 };
+			Info->GetDesc(&BufferInfo);
 
+			// 상수버퍼 리소스 관리하는 구조랑
+			// 이 쉐이더를 사용해서 랜더링을 할때마다 이 상수버퍼를 세팅해줘야 쉐이더. 
+			std::shared_ptr<UEngineStructuredBuffer> Buffer = UEngineStructuredBuffer::CreateOrFind(BufferInfo.Size, UpperName);
+
+			// 상수버퍼에 세팅을 위해서 각자가 가져야할 값들을 저장하기 위한 클래스를
+			UEngineStructuredBufferRes NewRes;
+			NewRes.ShaderType = ShaderType;
+			NewRes.Name = UpperName;
+			NewRes.BindIndex = ResDesc.BindPoint;
+			NewRes.Res = Buffer.get();
+			NewRes.DataSize = BufferInfo.Size;
+
+			ShaderResources.CreateStructuredBufferRes(UpperName, NewRes);
 			break;
 		}
 		case D3D_SIT_UAV_RWSTRUCTURED: // 컴퓨트

@@ -210,7 +210,6 @@ public:
 		return AngleToVectorRad(_Angle * UEngineMath::D2R);
 	}
 
-
 	static TVector Lerp(TVector _A, TVector _B, float _Alpha)
 	{
 		TVector Result;
@@ -427,6 +426,15 @@ public:
 	ENGINEAPI TVector operator*(const class FMatrix& _Matrix) const;
 	ENGINEAPI TVector& operator*=(const class FMatrix& _Matrix);
 
+	//TVector& operator =(const TVector& _Other)
+	//{
+	//	X = _Other.X;
+	//	Y = _Other.Y;
+	//	Z = _Other.Z;
+	//	W = _Other.Z;
+	//	return *this;
+	//}
+
 	TVector& operator-=(const TVector& _Other)
 	{
 		X -= _Other.X;
@@ -451,6 +459,7 @@ public:
 		Result.X = -X;
 		Result.Y = -Y;
 		Result.Z = -Z;
+		Result.W = W;
 		return Result;
 	}
 

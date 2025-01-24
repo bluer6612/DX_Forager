@@ -27,7 +27,6 @@ struct FTileIndex
 			int Y;
 		};
 		__int64 Key;
-		int TileIndex;
 	};
 };
 
@@ -93,6 +92,8 @@ public:
 	ENGINEAPI void SetTile(FVector _Pos, int _Spriteindex);
 	ENGINEAPI void RemoveTile(FVector _Pos);
 
+	ENGINEAPI void InstancingOn();
+
 	// 없으면 만들어요.
 	ENGINEAPI void SetTile(int _X, int _Y, int _Spriteindex);
 
@@ -140,7 +141,7 @@ private:
 	FVector ImageSize;
 	FVector TilePivot;
 	ETileMapType TileMapType = ETileMapType::Rect;
-	ETileMapRenderType TileMapRenderMove = ETileMapRenderType::Normal;
+	ETileMapRenderType TileMapRenderType = ETileMapRenderType::Normal;
 
 	class UEngineSprite* Sprite = nullptr;
 	// map보다 빠르다.

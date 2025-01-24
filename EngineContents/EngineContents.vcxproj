@@ -186,6 +186,8 @@
     <ClInclude Include="Forager.h" />
     <ClInclude Include="GMConst.h" />
     <ClInclude Include="GMStruct.h" />
+    <ClInclude Include="LightGameMode.h" />
+    <ClInclude Include="MeshActor.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="Monster2.h" />
     <ClInclude Include="ForagerRenderer.h">
@@ -221,6 +223,8 @@
     </ClCompile>
     <ClCompile Include="Forager.cpp" />
     <ClCompile Include="GMStruct.cpp" />
+    <ClCompile Include="LightGameMode.cpp" />
+    <ClCompile Include="MeshActor.cpp" />
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="Monster2.cpp" />
     <ClCompile Include="ForagerRenderer.cpp">

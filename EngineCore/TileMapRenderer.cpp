@@ -7,13 +7,22 @@
 
 UTileMapRenderer::UTileMapRenderer()
 {
+	// 0번 랜더유니트 노말 랜더링 전용
 	CreateRenderUnit();
 	SetMesh("Rect");
 	SetMaterial("TileMap");
 
+	// 1번 랜더 유니트 인스턴싱 랜더링 전용
+	CreateRenderUnit();
+	SetMesh("Rect", 1);
+	SetMaterial("TileMapInst", 1);
+
 	//GetRenderUnit().ConstantBufferLinkData("ResultColor", ColorData);
 	//GetRenderUnit().ConstantBufferLinkData("FSpriteData", SpriteData);
 	//GetRenderUnit().ConstantBufferLinkData("FUVValue", UVValue);
+
+
+
 }
 
 UTileMapRenderer::~UTileMapRenderer()
@@ -25,7 +34,7 @@ void UTileMapRenderer::SetTileSetting(ETileMapType _Type, std::string _Name, FVe
 	Sprite = UEngineSprite::Find<UEngineSprite>(_Name + std::string(".png")).get();
 	if (nullptr == Sprite)
 	{
-		Sprite = UEngineSprite::Find<UEngineSprite>(_Name).get();
+	Sprite = UEngineSprite::Find<UEngineSprite>(_Name).get();
 	}
 
 	TileMapType = _Type;
@@ -38,14 +47,6 @@ void UTileMapRenderer::BeginPlay()
 {
 	URenderer::BeginPlay();
 
-}
-FTileIndex UTileMapRenderer::WorldPosToTileIndex(float _PosX, float _PosY)
-{
-	FVector _Pos;
-	_Pos.X += _PosX;
-	_Pos.Y += _PosY;
-
-	return WorldPosToTileIndex(_Pos);
 }
 
 FTileIndex UTileMapRenderer::WorldPosToTileIndex(FVector _Pos)
@@ -98,7 +99,7 @@ FVector UTileMapRenderer::TileIndexToWorldPos(FTileIndex _Index)
 void UTileMapRenderer::Render(UEngineCamera* _Camera, float _DeltaTime)
 {
 
-	switch (TileMapRenderMove)
+	switch (TileMapRenderType)
 	{
 	case Normal:
 		RenderNormal(_Camera, _DeltaTime);
@@ -125,6 +126,12 @@ void UTileMapRenderer::RemoveTile(FVector _Pos)
 
 	RemoveTile(Index.X, Index.Y);
 }
+
+void UTileMapRenderer::InstancingOn()
+{
+	TileMapRenderType = ETileMapRenderType::Instancing;
+}
+
 
 void UTileMapRenderer::SetTile(int _X, int _Y, int _Spriteindex)
 {
@@ -219,7 +226,8 @@ void UTileMapRenderer::RenderNormal(class UEngineCamera* _Camera, float _DeltaTi
 
 	FVector ConvertPos = CameraPos;
 
-	URenderUnit& Unit = GetRenderUnit();
+	URenderUnit& Unit = GetRenderUnit(0);
+
 	FTransform Trans;
 	FMatrix Scale;
 	FMatrix Pos;
@@ -231,7 +239,7 @@ void UTileMapRenderer::RenderNormal(class UEngineCamera* _Camera, float _DeltaTi
 	{
 		for (int x = 0; x < 24; ++x)
 		{
-			FTileIndex TileIndex = WorldPosToTileIndex({ ConvertPos.X, ConvertPos.Y});
+			FTileIndex TileIndex = WorldPosToTileIndex({ ConvertPos.X, ConvertPos.Y });
 			FTileData& Tile = Tiles[TileIndex.Key];
 
 			GetRenderUnit().SetTexture("TileMapTex", Sprite->GetTexture(Tile.SpriteIndex));
@@ -272,7 +280,7 @@ void UTileMapRenderer::RenderInstancing(class UEngineCamera* _Camera, float _Del
 		return;
 	}
 
-	URenderUnit& Unit = GetRenderUnit();
+	URenderUnit& Unit = GetRenderUnit(1);
 
 	FTransform Trans;
 	FMatrix Scale;
@@ -282,15 +290,17 @@ void UTileMapRenderer::RenderInstancing(class UEngineCamera* _Camera, float _Del
 
 	// 메모리적 리사이즈가 발생하지 않는다.
 	InstTransform.resize(Tiles.size());
-	InstTransform.resize(InstColorData.size());
-	InstTransform.resize(InstSpriteData.size());
+	InstSpriteData.resize(Tiles.size());
+	InstColorData.resize(Tiles.size());
+
+	int RenderCount = 0;
 
 	for (std::pair<const __int64, FTileData>& TilePair : Tiles)
 	{
 		FTileData& Tile = TilePair.second;
 		FTileIndex Index;
 
-		GetRenderUnit().SetTexture("TileMapTex", Sprite->GetTexture(Tile.SpriteIndex));
+		Unit.SetTexture("TileMapTex", Sprite->GetTexture(Tile.SpriteIndex));
 		Tile.SpriteData = Sprite->GetSpriteData(Tile.SpriteIndex);
 		Tile.SpriteData.Pivot = { 0.0f, 0.0f };
 
@@ -304,29 +314,30 @@ void UTileMapRenderer::RenderInstancing(class UEngineCamera* _Camera, float _Del
 		// 직교 투영이라는 것을 전제로 하고
 		// -1 ~ 1사이의 값이 된다.
 
-		// 직교투영일대의 스크린 out
-		float OrthX = abs(Trans.WVP.ArrVector[3].Y);
-		float OrthY = abs(Trans.WVP.ArrVector[3].X);
+		//// 직교투영일대의 스크린 out
+		//float OrthX = abs(Trans.WVP.ArrVector[3].Y);
+		//float OrthY = abs(Trans.WVP.ArrVector[3].X);
 
-		if (1.0f <= OrthX || 1.0f <= OrthY)
-		{
-			continue;
-		}
+		//if (1.0f <= OrthX || 1.0f <= OrthY)
+		//{
+		//	continue;
+		//}
 
 		// 데이터를 수집하는 비용이 발생하기 때문에
 		// 어떤때는 더 느려질수도 있다.
 		// 그리고 여러분들 생각보다 더 20~30% 효율을 보입니다.
 		// 컴퓨트까지 가야 합니다.
 		// 데이터 수집도 그래픽 카드에 맡기면 쫌더 빨라짐.
-		InstTransform.push_back(Trans);
-		InstColorData.push_back(Tile.ColorData);
-		InstSpriteData.push_back(Tile.SpriteData);
+		InstTransform[RenderCount] = Trans;
+		InstColorData[RenderCount] = Tile.ColorData;
+		InstSpriteData[RenderCount] = Tile.SpriteData;
+		++RenderCount;
 	}
 
-	// 랜더링 1번 되니
-	// GetRenderUnit().ConstantBufferLinkData("FTransform", Trans);
-	// GetRenderUnit().ConstantBufferLinkData("ResultColor", Tile.ColorData);
-	// GetRenderUnit().ConstantBufferLinkData("FSpriteData", Tile.SpriteData);
+	// 10~1000
+	Unit.StructuredBufferLinkData("TransformBuffer", InstTransform);
+	Unit.StructuredBufferLinkData("SpriteDataBuffer", InstSpriteData);
+	Unit.StructuredBufferLinkData("ColorDataBuffer", InstColorData);
 	// 한번 딱 랜더하는 구조가 될 것입니다.
-	// Unit.Render(_Camera, _DeltaTime);
+	Unit.RenderInst(_Camera, static_cast<UINT>(Tiles.size()), _DeltaTime);
 }

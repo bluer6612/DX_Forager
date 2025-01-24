@@ -9,7 +9,7 @@
 // Ό³Έν :
 class UActorComponent : public UObject
 {
-	friend AActor;
+	friend class AActor;
 
 public:
 	// constrcuter destructer
@@ -33,7 +33,7 @@ public:
 	ENGINEAPI virtual void BeginPlay() {}
 	ENGINEAPI virtual void ComponentTick(float _DeltaTime) {};
 
-	ULevel* GetWorld();
+	class ULevel* GetWorld();
 
 	ENGINEAPI bool IsActive() override;
 

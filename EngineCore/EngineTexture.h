@@ -20,7 +20,7 @@ public:
 	UEngineTexture& operator=(const UEngineTexture& _Other) = delete;
 	UEngineTexture& operator=(UEngineTexture&& _Other) noexcept = delete;
 
-	ENGINEAPI static std::shared_ptr<UEngineTexture> ThreadSafeLoad(std::string_view _Path)
+	static std::shared_ptr<UEngineTexture> ThreadSafeLoad(std::string_view _Path)
 	{
 		UEnginePath EnginePath = UEnginePath(_Path);
 

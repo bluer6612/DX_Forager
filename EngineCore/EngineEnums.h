@@ -26,5 +26,4 @@ enum class EShaderType : int8
 	CS,
 	MAX
 };
-
 static const int TilemapCount = 500;

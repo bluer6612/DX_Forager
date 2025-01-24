@@ -127,11 +127,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <FxCompile Include="..\..\GM2\DX\GM2DX\EngineShader\EngineMeshLightShader.fx" />
     <FxCompile Include="EngineDebugCollisionShader.fx" />
     <FxCompile Include="EngineSpriteShader.fx" />
     <FxCompile Include="EngineTargetMergeShader.fx" />
     <FxCompile Include="EngineTileMapInstShader.fx" />
     <FxCompile Include="EngineTileMapShader.fx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\GM2\DX\GM2DX\EngineShader\Light.hlsli" />
+    <None Include="..\..\GM2\DX\GM2DX\EngineShader\Transform.hlsli" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -40,19 +40,19 @@ public:
 	UEngineGraphicDevice& operator=(const UEngineGraphicDevice& _Other) = delete;
 	UEngineGraphicDevice& operator=(UEngineGraphicDevice&& _Other) noexcept = delete;
 
-	ENGINEAPI void CreateDeviceAndContext();
+	void CreateDeviceAndContext();
 
-	ENGINEAPI void CreateBackBuffer(const UEngineWindow& _Window);
+	void CreateBackBuffer(const UEngineWindow& _Window);
 
 	// Adapter 그래픽카드의 정보를 가지고 있는 인터페이스
 	// 다이렉트 x 디바이스가 되죠.
-	ENGINEAPI IDXGIAdapter* GetHighPerFormanceAdapter();
+	IDXGIAdapter* GetHighPerFormanceAdapter();
 
 	ENGINEAPI void Release();
 
-	ENGINEAPI void RenderStart();
+	void RenderStart();
 
-	ENGINEAPI void RenderEnd();
+	void RenderEnd();
 
 	ENGINEAPI ID3D11Device* GetDevice()
 	{

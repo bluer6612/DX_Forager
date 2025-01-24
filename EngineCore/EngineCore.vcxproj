@@ -171,7 +171,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\GM2\DX\GM2DX\EngineCore\FontRenderer.h" />
     <ClInclude Include="Actor.h">
       <SubType>
       </SubType>
@@ -197,6 +196,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="EngineConst.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="EngineConstantBuffer.h">
       <SubType>
       </SubType>
@@ -205,13 +208,17 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="EngineDataStruct.h" />
     <ClInclude Include="EngineDepthStencilState.h" />
     <ClInclude Include="EngineDeviceBuffer.h">
       <SubType>
       </SubType>
     </ClInclude>
     <ClInclude Include="EngineEnums.h" />
-    <ClInclude Include="EngineFont.h" />
+    <ClInclude Include="EngineFont.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="EngineGraphicDevice.h">
       <SubType>
       </SubType>
@@ -231,14 +238,23 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="EngineStructuredBuffer.h" />
+    <ClInclude Include="EngineStructuredBuffer.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="EngineVertex.h" />
     <ClInclude Include="EngineVertexShader.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="FontWidget.h" />
-    <ClInclude Include="GameInstance.h" />
+    <ClInclude Include="FontWidget.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="GameInstance.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="GameMode.h">
       <SubType>
       </SubType>
@@ -247,7 +263,10 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="ImageWidget.h" />
+    <ClInclude Include="ImageWidget.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="imconfig.h" />
     <ClInclude Include="imgui.h" />
     <ClInclude Include="imgui_impl_dx11.h" />
@@ -262,6 +281,11 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="IContentsCore.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Light.h" />
+    <ClInclude Include="LightActor.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -287,6 +311,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="SpriteRenderer.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="FontRenderer.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -339,7 +367,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\GM2\DX\GM2DX\EngineCore\FontRenderer.cpp" />
     <ClCompile Include="Actor.cpp">
       <SubType>
       </SubType>
@@ -378,7 +405,10 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="EngineFont.cpp" />
+    <ClCompile Include="EngineFont.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="EngineGraphicDevice.cpp">
       <SubType>
       </SubType>
@@ -399,13 +429,22 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="EngineStructuredBuffer.cpp" />
+    <ClCompile Include="EngineStructuredBuffer.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="EngineVertexShader.cpp">
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="FontWidget.cpp" />
-    <ClCompile Include="GameInstance.cpp" />
+    <ClCompile Include="FontWidget.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="GameInstance.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="GameMode.cpp">
       <SubType>
       </SubType>
@@ -414,7 +453,10 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="ImageWidget.cpp" />
+    <ClCompile Include="ImageWidget.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="imgui.cpp" />
     <ClCompile Include="imgui_draw.cpp" />
     <ClCompile Include="imgui_impl_dx11.cpp" />
@@ -423,6 +465,11 @@
     <ClCompile Include="imgui_widgets.cpp" />
     <ClCompile Include="EngineIndexBuffer.cpp" />
     <ClCompile Include="Level.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Light.cpp" />
+    <ClCompile Include="LightActor.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -493,6 +540,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="EngineVertex.cpp" />
+    <ClCompile Include="FontRenderer.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="TileMapRenderer.cpp" />
     <ClCompile Include="TimeEventComponent.cpp">
       <SubType>
@@ -510,14 +561,18 @@
   <ItemGroup>
     <None Include="ThirdParty\DirectxTex\Inc\DirectXTex.inl" />
     <CopyFileToFolders Include="ThirdParty\FW1FontWrapper\Debug\FW1FontWrapper.dll">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </CopyFileToFolders>
     <CopyFileToFolders Include="ThirdParty\FW1FontWrapper\Release\FW1FontWrapper.dll">
       <FileType>Document</FileType>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </CopyFileToFolders>
   </ItemGroup>
   <ItemGroup>
@@ -538,14 +593,18 @@
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="ThirdParty\FW1FontWrapper\Debug\FW1FontWrapper.lib">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </CopyFileToFolders>
     <CopyFileToFolders Include="ThirdParty\FW1FontWrapper\Release\FW1FontWrapper.lib">
       <FileType>Document</FileType>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </CopyFileToFolders>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,11 +1,13 @@
 #include "PreCompile.h"
 #include "ContentsCore.h"
+#include <EnginePlatform/EngineInput.h>
 #include <EngineCore/Level.h>
 #include <EngineCore/EngineTexture.h>
 #include <EngineCore/EngineSprite.h>
 #include <EngineCore/EngineShader.h>
 #include <EngineCore/EngineMaterial.h>
 #include "PlayGameMode.h"
+#include "LightGameMode.h"
 #include "TileMapGameMode.h"
 #include <EngineCore/HUD.h>
 #include <EngineCore/EngineGUI.h>
@@ -41,6 +43,7 @@ void UContentsCore::EngineStart(UEngineInitData& _Data)
 
 	UEngineGUI::AllWindowOff();
 
+	UEngineCore::CreateLevel<ALightGameMode, APawn, AHUD>("LightLevel");
 	UEngineCore::CreateLevel<ALoadGameMode, APawn, AHUD>("LoadLevel");
 
 	UEngineCore::OpenLevel("LoadLevel");

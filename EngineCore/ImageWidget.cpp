@@ -106,7 +106,7 @@ void UImageWidget::Tick(float _DeltaTime)
 }
 
 
-void UImageWidget::CreateAnimation(std::string_view _AnimationName, std::string_view _SpriteName, int _Start, int _End, float Time /*= 0.1f*/, bool _Loop /*= true*/)
+void UImageWidget::CreateAnimation(std::string_view _AnimationName, std::string _SpriteName, int _Start, int _End, float Time /*= 0.1f*/, bool _Loop /*= true*/)
 {
 	int Inter = 0;
 
@@ -140,7 +140,7 @@ void UImageWidget::CreateAnimation(std::string_view _AnimationName, std::string_
 }
 
 
-void UImageWidget::CreateAnimation(std::string_view _AnimationName, std::string_view _SpriteName, std::vector<int> _Indexs, float _Frame, bool _Loop /*= true*/)
+void UImageWidget::CreateAnimation(std::string_view _AnimationName, std::string _SpriteName, std::vector<int> _Indexs, float _Frame, bool _Loop /*= true*/)
 {
 	std::vector<float> Times;
 
@@ -152,7 +152,7 @@ void UImageWidget::CreateAnimation(std::string_view _AnimationName, std::string_
 	CreateAnimation(_AnimationName, _SpriteName, _Indexs, Times, _Loop);
 }
 
-void UImageWidget::CreateAnimation(std::string_view _AnimationName, std::string_view _SpriteName, std::vector<int> _Indexs, std::vector<float> _Frame, bool _Loop /*= true*/)
+void UImageWidget::CreateAnimation(std::string_view _AnimationName, std::string _SpriteName, std::vector<int> _Indexs, std::vector<float> _Frame, bool _Loop /*= true*/)
 {
 	std::string UpperName = UEngineString::ToUpper(_AnimationName);
 
@@ -271,6 +271,14 @@ UImageWidget::FrameAnimation* UImageWidget::FindAnimation(std::string_view _Anim
 void UImageWidget::Render(UEngineCamera* Camera, float _DeltaTime)
 {
 	UWidget::Render(Camera, _DeltaTime);
+
+	if (nullptr != CurAnimation)
+	{
+		Sprite = CurAnimation->Sprite;
+
+		GetRenderUnit().SetTexture("ImageTexture", Sprite->GetTexture(CurIndex)->GetName());
+		SpriteData = Sprite->GetSpriteData(CurIndex);
+	}
 
 	if (true == IsAutoScale && nullptr != Sprite)
 	{

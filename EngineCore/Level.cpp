@@ -7,6 +7,7 @@
 #include "EngineCamera.h"
 #include "CameraActor.h"
 #include "EngineGUI.h"
+#include "Light.h"
 #include "HUD.h"
 #include "EngineFont.h"
 #include "EngineRenderTarget.h"
@@ -42,6 +43,7 @@ ULevel::ULevel()
 
 	LastRenderTarget = std::make_shared<UEngineRenderTarget>();
 	LastRenderTarget->CreateTarget(UEngineCore::GetScreenScale());
+	LastRenderTarget->SetClearColor({0.0f, 0.0f, 0.0f, 0.0f});
 	LastRenderTarget->CreateDepth();
 }
 
@@ -131,6 +133,9 @@ void ULevel::Render(float _DeltaTime)
 
 	LastRenderTarget->Clear();
 
+	// 레벨이 카메라로 랜더하기 전에
+
+
 	for (std::pair<const int, std::shared_ptr<ACameraActor>>& Camera : Cameras)
 	{
 		if (Camera.first == static_cast<int>(EEngineCameraType::UICamera))
@@ -143,12 +148,21 @@ void ULevel::Render(float _DeltaTime)
 			continue;
 		}
 
+		LightDatas.Count = 0;
+		// 랜더링하기 직전에 라이트들을 그 카메라 맞춰서 다 업데이트 시켜준다.
+		for (size_t i = 0; i < Lights.size(); i++)
+		{
+			Lights[i]->LightUpdate(Camera.second->GetCameraComponent().get(), _DeltaTime);
+			++LightDatas.Count;
+			LightDatas.LightArr[i] = Lights[i]->LightData;
+		}
+
 		Camera.second->Tick(_DeltaTime);
 		Camera.second->GetCameraComponent()->Render(_DeltaTime);
 
 		// 난 다 그려졌으니 
 		// MainCamera RenderTarget
-		Camera.second->GetCameraComponent()->CameraTarget->MergeTo(LastRenderTarget);
+		// Camera.second->GetCameraComponent()->CameraTarget->MergeTo(LastRenderTarget);
 	}
 
 	if (true == Cameras.contains(static_cast<int>(EEngineCameraType::UICamera)))
@@ -167,7 +181,7 @@ void ULevel::Render(float _DeltaTime)
 			
 
 
-			CameraComponent->CameraTarget->MergeTo(LastRenderTarget);
+			// CameraComponent->CameraTarget->MergeTo(LastRenderTarget);
 		}
 
 	} else 
@@ -175,6 +189,9 @@ void ULevel::Render(float _DeltaTime)
 		MSGASSERT("UI카메라가 존재하지 않습니다. 엔진 오류입니다. UI카메라를 제작해주세요.");
 	}
 	
+	Cameras[static_cast<int>(EEngineCameraType::MainCamera)]->GetCameraComponent()->CameraTarget->MergeTo(LastRenderTarget);
+	Cameras[static_cast<int>(EEngineCameraType::UICamera)]->GetCameraComponent()->CameraTarget->MergeTo(LastRenderTarget);
+
 	// LastRenderTarget->PostEffect();
 
 	std::shared_ptr<UEngineRenderTarget> BackBuffer = UEngineCore::GetDevice().GetBackBufferTarget();
@@ -226,6 +243,11 @@ void ULevel::ChangeRenderGroup(int _CameraOrder, int _PrevGroupOrder, std::share
 	std::shared_ptr<ACameraActor> Camera = Cameras[_CameraOrder];
 
 	Camera->GetCameraComponent()->ChangeRenderGroup(_PrevGroupOrder, _Renderer);
+}
+
+void ULevel::PushLight(std::shared_ptr<ULight> _Light)
+{
+	Lights.push_back(_Light);
 }
 
 void ULevel::CreateCollisionProfile(std::string_view _ProfileName)

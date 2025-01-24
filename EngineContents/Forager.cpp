@@ -128,7 +128,7 @@ void AForager::Tick(float _DeltaTime)
 		}
 	}
 
-	//Camera->SetActorLocation({ PlayerPos.X, PlayerPos.Y, -1000.0f, 1.0f });
+	Camera->SetActorLocation({ PlayerPos.X, PlayerPos.Y, -1000.0f, 1.0f });
 	
 
 	//if (공격 상태일때만)

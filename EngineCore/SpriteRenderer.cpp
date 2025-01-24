@@ -54,7 +54,6 @@ void USpriteRenderer::SetSprite(UEngineSprite* _Sprite, std::shared_ptr<USceneCo
 	BillboardOn();
 }
 
-
 void USpriteRenderer::SetTexture(std::string_view _Name, bool AutoScale /*= false*/, float _Ratio /*= 1.0f*/)
 {
 	std::shared_ptr<UEngineTexture> Texture = UEngineTexture::Find<UEngineTexture>(_Name);
@@ -115,7 +114,7 @@ void USpriteRenderer::Render(UEngineCamera* _Camera, float _DeltaTime)
 	}
 }
 
-void USpriteRenderer::CameraTransUpdate(UEngineCamera* _Camera) 
+void USpriteRenderer::CameraTransUpdate(UEngineCamera* _Camera)
 {
 	FTransform& CameraTrans = _Camera->GetTransformRef();
 	FTransform& RendererTrans = GetTransformRef();
@@ -236,6 +235,8 @@ void USpriteRenderer::ComponentTick(float _DeltaTime)
 			}
 		}
 	}
+
+
 }
 
 void USpriteRenderer::CreateAnimation(std::string_view _AnimationName, std::string _SpriteName, int _Start, int _End, float Time /*= 0.1f*/, bool _Loop /*= true*/)
@@ -266,6 +267,7 @@ void USpriteRenderer::CreateAnimation(std::string_view _AnimationName, std::stri
 			++_End;
 		}
 	}
+
 
 	CreateAnimation(_AnimationName, _SpriteName, Indexs, Times, _Loop);
 }
@@ -314,6 +316,7 @@ void USpriteRenderer::CreateAnimation(std::string_view _AnimationName, std::stri
 	NewAnimation.Reset();
 
 	FrameAnimations.insert({ UpperName ,NewAnimation });
+
 }
 
 void USpriteRenderer::ChangeAnimation(std::string_view _AnimationName, bool _Force /*= false*/)
@@ -381,4 +384,17 @@ void USpriteRenderer::SetAnimationEvent(std::string_view _AnimationName, int _Fr
 	}
 
 	ChangeAnimation->Events[_Frame] += _Function;
+
+}
+
+
+
+void USpriteRenderer::SetSprite(UEngineSprite* _Sprite)
+{
+	Sprite = _Sprite;
+
+	if (nullptr == Sprite)
+	{
+		MSGASSERT("존재하지 않는 스프라이트를 사용하려고 했습니다.");
+	}
 }

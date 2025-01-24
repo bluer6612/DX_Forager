@@ -38,6 +38,9 @@
     <ClInclude Include="Renderer.h">
       <Filter>Object\Component\Render</Filter>
     </ClInclude>
+    <ClInclude Include="SpriteRenderer.h">
+      <Filter>Object\Component\Contents</Filter>
+    </ClInclude>
     <ClInclude Include="EngineResources.h">
       <Filter>Resources</Filter>
     </ClInclude>
@@ -143,6 +146,9 @@
     <ClInclude Include="Collision.h">
       <Filter>Object\Component\Collision</Filter>
     </ClInclude>
+    <ClInclude Include="TileMapRenderer.h">
+      <Filter>Object\Component\Contents</Filter>
+    </ClInclude>
     <ClInclude Include="EngineRenderTarget.h">
       <Filter>Resources\Texture</Filter>
     </ClInclude>
@@ -155,32 +161,38 @@
     <ClInclude Include="TransformObject.h">
       <Filter>Object\Component</Filter>
     </ClInclude>
+    <ClInclude Include="EngineConst.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineDataStruct.h">
+      <Filter>Data</Filter>
+    </ClInclude>
     <ClInclude Include="EngineFont.h">
       <Filter>Resources\Font</Filter>
-    </ClInclude>
-    <ClInclude Include="GameInstance.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="ImageWidget.h">
-      <Filter>Object\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="FontWidget.h">
-      <Filter>Object\UI</Filter>
     </ClInclude>
     <ClInclude Include="ThirdParty\FW1FontWrapper\Inc\FW1FontWrapper.h">
       <Filter>ThirdParty\FW1FontWrapper\Inc</Filter>
     </ClInclude>
+    <ClInclude Include="FontWidget.h">
+      <Filter>Object\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageWidget.h">
+      <Filter>Object\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="GameInstance.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="FontRenderer.h">
+      <Filter>Object\Component\Contents</Filter>
+    </ClInclude>
     <ClInclude Include="EngineStructuredBuffer.h">
       <Filter>Resources\Buffer</Filter>
     </ClInclude>
-    <ClInclude Include="TileMapRenderer.h">
-      <Filter>Object\Component\Render</Filter>
+    <ClInclude Include="Light.h">
+      <Filter>Object\Component\Light</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\GM2\DX\GM2DX\EngineCore\FontRenderer.h">
-      <Filter>Object\Component\Render</Filter>
-    </ClInclude>
-    <ClInclude Include="SpriteRenderer.h">
-      <Filter>Object\Component\Render</Filter>
+    <ClInclude Include="LightActor.h">
+      <Filter>Object\Render</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -214,6 +226,9 @@
     </ClCompile>
     <ClCompile Include="Renderer.cpp">
       <Filter>Object\Component\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteRenderer.cpp">
+      <Filter>Object\Component\Contents</Filter>
     </ClCompile>
     <ClCompile Include="EngineResources.cpp">
       <Filter>Resources</Filter>
@@ -314,6 +329,9 @@
     <ClCompile Include="Collision.cpp">
       <Filter>Object\Component\Collision</Filter>
     </ClCompile>
+    <ClCompile Include="TileMapRenderer.cpp">
+      <Filter>Object\Component\Contents</Filter>
+    </ClCompile>
     <ClCompile Include="EngineRenderTarget.cpp">
       <Filter>Resources\Texture</Filter>
     </ClCompile>
@@ -329,26 +347,26 @@
     <ClCompile Include="EngineFont.cpp">
       <Filter>Resources\Font</Filter>
     </ClCompile>
-    <ClCompile Include="GameInstance.cpp">
-      <Filter>Core</Filter>
+    <ClCompile Include="FontWidget.cpp">
+      <Filter>Object\UI</Filter>
     </ClCompile>
     <ClCompile Include="ImageWidget.cpp">
       <Filter>Object\UI</Filter>
     </ClCompile>
-    <ClCompile Include="FontWidget.cpp">
-      <Filter>Object\UI</Filter>
+    <ClCompile Include="GameInstance.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="FontRenderer.cpp">
+      <Filter>Object\Component\Contents</Filter>
     </ClCompile>
     <ClCompile Include="EngineStructuredBuffer.cpp">
       <Filter>Resources\Buffer</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\GM2\DX\GM2DX\EngineCore\FontRenderer.cpp">
-      <Filter>Object\Component\Render</Filter>
+    <ClCompile Include="Light.cpp">
+      <Filter>Object\Component\Light</Filter>
     </ClCompile>
-    <ClCompile Include="SpriteRenderer.cpp">
-      <Filter>Object\Component\Render</Filter>
-    </ClCompile>
-    <ClCompile Include="TileMapRenderer.cpp">
-      <Filter>Object\Component\Render</Filter>
+    <ClCompile Include="LightActor.cpp">
+      <Filter>Object\Render</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -381,9 +399,6 @@
     </Filter>
     <Filter Include="ThirdParty\DirectxTex">
       <UniqueIdentifier>{0c5bd5bf-498a-4dab-a201-ff16debaa548}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ThirdParty\DirectxTex\Debug">
-      <UniqueIdentifier>{55e0d781-660a-4e13-86ee-ba97cb353ee0}</UniqueIdentifier>
     </Filter>
     <Filter Include="ThirdParty\DirectxTex\Release">
       <UniqueIdentifier>{f72ab297-5ee5-4741-b71b-64586fdb61f8}</UniqueIdentifier>
@@ -433,20 +448,26 @@
     <Filter Include="Object\UI">
       <UniqueIdentifier>{d19a3a4f-0049-461e-b151-f8f5977e493f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ThirdParty\DirectxTex\Debug">
+      <UniqueIdentifier>{55e0d781-660a-4e13-86ee-ba97cb353ee0}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Resources\Font">
-      <UniqueIdentifier>{2476471a-5d60-477f-afb1-e516052c15ba}</UniqueIdentifier>
+      <UniqueIdentifier>{853648d6-f5c3-407b-8894-534184e32b5e}</UniqueIdentifier>
     </Filter>
     <Filter Include="ThirdParty\FW1FontWrapper">
-      <UniqueIdentifier>{80d43a1e-55eb-4e3b-9c42-e04789947052}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ThirdParty\FW1FontWrapper\Debug">
-      <UniqueIdentifier>{93e6edbe-70c1-4153-bd1f-84945b992938}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ThirdParty\FW1FontWrapper\Release">
-      <UniqueIdentifier>{eb8e3c84-1037-4825-bed6-4ef13eaa8ab5}</UniqueIdentifier>
+      <UniqueIdentifier>{7ef79b91-1f20-46f5-8c27-907be3a7481a}</UniqueIdentifier>
     </Filter>
     <Filter Include="ThirdParty\FW1FontWrapper\Inc">
-      <UniqueIdentifier>{e195fa6f-c477-4d58-8753-2ee1aee90b8b}</UniqueIdentifier>
+      <UniqueIdentifier>{60d9634e-21dc-4b62-bc92-e314b47b50fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\FW1FontWrapper\Debug">
+      <UniqueIdentifier>{c3b730a0-cc66-4aba-a6cd-9f947060dc9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\FW1FontWrapper\Release">
+      <UniqueIdentifier>{73a55924-2841-4309-9567-4b611397c748}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Component\Light">
+      <UniqueIdentifier>{c62d39e1-b7c1-4e1a-bed8-c2f7863192d8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -461,17 +482,17 @@
     <CopyFileToFolders Include="ThirdParty\DirectxTex\Release\DirectXTex_Release.lib">
       <Filter>ThirdParty\DirectxTex\Release</Filter>
     </CopyFileToFolders>
-    <CopyFileToFolders Include="ThirdParty\FW1FontWrapper\Debug\FW1FontWrapper.dll">
-      <Filter>ThirdParty\FW1FontWrapper\Debug</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="ThirdParty\FW1FontWrapper\Debug\FW1FontWrapper.lib">
-      <Filter>ThirdParty\FW1FontWrapper\Debug</Filter>
-    </CopyFileToFolders>
     <CopyFileToFolders Include="ThirdParty\FW1FontWrapper\Release\FW1FontWrapper.dll">
       <Filter>ThirdParty\FW1FontWrapper\Release</Filter>
     </CopyFileToFolders>
     <CopyFileToFolders Include="ThirdParty\FW1FontWrapper\Release\FW1FontWrapper.lib">
       <Filter>ThirdParty\FW1FontWrapper\Release</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="ThirdParty\FW1FontWrapper\Debug\FW1FontWrapper.lib">
+      <Filter>ThirdParty\FW1FontWrapper\Debug</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="ThirdParty\FW1FontWrapper\Debug\FW1FontWrapper.dll">
+      <Filter>ThirdParty\FW1FontWrapper\Debug</Filter>
     </CopyFileToFolders>
   </ItemGroup>
 </Project>

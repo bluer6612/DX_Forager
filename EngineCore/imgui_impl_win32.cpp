@@ -1149,7 +1149,7 @@ static void ImGui_ImplWin32_UpdateWindow(ImGuiViewport* viewport)
     HWND new_parent = ImGui_ImplWin32_GetHwndFromViewportID(viewport->ParentViewportId);
     if (new_parent != vd->HwndParent)
     {
-        // Win32 windows can either have a "Parent" (for WS_CHILD window) or an "Owner" (which ACharacterManagerg other thing keeps window above its owner).
+        // Win32 windows can either have a "Parent" (for WS_CHILD window) or an "Owner" (which among other thing keeps window above its owner).
         // Our Dear Imgui-side concept of parenting only mostly care about what Win32 call "Owner".
         // The parent parameter of CreateWindowEx() sets up Parent OR Owner depending on WS_CHILD flag. In our case an Owner as we never use WS_CHILD.
         // Calling ::SetParent() here would be incorrect: it will create a full child relation, alter coordinate system and clipping.

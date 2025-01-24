@@ -31,6 +31,8 @@ public:
 
 	ENGINEAPI static std::shared_ptr<UEngineSprite> CreateSpriteToMeta(std::string _Name, std::string_view _DataFileExt);
 
+	ENGINEAPI static std::shared_ptr<UEngineSprite> CreateSpriteToCount(std::string_view _Name, int X, int Y, FVector _Pivot = FVector{0.5f, 0.5f});
+
 	ENGINEAPI UEngineTexture* GetTexture(size_t _Index = 0);
 
 	ENGINEAPI ID3D11ShaderResourceView* GetSRV(size_t _Index = 0);
@@ -51,10 +53,14 @@ public:
 	{
 		return SpriteTexture.size();
 	}
+
+	
+
 protected:
 
 private:
 	std::vector<UEngineTexture*> SpriteTexture;
 	std::vector<FSpriteData> SpriteDatas;
+
 };
 

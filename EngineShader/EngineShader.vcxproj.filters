@@ -16,6 +16,9 @@
     <FxCompile Include="EngineTileMapInstShader.fx">
       <Filter>2D</Filter>
     </FxCompile>
+    <FxCompile Include="..\..\GM2\DX\GM2DX\EngineShader\EngineMeshLightShader.fx">
+      <Filter>2D</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="2D">
@@ -24,5 +27,16 @@
     <Filter Include="Target">
       <UniqueIdentifier>{1e746562-dc2d-48ae-9677-71a55a99bef2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header">
+      <UniqueIdentifier>{9b14e40f-c840-4b85-8363-1ab04e915823}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\GM2\DX\GM2DX\EngineShader\Transform.hlsli">
+      <Filter>Header</Filter>
+    </None>
+    <None Include="..\..\GM2\DX\GM2DX\EngineShader\Light.hlsli">
+      <Filter>Header</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -64,12 +64,15 @@ protected:
 
 private:
 	float Near = 1.0f;
-	float Far = 3000.0f;
+	float Far = 2000.0f;
+
 	float FOV = 40.0f;
 
 	EProjectionType ProjectionType = EProjectionType::Perspective;
 
 	D3D11_VIEWPORT ViewPortInfo;
+
+
 
 	FVector ProjectionScale = {0.0f, 0.0f};
 
@@ -78,6 +81,8 @@ private:
 	std::map<int, bool> RendererZSort;
 
 	std::shared_ptr<class UEngineRenderTarget> CameraTarget;
+
+
 
 	void ChangeRenderGroup(int _PrevGroupOrder, std::shared_ptr<URenderer> _Renderer);
 };
