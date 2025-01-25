@@ -129,9 +129,7 @@ void AForager::Tick(float _DeltaTime)
 		{
 			CharacterRenderer->ChangeAnimation("Run" + Dir);
 
-			{
-				PlayGameMode = GetWorld()->SpawnActor<APlayGameMode>();
-			}
+			std::shared_ptr<APlayGameMode> PlayGameMode = std::make_shared<APlayGameMode>();
 			FTileIndex TileIndex = PlayGameMode->GetTileMapRenderer()->WorldPosToTileIndex({GetActorLocation().X + MovePos.X, GetActorLocation().Y + MovePos.Y});
 			FTileData& Tile = PlayGameMode->GetTileMapRenderer()->Tiles[TileIndex.Key];
 			if (false == Tile.IsBlock)
