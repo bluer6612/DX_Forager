@@ -33,7 +33,8 @@ APlayGameMode::APlayGameMode()
 	}
 
 	{
-		std::shared_ptr<class AForager> Forager = GetWorld()->SpawnActor<AForager>();
+		//std::shared_ptr<class AForager> Forager = GetWorld()->SpawnActor<AForager>();
+		Forager = GetWorld()->SpawnActor<AForager>();
 		Forager->SetPlayGameMode(PlayGameMode);
 	}
 
