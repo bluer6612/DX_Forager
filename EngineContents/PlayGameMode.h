@@ -23,17 +23,17 @@ public:
 		return TileManager;
 	}
 
-	std::shared_ptr<class APlayGameMode> GetPlayGameMode()
+	void SetPlayGameMode(std::shared_ptr<class APlayGameMode> const _PlayGameMode)
 	{
-		return PlayGameMode;
+		PlayGameMode = _PlayGameMode;
 	}
 
 	std::shared_ptr<class APlayGameMode> PlayGameMode;
+	std::shared_ptr<class AForager>* Forager;
 
 	std::shared_ptr<class UTileMapRenderer> TileManager;
 protected:
 	void LevelChangeStart() override;
 
 private:
-	std::shared_ptr<class AForager> Forager;
 };

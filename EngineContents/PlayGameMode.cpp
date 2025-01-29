@@ -27,8 +27,14 @@ APlayGameMode::APlayGameMode()
 	Camera->SetActorLocation({ 0.0f, 0.0f, -1000.0f, 1.0f });
 	Camera->GetCameraComponent()->SetZSort(0, true);
 
+	//UI Manager
 	{
-		Forager = GetWorld()->SpawnActor<AForager>();
+		this->SetPlayGameMode(PlayGameMode);
+	}
+
+	{
+		std::shared_ptr<class AForager> Forager = GetWorld()->SpawnActor<AForager>();
+		Forager->SetPlayGameMode(PlayGameMode);
 	}
 
 	{

@@ -48,12 +48,10 @@ AForager::AForager()
 	//		UEngineDebug::OutPutString("End");
 	//	});
 
-	std::shared_ptr<UFontRenderer> Font = CreateDefaultSubObject<UFontRenderer>();
-	Font->SetFont("궁서");
-	Font->SetText("폰트 랜더러에영");
-	Font->SetupAttachment(RootComponent);
+	//TileManager = CreateDefaultSubObject<UTileMapRenderer>();
+	//TileManager->SetupAttachment(RootComponent);
 
-	//GetWorld()->GetMainCamera()->AttachToActor(this);X
+	//GetWorld()->GetMainCamera()->AttachToActor(this);
 
 }
 
@@ -129,9 +127,8 @@ void AForager::Tick(float _DeltaTime)
 		{
 			CharacterRenderer->ChangeAnimation("Run" + Dir);
 
-			std::shared_ptr<APlayGameMode> PlayGameMode = std::make_shared<APlayGameMode>();
-			FTileIndex TileIndex = PlayGameMode->GetTileMapRenderer()->WorldPosToTileIndex({GetActorLocation().X + MovePos.X, GetActorLocation().Y + MovePos.Y});
-			FTileData& Tile = PlayGameMode->GetTileMapRenderer()->Tiles[TileIndex.Key];
+			FTileIndex TileIndex = PlayGameMode->TileManager->WorldPosToTileIndex({GetActorLocation().X + MovePos.X, GetActorLocation().Y + MovePos.Y});
+			FTileData& Tile = PlayGameMode->TileManager->Tiles[TileIndex.Key];
 			if (false == Tile.IsBlock)
 			{
 				AddRelativeLocation(MovePos);
