@@ -214,7 +214,7 @@ void ACameraActor::FreeCameraCheck()
 	{
 		PrevTrans = GetActorTransform();
 		PrevProjectionType = GetCameraComponent()->ProjectionType;
-		GetCameraComponent()->ProjectionType = EProjectionType::Perspective;
+		GetCameraComponent()->ProjectionType = EProjectionType::Orthographic;
 	}
 	else 
 	{

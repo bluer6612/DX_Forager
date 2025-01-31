@@ -68,7 +68,7 @@ private:
 
 	float FOV = 40.0f;
 
-	EProjectionType ProjectionType = EProjectionType::Perspective;
+	EProjectionType ProjectionType = EProjectionType::Orthographic;
 
 	D3D11_VIEWPORT ViewPortInfo;
 
