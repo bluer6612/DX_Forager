@@ -89,7 +89,6 @@ void ACameraActor::Tick(float _DeltaTime)
 		}
 	}
 
-
 	CameraComponent->CalculateViewAndProjection();
 
 }
