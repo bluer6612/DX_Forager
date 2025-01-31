@@ -9,7 +9,6 @@
 #include <EngineCore/Collision.h>
 #include <EngineCore/FontRenderer.h>
 #include "ForagerRenderer.h"
-#include "MyGameInstance.h"
 #include "PlayGameMode.h"
 
 AForager::AForager()
@@ -137,31 +136,4 @@ void AForager::Tick(float _DeltaTime)
 	}
 
 	Camera->SetActorLocation({ PlayerPos.X, PlayerPos.Y, -1000.0f, 1.0f });
-	
-
-	//if (공격 상태일때만)
-	//{
-	//	std::vector<UCollision*> Result;
-	//	if (true == Collision->CollisionCheck("Monster", Result))
-	//	{
-	//		Result[0]->GetActor()->Destroy();
-	//	}
-	//}
-
-	if (UEngineInput::IsPress('E'))
-	{
-		GetGameInstance<MyGameInstance>()->InvenWidget->SetActive(false);
-	}
-
-	if (UEngineInput::IsPress('R'))
-	{
-		UEngineCore::GetThreadPool().WorkQueue([]()
-			{
-				UEngineDebug::OutPutString("Thread Work");
-			});
-
-		// GetGameInstance<MyGameInstance>()->InvenWidget->SetActive(true);
-	}
-
-	GetGameInstance<MyGameInstance>()->Status.Hp -= 1;
 }

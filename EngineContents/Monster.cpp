@@ -7,6 +7,7 @@
 #include <EngineCore/TimeEventComponent.h>
 #include "ForagerRenderer.h"
 #include <EngineCore/Collision.h>
+#include "MyGameInstance.h"
 
 AMonster::AMonster()
 {
@@ -46,6 +47,33 @@ void AMonster::Tick(float _DeltaTime)
 
 	UEngineCore::GetMainWindow().GetMousePos();
 
+
+
+	//if (공격 상태일때만)
+	//{
+	//	std::vector<UCollision*> Result;
+	//	if (true == Collision->CollisionCheck("Monster", Result))
+	//	{
+	//		Result[0]->GetActor()->Destroy();
+	//	}
+	//}
+
+	if (UEngineInput::IsPress('E'))
+	{
+		GetGameInstance<MyGameInstance>()->InvenWidget->SetActive(false);
+	}
+
+	if (UEngineInput::IsPress('R'))
+	{
+		UEngineCore::GetThreadPool().WorkQueue([]()
+			{
+				UEngineDebug::OutPutString("Thread Work");
+			});
+
+		// GetGameInstance<MyGameInstance>()->InvenWidget->SetActive(true);
+	}
+
+	GetGameInstance<MyGameInstance>()->Status.Hp -= 1;
 }	
 
 void AMonster::Serialize(UEngineSerializer& _Ser)
