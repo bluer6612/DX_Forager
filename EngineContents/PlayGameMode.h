@@ -1,6 +1,7 @@
 #pragma once
 #include <EngineCore/GameMode.h>
 #include <EngineCore/SpriteRenderer.h>
+#include <EngineCore/TileMapRenderer.h>
 
 // Ό³Έν :
 class APlayGameMode : public AGameMode
@@ -18,19 +19,7 @@ public:
 
 	void Tick(float _DeltaTime);
 
-	std::shared_ptr<class UTileMapRenderer> GetTileMapRenderer()
-	{
-		return TileManager;
-	}
-
-	void SetPlayGameMode(std::shared_ptr<class APlayGameMode> const _PlayGameMode)
-	{
-		PlayGameMode = _PlayGameMode;
-	}
-
-	std::shared_ptr<class APlayGameMode> PlayGameMode;
-
-	std::shared_ptr<class UTileMapRenderer> TileManager;
+	std::shared_ptr<class UTileMapRenderer> TileMapRenderer;
 
 	std::shared_ptr<class AForager> Forager;
 protected:

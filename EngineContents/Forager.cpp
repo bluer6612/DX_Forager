@@ -48,8 +48,8 @@ AForager::AForager()
 	//		UEngineDebug::OutPutString("End");
 	//	});
 
-	//TileManager = CreateDefaultSubObject<UTileMapRenderer>();
-	//TileManager->SetupAttachment(RootComponent);
+	//TileMapRenderer = CreateDefaultSubObject<UTileMapRenderer>();
+	//TileMapRenderer->SetupAttachment(RootComponent);
 
 	//GetWorld()->GetMainCamera()->AttachToActor(this);
 
@@ -127,8 +127,8 @@ void AForager::Tick(float _DeltaTime)
 		{
 			CharacterRenderer->ChangeAnimation("Run" + Dir);
 
-			FTileIndex TileIndex = PlayGameMode->TileManager->WorldPosToTileIndex({GetActorLocation().X + MovePos.X, GetActorLocation().Y + MovePos.Y});
-			FTileData& Tile = PlayGameMode->TileManager->Tiles[TileIndex.Key];
+			FTileIndex TileIndex = TileMapRenderer->WorldPosToTileIndex({GetActorLocation().X + MovePos.X, GetActorLocation().Y + MovePos.Y});
+			FTileData& Tile = TileMapRenderer->Tiles[TileIndex.Key];
 			if (false == Tile.IsBlock)
 			{
 				AddRelativeLocation(MovePos);

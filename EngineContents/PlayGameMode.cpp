@@ -2,7 +2,6 @@
 #include "PlayGameMode.h"
 #include "Monster.h"
 #include "Forager.h"
-#include "TileManager.h"
 #include <EngineCore/CameraActor.h>
 #include <EngineCore/EngineCamera.h>
 #include <EngineCore/DefaultSceneComponent.h>
@@ -27,21 +26,10 @@ APlayGameMode::APlayGameMode()
 	Camera->SetActorLocation({ 0.0f, 0.0f, -1000.0f, 1.0f });
 	Camera->GetCameraComponent()->SetZSort(0, true);
 
-	//UI Manager
 	{
-		this->SetPlayGameMode(PlayGameMode);
-	}
-
-	{
-		//std::shared_ptr<class AForager> Forager = GetWorld()->SpawnActor<AForager>();
-		Forager = GetWorld()->SpawnActor<AForager>();
-		Forager->SetPlayGameMode(PlayGameMode);
-	}
-
-	{
-		TileManager = CreateDefaultSubObject<UTileMapRenderer>();
-		TileManager->SetupAttachment(RootComponent);
-		TileManager->SetTileSetting(ETileMapType::Rect, "Tiles", { 56.f, 56.f }, { 56.f, 56.f }, { 0.0f, 0.0f });
+		TileMapRenderer = CreateDefaultSubObject<UTileMapRenderer>();
+		TileMapRenderer->SetupAttachment(RootComponent);
+		TileMapRenderer->SetTileSetting(ETileMapType::Rect, "Tiles", { 56.f, 56.f }, { 56.f, 56.f }, { 0.0f, 0.0f });
 
 		FVector ScreenPos = { -56.f * TilemapCount * 0.5f, -56.f * TilemapCount * 0.5f };
 		FVector TilePos = ScreenPos;
@@ -50,7 +38,7 @@ APlayGameMode::APlayGameMode()
 		{
 			for (int x = 0; x < TilemapCount; x++)
 			{
-				TileManager->SetTile(TilePos, 4);
+				TileMapRenderer->SetTile(TilePos, 4);
 
 				TilePos.X += 56.f;
 			}
@@ -73,49 +61,49 @@ APlayGameMode::APlayGameMode()
 
 				if (Dice < 0.9)
 				{
-					TileManager->SetTile(TilePos, 0);
+					TileMapRenderer->SetTile(TilePos, 0);
 				}
 				else
 				{
-					TileManager->SetTile(TilePos, EngineRandom.RandomInt(1, 3));
+					TileMapRenderer->SetTile(TilePos, EngineRandom.RandomInt(1, 3));
 				}
 
 				if (x == 0 && y == 9)
 				{
-					TileManager->SetTile(TilePos, 14);
+					TileMapRenderer->SetTile(TilePos, 14);
 				}
 				else if (x == 9 && y == 9)
 				{
-					TileManager->SetTile(TilePos, 15);
+					TileMapRenderer->SetTile(TilePos, 15);
 				}
 				else if (x == 0 && y != 0)
 				{
-					TileManager->SetTile(TilePos, 8);
+					TileMapRenderer->SetTile(TilePos, 8);
 				}
 				else if (x == 9 && y != 0)
 				{
-					TileManager->SetTile(TilePos, 9);
+					TileMapRenderer->SetTile(TilePos, 9);
 				}
 				else if (y == 9)
 				{
-					TileManager->SetTile(TilePos, 13);
+					TileMapRenderer->SetTile(TilePos, 13);
 				}
 
 				if (y == 1 && x == 9)
 				{
-					TileManager->SetTile(TilePos, 12);
+					TileMapRenderer->SetTile(TilePos, 12);
 				}
 				else if (y == 1 && x >= 1)
 				{
-					TileManager->SetTile(TilePos, 10);
+					TileMapRenderer->SetTile(TilePos, 10);
 				}
 				else if (y == 1 && x == 0)
 				{
-					TileManager->SetTile(TilePos, 11);
+					TileMapRenderer->SetTile(TilePos, 11);
 				}
 				else if (y == 0)
 				{
-					TileManager->SetTile(TilePos, 5);
+					TileMapRenderer->SetTile(TilePos, 5);
 				}
 
 
@@ -125,6 +113,12 @@ APlayGameMode::APlayGameMode()
 			TilePos.X = ScreenPos.X;
 			TilePos.Y += 56.f;
 		}
+	}
+
+	{
+		//std::shared_ptr<class AForager> Forager = GetWorld()->SpawnActor<AForager>();
+		Forager = GetWorld()->SpawnActor<AForager>();
+		Forager->TileMapRenderer = TileMapRenderer;
 	}
 }
 
@@ -140,4 +134,7 @@ void APlayGameMode::Tick(float _DeltaTime)
 void APlayGameMode::LevelChangeStart()
 {
 	UEngineGUI::AllWindowOff();
+	
+	//Forager->SetPlayGameMode(PlayGameMode);
+	//Forager->TileMapRenderer = TileMapRenderer;
 }
