@@ -75,8 +75,6 @@ void AForager::Tick(float _DeltaTime)
 	FVector MovePos = { 0.f, 0.f, 0.f };
 
 	UEngineDebug::OutPutString("FPS : " + std::to_string(1.0f / _DeltaTime));
-	UEngineDebug::OutPutString("PlayerPos : " + std::to_string(PlayerPos.X) + "/" + std::to_string(PlayerPos.Y));
-	UEngineDebug::OutPutString("MousePos : " + std::to_string(MousePos.X) + "/" + std::to_string(MousePos.Y));
 
 	int ChangeAnimation = 0;
 	if (MousePos.X < PlayerPos.X) 
@@ -126,7 +124,17 @@ void AForager::Tick(float _DeltaTime)
 		{
 			CharacterRenderer->ChangeAnimation("Run" + Dir);
 
-			FTileIndex TileIndex = TileMapRenderer->WorldPosToTileIndex({GetActorLocation().X + MovePos.X, GetActorLocation().Y + MovePos.Y});
+			float4 CorrectionValue = { 0, 0 };
+			if (MovePos.X < 0)
+			{
+				CorrectionValue += { -64.f, 0.f };
+			}
+			if (MovePos.Y < 0)
+			{
+				CorrectionValue += { 0.f, -64.f };
+			}
+
+			FTileIndex TileIndex = TileMapRenderer->WorldPosToTileIndex({GetActorLocation().X + MovePos.X + CorrectionValue.X, GetActorLocation().Y + MovePos.Y + CorrectionValue.Y});
 			FTileData& Tile = TileMapRenderer->Tiles[TileIndex.Key];
 			if (false == Tile.IsBlock)
 			{
