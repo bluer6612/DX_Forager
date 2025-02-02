@@ -130,14 +130,15 @@ void APlayGameMode::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
 
-	std::shared_ptr<class ACameraActor> Camera = GetWorld()->GetMainCamera();
-	FVector MousePos = Camera->ScreenMousePosToWorldPos();
-	FVector PlayerPos = GetActorLocation();
+	//std::shared_ptr<class ACameraActor> Camera = GetWorld()->GetMainCamera();
+	//FVector MousePos = Camera->ScreenMousePosToWorldPos();
+	//FVector PlayerPos = Forager->GetActorLocation();
 
-	Camera->SetActorLocation({ PlayerPos.X, PlayerPos.Y, -750.0f, 1.0f });
+	//Camera->SetActorLocation({ PlayerPos.X, PlayerPos.Y, -750.0f });
 
-	UEngineDebug::OutPutString("FPS : " + std::to_string(1.0f / _DeltaTime));
-	UEngineDebug::OutPutString("PlayerPos : " + std::to_string(PlayerPos.X) + "/" + std::to_string(PlayerPos.Y));
+	//UEngineDebug::OutPutString("FPS : " + std::to_string(1.0f / _DeltaTime));
+	//UEngineDebug::OutPutString("MousePos : " + std::to_string(MousePos.X) + "/" + std::to_string(MousePos.Y));
+	//UEngineDebug::OutPutString("PlayerPos : " + std::to_string(PlayerPos.X) + "/" + std::to_string(PlayerPos.Y));
 }
 
 void APlayGameMode::LevelChangeStart()

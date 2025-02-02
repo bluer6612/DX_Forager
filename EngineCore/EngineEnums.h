@@ -26,5 +26,6 @@ enum class EShaderType : int8
 	CS,
 	MAX
 };
+
 static const int TilemapCount = 500;
-static const float MoveSpeed = 400.0f;
+static const float MoveSpeed = 300.0f;

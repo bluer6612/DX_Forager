@@ -156,6 +156,7 @@ void AForager::Tick(float _DeltaTime)
 			if (false == Tile.IsBlock)
 			{
 				AddRelativeLocation(MovePos);
+				Camera->SetActorLocation({ PlayerPos.X + MovePos.X, PlayerPos.Y + MovePos.Y, -750.0f });
 			}
 		}
 	}
