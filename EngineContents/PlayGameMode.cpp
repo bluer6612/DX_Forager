@@ -59,7 +59,7 @@ APlayGameMode::APlayGameMode()
 			{
 				Dice = EngineRandom.Randomfloat(0.f, 1.f);
 
-				if (Dice < 0.9)
+				if (Dice < 0.85)
 				{
 					TileMapRenderer->SetTile(TilePos, 0);
 				}
@@ -130,15 +130,15 @@ void APlayGameMode::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
 
-	//std::shared_ptr<class ACameraActor> Camera = GetWorld()->GetMainCamera();
-	//FVector MousePos = Camera->ScreenMousePosToWorldPos();
-	//FVector PlayerPos = Forager->GetActorLocation();
+	std::shared_ptr<class ACameraActor> Camera = GetWorld()->GetMainCamera();
+	FVector MousePos = Camera->ScreenMousePosToWorldPos();
+	FVector PlayerPos = Forager->GetActorLocation();
 
 	//Camera->SetActorLocation({ PlayerPos.X, PlayerPos.Y, -750.0f });
 
-	//UEngineDebug::OutPutString("FPS : " + std::to_string(1.0f / _DeltaTime));
-	//UEngineDebug::OutPutString("MousePos : " + std::to_string(MousePos.X) + "/" + std::to_string(MousePos.Y));
-	//UEngineDebug::OutPutString("PlayerPos : " + std::to_string(PlayerPos.X) + "/" + std::to_string(PlayerPos.Y));
+	UEngineDebug::OutPutString("FPS : " + std::to_string(1.0f / _DeltaTime));
+	UEngineDebug::OutPutString("MousePos : " + std::to_string(MousePos.X) + "/" + std::to_string(MousePos.Y));
+	UEngineDebug::OutPutString("PlayerPos : " + std::to_string(PlayerPos.X) + "/" + std::to_string(PlayerPos.Y));
 }
 
 void APlayGameMode::LevelChangeStart()

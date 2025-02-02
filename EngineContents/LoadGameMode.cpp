@@ -40,11 +40,11 @@ void ALoadGameMode::Tick(float _DeltaTime)
 			// 이미지를 변환 
 			UEngineSprite::CreateSpriteToMeta("Forager", ".meta");
 			DirectoryAdd("Tiles");
-			DirectoryAdd("Pickax", {0.5f, 0.5f});
+			DirectoryAdd("Pickax");
 
 			UEngineCore::CreateLevel<ATitleGameMode, APawn, ATitleHUD>("Titlelevel");
 			UEngineCore::CreateLevel<APlayGameMode, APawn, ATitleHUD>("Playlevel");
-			UEngineCore::CreateLevel<ATileMapGameMode, APawn, AHUD>("TileMapEditor");
+			//UEngineCore::CreateLevel<ATileMapGameMode, APawn, AHUD>("TileMapEditor");
 			UEngineCore::OpenLevel("Playlevel");
 		}
 	}

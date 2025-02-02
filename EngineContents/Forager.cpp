@@ -5,6 +5,7 @@
 #include <EngineCore/TileMapRenderer.h>
 #include <EngineCore/DefaultSceneComponent.h>
 #include <EngineCore/CameraActor.h>
+#include <EngineCore/EngineCamera.h>
 #include <EngineCore/TimeEventComponent.h>
 #include <EngineCore/Collision.h>
 #include <EngineCore/FontRenderer.h>
@@ -57,7 +58,6 @@ AForager::AForager()
 	//TileMapRenderer->SetupAttachment(RootComponent);
 
 	//GetWorld()->GetMainCamera()->AttachToActor(this);
-
 }
 
 AForager::~AForager()
@@ -156,7 +156,6 @@ void AForager::Tick(float _DeltaTime)
 			if (false == Tile.IsBlock)
 			{
 				AddRelativeLocation(MovePos);
-				Camera->SetActorLocation({ PlayerPos.X + MovePos.X, PlayerPos.Y + MovePos.Y, -750.0f });
 			}
 		}
 	}

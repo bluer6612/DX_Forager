@@ -238,13 +238,7 @@ void FTransform::TransformUpdate(bool _IsAbsolut /*= false*/)
 
 	// 크자이 값을 역으로 다시 꺼내려고 하는 것.
 	Decompose();
-
-
-
 }
-
-
-
 
 bool FTransform::Collision(ECollisionType _LeftType, const FTransform& _Left, ECollisionType _RightType, const FTransform& _Right)
 {
