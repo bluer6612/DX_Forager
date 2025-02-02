@@ -40,7 +40,7 @@ void ALoadGameMode::Tick(float _DeltaTime)
 			// 이미지를 변환 
 			UEngineSprite::CreateSpriteToMeta("Forager", ".meta");
 			DirectoryAdd("Tiles");
-			DirectoryAdd("Pickax");
+			DirectoryAdd("Pickax", {0.5f, 0.5f});
 
 			UEngineCore::CreateLevel<ATitleGameMode, APawn, ATitleHUD>("Titlelevel");
 			UEngineCore::CreateLevel<APlayGameMode, APawn, ATitleHUD>("Playlevel");
@@ -103,10 +103,10 @@ void ALoadGameMode::LevelChangeStart()
 	}
 }
 
-void ALoadGameMode::DirectoryAdd(std::string _Append)
+void ALoadGameMode::DirectoryAdd(std::string _Append, FVector _Pivot)
 {
 	UEngineDirectory Dir;
 	Dir.MoveParentToDirectory("Resources//Image//");
 	Dir.Append(_Append);
-	UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+	UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString(), _Pivot);
 }

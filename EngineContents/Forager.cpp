@@ -28,11 +28,10 @@ AForager::AForager()
 	CharacterRenderer->CreateAnimation("Run" + std::string("Left"), "Forager", 7, 10, 0.15f);
 
 	PickaxRenderer = CreateDefaultSubObject<USpriteRenderer>();
-	PickaxRenderer->SetSprite("Pickax", RootComponent);
-	PickaxRenderer->SetRelativeLocation({-20.f, 0, -100.f});
-	PickaxRenderer->SetRotation({ 0, 0, 60.f });
-	//PickaxRenderer->CreateAnimation("Idle" + std::string("Right"), "Pickax", 0, 0, 0.f);
-	//PickaxRenderer->CreateAnimation("Idle" + std::string("Left"), "Pickax", 1, 1, 0.f);
+	PickaxRenderer->SetSprite("Pickax", RootComponent, 1);
+	PickaxRenderer->SetRelativeLocation({ -20.f, 0, -100.f });
+	PickaxRenderer->CreateAnimation("Idle" + std::string("Left"), "Pickax", 0, 0, 0.f);
+	PickaxRenderer->CreateAnimation("Idle" + std::string("Right"), "Pickax", 1, 1, 0.f);
 	
 	Collision = CreateDefaultSubObject<UCollision>();
 	Collision->SetupAttachment(RootComponent);
@@ -70,7 +69,7 @@ void AForager::BeginPlay()
 	AActor::BeginPlay();
 
 	CharacterRenderer->ChangeAnimation("Idle" + Dir);
-	//PickaxRenderer->ChangeAnimation("Idle" + Dir);
+	PickaxRenderer->ChangeAnimation("Idle" + Dir);
 }
 
 void AForager::Tick(float _DeltaTime)
@@ -83,16 +82,29 @@ void AForager::Tick(float _DeltaTime)
 	FVector MovePos = { 0.f, 0.f, 0.f };
 
 	UEngineDebug::OutPutString("FPS : " + std::to_string(1.0f / _DeltaTime));
+	UEngineDebug::OutPutString("PlayerPos : " + std::to_string(PlayerPos.X) + "/" + std::to_string(PlayerPos.Y));
 
 	int ChangeAnimation = 0;
 	if (MousePos.X < PlayerPos.X) 
 	{
-		Dir = "Left";
+		if (Dir != "Left")
+		{
+			Dir = "Left";
+			PickaxRenderer->ChangeAnimation("Idle" + Dir);
+			PickaxRenderer->SetRelativeLocation({ 20.f, 0.f, -100.f });
+		}
+
 		ChangeAnimation = 1;
 	}
 	else if (MousePos.X > PlayerPos.X)
 	{
-		Dir = "Right";
+		if (Dir != "Right")
+		{
+			Dir = "Right";
+			PickaxRenderer->ChangeAnimation("Idle" + Dir);
+			PickaxRenderer->SetRelativeLocation({ -20.f, 0.f, -100.f });
+		}
+
 		ChangeAnimation = 1;
 	}
 

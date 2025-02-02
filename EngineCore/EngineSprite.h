@@ -20,14 +20,14 @@ public:
 	UEngineSprite& operator=(UEngineSprite&& _Other) noexcept = delete;
 
 
-	ENGINEAPI static std::shared_ptr<UEngineSprite> CreateSpriteToFolder(std::string_view _Path)
+	ENGINEAPI static std::shared_ptr<UEngineSprite> CreateSpriteToFolder(std::string_view _Path, FVector _Pivot = FVector{ 0.5f, 0.5f })
 	{
 		UEngineDirectory Dir = _Path;
 
-		return CreateSpriteToFolder(Dir.GetDirectoryName(), _Path);
+		return CreateSpriteToFolder(Dir.GetDirectoryName(), _Path, _Pivot);
 	}
 
-	ENGINEAPI static std::shared_ptr<UEngineSprite> CreateSpriteToFolder(std::string_view _Name, std::string_view _Path);
+	ENGINEAPI static std::shared_ptr<UEngineSprite> CreateSpriteToFolder(std::string_view _Name, std::string_view _Path, FVector _Pivot = FVector{ 0.5f, 0.5f });
 
 	ENGINEAPI static std::shared_ptr<UEngineSprite> CreateSpriteToMeta(std::string _Name, std::string_view _DataFileExt);
 

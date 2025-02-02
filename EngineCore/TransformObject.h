@@ -40,7 +40,6 @@ public:
 		TransformUpdate();
 	}
 
-
 	void AddWorldRotation(const FVector& _Value)
 	{
 		IsAbsolute = true;

@@ -16,7 +16,6 @@ std::shared_ptr<UEngineSprite> UEngineSprite::CreateSpriteToCount(std::string_vi
 {
 	std::string UpperName = UEngineString::ToUpper(_Name);
 
-
 	std::shared_ptr<UEngineSprite> NewRes = std::make_shared<UEngineSprite>();
 	PushRes<UEngineSprite>(NewRes, _Name, "");
 
@@ -50,7 +49,7 @@ std::shared_ptr<UEngineSprite> UEngineSprite::CreateSpriteToCount(std::string_vi
 	return NewRes;
 }
 
-std::shared_ptr<UEngineSprite> UEngineSprite::CreateSpriteToFolder(std::string_view _Name, std::string_view _Path)
+std::shared_ptr<UEngineSprite> UEngineSprite::CreateSpriteToFolder(std::string_view _Name, std::string_view _Path, FVector _Pivot)
 {
 	UEngineDirectory Dir = _Path;
 
@@ -81,7 +80,7 @@ std::shared_ptr<UEngineSprite> UEngineSprite::CreateSpriteToFolder(std::string_v
 		FSpriteData SpriteData;
 		SpriteData.CuttingPos = { 0.0f, 0.0f };
 		SpriteData.CuttingSize = { 1.0f, 1.0f };
-		SpriteData.Pivot = { 0.5f, 0.5f };
+		SpriteData.Pivot = _Pivot;
 		NewRes->SpriteDatas.push_back(SpriteData);
 	}
 
@@ -175,13 +174,13 @@ std::shared_ptr<UEngineSprite> UEngineSprite::CreateSpriteToMeta(std::string _Na
 		{
 			std::string Number = UEngineString::InterString(Text, "x:", ",", Start);
 			SpriteData.Pivot.X = static_cast<float>(atof(Number.c_str()));
-			SpriteData.Pivot.X = 0.5f;
+			//SpriteData.Pivot.X = 0.5f;
 		}
 
 		{
 			std::string Number = UEngineString::InterString(Text, "y:", "}", Start);
 			SpriteData.Pivot.Y = static_cast<float>(atof(Number.c_str()));
-			SpriteData.Pivot.Y = 0.5f;
+			//SpriteData.Pivot.Y = 0.5f;
 		}
 
 

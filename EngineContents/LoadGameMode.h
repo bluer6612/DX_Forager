@@ -24,7 +24,7 @@ protected:
 	void LevelChangeStart() override;
 
 private:
-	void DirectoryAdd(std::string _Append);
+	void DirectoryAdd(std::string _Append, FVector _Pivot = FVector{ 0.5f, 0.5f });
 
 	std::atomic<int> LoadingCount = 0;
 
