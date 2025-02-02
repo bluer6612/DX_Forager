@@ -21,12 +21,19 @@ AForager::AForager()
 
 	CharacterRenderer = CreateDefaultSubObject<USpriteRenderer>();
 	CharacterRenderer->SetSprite("Forager", RootComponent);
-	CharacterRenderer->SetAutoScaleRatio(3.5f);
+	CharacterRenderer->SetAutoScaleRatio(3.25f);
 	CharacterRenderer->CreateAnimation("Idle" + std::string("Right"), "Forager", 0, 1, 0.15f);
 	CharacterRenderer->CreateAnimation("Idle" + std::string("Left"), "Forager", 11, 12, 0.15f);
 	CharacterRenderer->CreateAnimation("Run" + std::string("Right"), "Forager", 3, 6, 0.15f);
 	CharacterRenderer->CreateAnimation("Run" + std::string("Left"), "Forager", 7, 10, 0.15f);
 
+	PickaxRenderer = CreateDefaultSubObject<USpriteRenderer>();
+	PickaxRenderer->SetSprite("Pickax", RootComponent);
+	PickaxRenderer->SetRelativeLocation({-20.f, 0, -100.f});
+	PickaxRenderer->SetRotation({ 0, 0, 60.f });
+	//PickaxRenderer->CreateAnimation("Idle" + std::string("Right"), "Pickax", 0, 0, 0.f);
+	//PickaxRenderer->CreateAnimation("Idle" + std::string("Left"), "Pickax", 1, 1, 0.f);
+	
 	Collision = CreateDefaultSubObject<UCollision>();
 	Collision->SetupAttachment(RootComponent);
 	Collision->SetCollisionProfileName("Forager");
@@ -62,7 +69,8 @@ void AForager::BeginPlay()
 {
 	AActor::BeginPlay();
 
-	CharacterRenderer->ChangeAnimation("Run" + Dir);
+	CharacterRenderer->ChangeAnimation("Idle" + Dir);
+	//PickaxRenderer->ChangeAnimation("Idle" + Dir);
 }
 
 void AForager::Tick(float _DeltaTime)

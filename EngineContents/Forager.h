@@ -24,6 +24,7 @@ protected:
 	//std::shared_ptr<class UTileManager> TileManager;
 
 private:
+	std::shared_ptr<class USpriteRenderer> PickaxRenderer;
 	//class UTileMapRenderer* TileManager;
 	//class APlayGameMode* PlayGameMode;
 };

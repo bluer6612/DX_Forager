@@ -12,7 +12,6 @@ USpriteRenderer::USpriteRenderer()
 	GetRenderUnit().ConstantBufferLinkData("FSpriteData", SpriteData);
 	GetRenderUnit().ConstantBufferLinkData("FUVValue", UVValue);
 
-
 	UVValue.PlusUVValue = {0.0f, 0.0f, 0.0f, 0.0f};
 	SpriteData.CuttingPos = {0.0f, 0.0f};
 	SpriteData.CuttingSize = { 1.0f, 1.0f };
@@ -41,7 +40,7 @@ void USpriteRenderer::SetSprite(std::string _Name, std::shared_ptr<USceneCompone
 	CurIndex = _Index;
 
 	SetupAttachment(_Parent);
-	SetAutoScaleRatio(3.0f);
+	SetAutoScaleRatio(1.0f);
 	BillboardOn();
 }
 
