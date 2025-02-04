@@ -81,6 +81,8 @@ void AForager::Tick(float _DeltaTime)
 	FVector PlayerPos = GetActorLocation();
 	FVector MovePos = { 0.f, 0.f };
 
+	UEngineDebug::OutPutString("FPS : " + std::to_string(1.0f / _DeltaTime));
+
 	int ChangeAnimation = 0;
 	if (MousePos.X < PlayerPos.X) 
 	{

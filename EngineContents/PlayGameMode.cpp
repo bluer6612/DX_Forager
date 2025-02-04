@@ -12,6 +12,7 @@
 #include "ContentsEditorGUI.h"
 #include <EngineBase/EngineDebug.h>
 #include <EngineBase/EngineRandom.h>
+#include <EnginePlatform/EngineInput.h>
 
 APlayGameMode::APlayGameMode()
 {
@@ -134,42 +135,40 @@ void APlayGameMode::Tick(float _DeltaTime)
 	FVector CameraPos = Camera->GetActorLocation();
 	FVector PlayerPos = Forager->GetActorLocation();
 	float4 CorrectionValue = { 0, 0 };
-
-	UEngineDebug::OutPutString("FPS : " + std::to_string(1.0f / _DeltaTime));
 	UEngineDebug::OutPutString("CameraPos : " + std::to_string(CameraPos.X) + "/" + std::to_string(CameraPos.Y));
 
 
-	if (abs(int(PlayerPos.X) - int(CameraPos.X)) < 6)
+	if (abs(int(PlayerPos.X) - int(CameraPos.X)) > 6)
 	{
-	}
-	else if (int(PlayerPos.X) != int(CameraPos.X))
-	{
-		if (int(PlayerPos.X) - int(CameraPos.X) > 6)
+		if (int(PlayerPos.X) != int(CameraPos.X))
 		{
-			CorrectionValue += { 4.f, 0.f };
-		}
-		else if (int(PlayerPos.X) - int(CameraPos.X) < 6)
-		{
-			CorrectionValue += { -4.f, 0.f };
-		}
-	}
-
-	if (abs(int(PlayerPos.Y) - int(CameraPos.Y)) < 6)
-	{
-	}
-	else if (int(PlayerPos.Y) != int(CameraPos.Y))
-	{
-		if (int(PlayerPos.Y) - int(CameraPos.Y) > 6)
-		{
-			CorrectionValue += { 0.f, 4.f };
-		}
-		else if (int(PlayerPos.Y) - int(CameraPos.Y) < 6)
-		{
-			CorrectionValue += { 0.f, -4.f };
+			if (int(PlayerPos.X) - int(CameraPos.X) > 6)
+			{
+				CorrectionValue += { 4.f, 0.f };
+			}
+			else if (int(PlayerPos.X) - int(CameraPos.X) < 6)
+			{
+				CorrectionValue += { -4.f, 0.f };
+			}
 		}
 	}
 
-	if (CorrectionValue.X != 0 || CorrectionValue.Y != 0)
+	if (abs(int(PlayerPos.Y) - int(CameraPos.Y)) > 6)
+	{
+		if (int(PlayerPos.Y) != int(CameraPos.Y))
+		{
+			if (int(PlayerPos.Y) - int(CameraPos.Y) > 6)
+			{
+				CorrectionValue += { 0.f, 4.f };
+			}
+			else if (int(PlayerPos.Y) - int(CameraPos.Y) < 6)
+			{
+				CorrectionValue += { 0.f, -4.f };
+			}
+		}
+	}
+
+	if (CorrectionValue.X != 0.f || CorrectionValue.Y != 0.f)
 	{
 		Camera->SetActorLocation({ CameraPos.X + CorrectionValue.X, CameraPos.Y + CorrectionValue.Y, -750.0f, 1.f });
 		Forager->SetActorLocation({ CameraPos.X + CorrectionValue.X, CameraPos.Y + CorrectionValue.Y });
@@ -178,10 +177,11 @@ void APlayGameMode::Tick(float _DeltaTime)
 	{
 		Camera->SetActorLocation({ PlayerPos.X, PlayerPos.Y, -750.0f, 1.f });
 	}
-	CameraPos = Camera->GetActorLocation();
 
+	CameraPos = Camera->GetActorLocation();
 	UEngineDebug::OutPutString("CameraPos2 : " + std::to_string(CameraPos.X) + "/" + std::to_string(CameraPos.Y));
 	UEngineDebug::OutPutString("PlayerPos : " + std::to_string(PlayerPos.X) + "/" + std::to_string(PlayerPos.Y));
+
 }
 
 void APlayGameMode::LevelChangeStart()

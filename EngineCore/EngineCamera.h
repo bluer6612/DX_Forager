@@ -72,8 +72,6 @@ private:
 
 	D3D11_VIEWPORT ViewPortInfo;
 
-
-
 	FVector ProjectionScale = {0.0f, 0.0f};
 
 	// 내가 바라보는 랜더러의 그룹은 카메라가 가진다.
