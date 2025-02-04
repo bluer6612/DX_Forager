@@ -107,7 +107,6 @@ APlayGameMode::APlayGameMode()
 					TileMapRenderer->SetTile(TilePos, 5);
 				}
 
-
 				TilePos.X += 56.f;
 			}
 
