@@ -131,19 +131,60 @@ void APlayGameMode::Tick(float _DeltaTime)
 	AActor::Tick(_DeltaTime);
 
 	std::shared_ptr<class ACameraActor> Camera = GetWorld()->GetMainCamera();
-	FVector MousePos = Camera->ScreenMousePosToWorldPos();
+	FVector CameraPos = Camera->GetActorLocation();
 	FVector PlayerPos = Forager->GetActorLocation();
-
-	//Camera->SetActorLocation({ PlayerPos.X, PlayerPos.Y, -750.0f });
+	float4 CorrectionValue = { 0, 0 };
 
 	UEngineDebug::OutPutString("FPS : " + std::to_string(1.0f / _DeltaTime));
-	UEngineDebug::OutPutString("MousePos : " + std::to_string(MousePos.X) + "/" + std::to_string(MousePos.Y));
+	UEngineDebug::OutPutString("CameraPos : " + std::to_string(CameraPos.X) + "/" + std::to_string(CameraPos.Y));
+
+
+	if (abs(int(PlayerPos.X) - int(CameraPos.X)) < 6)
+	{
+		Camera->SetActorLocation({ PlayerPos.X, PlayerPos.Y + CorrectionValue.Y, -750.0f, 1.f });
+	}
+	else if (int(PlayerPos.X) != int(CameraPos.X))
+	{
+		if (int(PlayerPos.X) - int(CameraPos.X) > 6)
+		{
+			CorrectionValue += { 0.6f, 0.f };
+		}
+		else if (int(PlayerPos.X) - int(CameraPos.X) < 6)
+		{
+			CorrectionValue += { -0.6f, 0.f };
+		}
+	}
+
+	if (abs(int(PlayerPos.Y) - int(CameraPos.Y)) < 6)
+	{
+		Camera->SetActorLocation({ CameraPos.X + CorrectionValue.X, PlayerPos.Y, -750.0f, 1.f });
+	}
+	else if (int(PlayerPos.Y) != int(CameraPos.Y))
+	{
+
+		if (int(PlayerPos.Y) - int(CameraPos.Y) > 6)
+		{
+			CorrectionValue += { 0.f, 0.6f };
+		}
+		else if (int(PlayerPos.Y) - int(CameraPos.Y) < 6)
+		{
+			CorrectionValue += { 0.f, -0.6f };
+		}
+	}
+
+	Camera->SetActorLocation({ CameraPos.X + CorrectionValue.X, CameraPos.Y + CorrectionValue.Y, -750.0f, 1.f });
+	CameraPos = Camera->GetActorLocation();
+
+	UEngineDebug::OutPutString("CameraPos2 : " + std::to_string(CameraPos.X) + "/" + std::to_string(CameraPos.Y));
 	UEngineDebug::OutPutString("PlayerPos : " + std::to_string(PlayerPos.X) + "/" + std::to_string(PlayerPos.Y));
 }
 
 void APlayGameMode::LevelChangeStart()
 {
 	UEngineGUI::AllWindowOff();
+
+	std::shared_ptr<ACameraActor> Camera = GetWorld()->GetMainCamera();
+	//Camera->SetActorLocation({ 100.0f, 0.f, -750.0f, 1.0f });
 	
 	//Forager->SetPlayGameMode(PlayGameMode);
 	//Forager->TileMapRenderer = TileMapRenderer;
