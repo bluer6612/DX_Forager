@@ -141,38 +141,43 @@ void APlayGameMode::Tick(float _DeltaTime)
 
 	if (abs(int(PlayerPos.X) - int(CameraPos.X)) < 6)
 	{
-		Camera->SetActorLocation({ PlayerPos.X, PlayerPos.Y + CorrectionValue.Y, -750.0f, 1.f });
 	}
 	else if (int(PlayerPos.X) != int(CameraPos.X))
 	{
 		if (int(PlayerPos.X) - int(CameraPos.X) > 6)
 		{
-			CorrectionValue += { 0.6f, 0.f };
+			CorrectionValue += { 4.f, 0.f };
 		}
 		else if (int(PlayerPos.X) - int(CameraPos.X) < 6)
 		{
-			CorrectionValue += { -0.6f, 0.f };
+			CorrectionValue += { -4.f, 0.f };
 		}
 	}
 
 	if (abs(int(PlayerPos.Y) - int(CameraPos.Y)) < 6)
 	{
-		Camera->SetActorLocation({ CameraPos.X + CorrectionValue.X, PlayerPos.Y, -750.0f, 1.f });
 	}
 	else if (int(PlayerPos.Y) != int(CameraPos.Y))
 	{
-
 		if (int(PlayerPos.Y) - int(CameraPos.Y) > 6)
 		{
-			CorrectionValue += { 0.f, 0.6f };
+			CorrectionValue += { 0.f, 4.f };
 		}
 		else if (int(PlayerPos.Y) - int(CameraPos.Y) < 6)
 		{
-			CorrectionValue += { 0.f, -0.6f };
+			CorrectionValue += { 0.f, -4.f };
 		}
 	}
 
-	Camera->SetActorLocation({ CameraPos.X + CorrectionValue.X, CameraPos.Y + CorrectionValue.Y, -750.0f, 1.f });
+	if (CorrectionValue.X != 0 || CorrectionValue.Y != 0)
+	{
+		Camera->SetActorLocation({ CameraPos.X + CorrectionValue.X, CameraPos.Y + CorrectionValue.Y, -750.0f, 1.f });
+		Forager->SetActorLocation({ CameraPos.X + CorrectionValue.X, CameraPos.Y + CorrectionValue.Y });
+	}
+	else
+	{
+		Camera->SetActorLocation({ PlayerPos.X, PlayerPos.Y, -750.0f, 1.f });
+	}
 	CameraPos = Camera->GetActorLocation();
 
 	UEngineDebug::OutPutString("CameraPos2 : " + std::to_string(CameraPos.X) + "/" + std::to_string(CameraPos.Y));
@@ -182,10 +187,4 @@ void APlayGameMode::Tick(float _DeltaTime)
 void APlayGameMode::LevelChangeStart()
 {
 	UEngineGUI::AllWindowOff();
-
-	std::shared_ptr<ACameraActor> Camera = GetWorld()->GetMainCamera();
-	//Camera->SetActorLocation({ 100.0f, 0.f, -750.0f, 1.0f });
-	
-	//Forager->SetPlayGameMode(PlayGameMode);
-	//Forager->TileMapRenderer = TileMapRenderer;
 }

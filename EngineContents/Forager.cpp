@@ -151,7 +151,7 @@ void AForager::Tick(float _DeltaTime)
 				CorrectionValue += { 0.f, -64.f };
 			}
 
-			FTileIndex TileIndex = TileMapRenderer->WorldPosToTileIndex({GetActorLocation().X + MovePos.X + CorrectionValue.X, GetActorLocation().Y + MovePos.Y + CorrectionValue.Y});
+			FTileIndex TileIndex = TileMapRenderer->WorldPosToTileIndex({ PlayerPos.X + MovePos.X + CorrectionValue.X, PlayerPos.Y + MovePos.Y + CorrectionValue.Y});
 			FTileData& Tile = TileMapRenderer->Tiles[TileIndex.Key];
 			if (false == Tile.IsBlock)
 			{
