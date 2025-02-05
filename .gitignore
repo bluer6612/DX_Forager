@@ -395,3 +395,5 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+/EngineCore/ThirdParty/FW1FontWrapper/Release/FW1FontWrapper.dll
+/EnginePlatform/ThirdParty/FMOD/Release/fmod_vc.lib
